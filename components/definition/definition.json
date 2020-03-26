@@ -1,0 +1,35 @@
+{
+  "connection": "default",
+  "collectionName": "components_definition_definitions",
+  "info": {
+    "name": "definition",
+    "icon": "lightbulb"
+  },
+  "options": {},
+  "attributes": {
+    "name_FR": {
+      "type": "string"
+    },
+    "name_ES": {
+      "type": "string"
+    },
+    "type_FR": {
+      "type": "string"
+    },
+    "type_ES": {
+      "type": "string"
+    },
+    "content_FR": {
+      "type": "richtext"
+    },
+    "content_ES": {
+      "type": "richtext"
+    },
+    "link_FR": {
+      "type": "string"
+    },
+    "link_ES": {
+      "type": "string"
+    }
+  }
+}

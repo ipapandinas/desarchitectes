@@ -10,13 +10,31 @@
     "timestamps": true
   },
   "attributes": {
-    "title": {
+    "title_FR": {
       "type": "string",
       "required": true
     },
-    "content": {
-      "type": "text",
+    "title_ES": {
+      "type": "string",
       "required": true
+    },
+    "pdf": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "media.image",
+        "text.paragraph"
+      ]
+    },
+    "definition": {
+      "type": "component",
+      "repeatable": true,
+      "component": "definition.definition"
     }
   }
 }
