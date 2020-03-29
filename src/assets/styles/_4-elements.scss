@@ -1,0 +1,47 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:root {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+#root {
+  height: 100%;
+}
+
+body {
+  font: normal 400 1.6rem $times;
+  color: $neutral-black;
+  margin: 0;
+}
+
+main {
+  width: 100%;
+  min-height: 100%;
+  position: fixed;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  // @include desktop {
+  //   max-width: $four_sixth;
+  //   min-height: 100vh;
+
+  //   padding-left: $page-margin-x-lg;
+  //   padding-right: $page-margin-x-lg;
+  //   padding-bottom: $footer-height-lg;
+  //   margin-left: $one_sixth;
+  //   margin-right: $one_sixth;
+  // }
+}
+
+img {
+  width: 100%;
+  height: auto;
+}

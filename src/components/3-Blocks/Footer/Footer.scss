@@ -1,0 +1,37 @@
+@import '../../../assets/styles/abstracts';
+
+.Footer {
+  display: flex;
+  background: $white;
+  padding: $footer-padding-top-y-sm $page-margin-x-sm
+    $footer-padding-bottom-y-sm;
+}
+
+.Footer__button {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.Footer__logo {
+  width: $footer-content-width-sm;
+  height: auto;
+}
+
+.Footer__link {
+  text-decoration: none;
+}
+
+@include tablet {
+  .Footer {
+    padding: $footer-padding-top-y-md $page-margin-x-md
+      $footer-padding-bottom-y-md;
+  }
+
+  .Footer__button {
+    img {
+      height: $footer-content-height-md;
+    }
+  }
+}

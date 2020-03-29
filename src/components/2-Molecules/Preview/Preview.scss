@@ -1,0 +1,105 @@
+@import '../../../assets/styles/abstracts';
+
+.Preview {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  left: 0;
+  top: 0;
+  right: 100%;
+  z-index: 5;
+  border: 0;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.9), $white);
+
+  width: 100%;
+  height: 100%;
+}
+
+.Preview--visible {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.5s cubic-bezier(0, 0.52, 0, 1);
+}
+.Preview--hide {
+  transform: translate3d(100vw, 0, 0);
+  transition: transform 0.5s cubic-bezier(0.96, 0, 1, 1);
+}
+
+.Preview__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.Preview__list--start {
+  justify-content: flex-start;
+}
+
+.Preview__list--end {
+  justify-content: flex-end;
+}
+
+.Suggestions,
+.Suggestions__prev,
+.Suggestions__next {
+  position: relative;
+  right: $app_alphabet;
+
+  button {
+    background: none;
+    border: 0;
+    font-size: 1.5rem;
+  }
+}
+
+.Suggestions {
+  min-height: $letter-height;
+
+  button {
+    color: $black;
+  }
+
+  &--ES {
+    button {
+      font-family: $averiaBold;
+    }
+  }
+
+  &--FR {
+    button {
+      font-family: $timesBold;
+    }
+  }
+}
+
+.Suggestions__prev,
+.Suggestions__next {
+  button {
+    color: $neutral-grey;
+  }
+
+  &--ES {
+    button {
+      font-family: $averia;
+    }
+  }
+
+  &--FR {
+    button {
+      font-family: $times;
+    }
+  }
+}
+
+@include tablet {
+  .Suggestions,
+  .Suggestions__prev,
+  .Suggestions__next {
+    right: $app_alphabet_md;
+  }
+
+  .Suggestions {
+    min-height: $letter-height_md;
+  }
+}

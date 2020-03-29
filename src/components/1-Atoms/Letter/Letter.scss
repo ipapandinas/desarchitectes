@@ -1,0 +1,58 @@
+@import '../../../assets/styles/abstracts';
+
+.Letter__button {
+  position: relative;
+  background: none;
+  border: 0;
+  font-size: 2rem;
+  color: $neutral-light-grey;
+  width: 100%;
+  height: $letter-height;
+  padding: 0;
+
+  &--ES {
+    font-family: $averia;
+  }
+
+  &--FR {
+    font-family: $times;
+  }
+
+  &--active {
+    color: $white;
+
+    &.Letter__button--ES {
+      font-family: $averiaBold;
+    }
+
+    &.Letter__button--FR {
+      font-family: $timesBold;
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      position: relative;
+      top: 1.7rem;
+      left: 0;
+      border-top: 0.5rem solid transparent;
+      border-bottom: 0.5rem solid transparent;
+      border-left: 0.5rem solid $white;
+      margin-top: -1.1rem;
+    }
+  }
+}
+
+.Letter__indicator {
+  position: absolute;
+  right: 0.6rem;
+  top: 1.2rem;
+  font-size: 1.2rem;
+}
+
+@include tablet {
+  .Letter__button {
+    height: $letter-height_md;
+    font-size: 2.5rem;
+  }
+}

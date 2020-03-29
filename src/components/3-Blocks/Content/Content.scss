@@ -1,0 +1,26 @@
+@import '../../../assets/styles/abstracts';
+
+.Content {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: content-box;
+  padding-right: $page-margin-x-sm + $page-margin-x-sm * 0.6;
+  padding-left: $page-margin-x-sm;
+}
+
+.Content--ES {
+  font-family: $averia;
+}
+
+.Content--FR {
+  font-family: $times;
+}
+
+@include tablet {
+  .Content {
+    padding-right: $page-margin-x-md;
+    padding-left: $page-margin-x-md;
+  }
+}

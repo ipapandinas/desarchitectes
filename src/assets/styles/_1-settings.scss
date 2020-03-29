@@ -1,0 +1,137 @@
+// Fonts
+$timesFontName: 'TimesNewRoman';
+$times: $timesFontName;
+$timesBold: 'TimesNewRoman-Bold';
+$timesBoldItalic: 'TimesNewRoman-Bold-Italic';
+$timesItalic: 'TimesNewRoman-Italic';
+
+$averiaFontName: 'AveriaSerif-Regular';
+$averia: $averiaFontName;
+$averiaBold: 'AveriaSerif-Bold';
+$averiaBoldItalic: 'AveriaSerif-Bold-Italic';
+$averiaItalic: 'AveriaSerif-Italic';
+
+// Weight
+$bold: 600;
+
+//---------- Colors ----------//
+// stylelint-disable color-no-hex
+// Primary
+$salmon-pink: #c74971;
+
+// Secondary
+
+// Semantic
+
+// Neutral
+$neutral-black: #1b1b1b;
+$neutral-light-grey: #999999;
+$neutral-grey: #959595;
+$neutral-white: #f7f7f7;
+
+// Shadows
+$default-shadow-color: #0f498b;
+$default-shadow: rgba($default-shadow-color, 0.1);
+$default-box-shadow: 0 4px 15px 0 $default-shadow;
+$default-hover-box-shadow: 0 8px 28px 0 rgba($default-shadow-color, 0.2);
+$input-box-shadow: 0 5px 21px 0 $default-shadow;
+
+$white: #ffffff;
+$black: #000000;
+// stylelint-enable color-no-hex
+
+// Breakpoints
+$breakpoint-xs-min: 576px;
+$breakpoint-sm-min: 768px;
+$breakpoint-md-min: 992px;
+$breakpoint-lg-min: 1280px;
+$breakpoint-xl-min: 1440px;
+
+$breakpoint-xxs-max: $breakpoint-xs-min - 1;
+$breakpoint-xs-max: $breakpoint-sm-min - 1;
+$breakpoint-sm-max: $breakpoint-md-min - 1;
+$breakpoint-md-max: $breakpoint-lg-min - 1;
+$breakpoint-lg-max: $breakpoint-xl-min - 1;
+
+// Transitions
+$transition-duration-fast: 0.25s;
+$transition-duration-medium: 0.5s;
+
+//----------------------------//
+
+// Layout
+$page-max-width: 128rem;
+
+$page-margin-x-lg: 8rem;
+$page-margin-x-md: 3.2rem;
+$page-margin-x-sm: 1.5rem;
+
+$page-margin-y-lg: 4.4rem;
+$page-margin-y-md: 3.2rem;
+$page-margin-y-sm: 2.25rem;
+
+$block-margin-x-lg: 12rem;
+$block-margin-x-md: 6.4rem;
+$block-margin-x-sm: 4rem;
+
+$block-margin-y-lg: 12rem;
+$block-margin-y-md: 6.4rem;
+$block-margin-y-sm: 4rem;
+
+$block-border-radius: 1rem;
+
+// Sizes
+$app_content: 89%;
+$app_alphabet: 11%;
+
+$app_content_md: 92%;
+$app_alphabet_md: 8%;
+
+$app_content_lg: 92%;
+$app_alphabet_lg: 8%;
+
+$one_sixth: 16.667%;
+$one_quarter: 25%;
+$one_third: 33.334%;
+$one_half: 50%;
+$four_sixth: 66.667%;
+
+// Footer
+$footer-content-width-lg: 9rem;
+$footer-content-width-md: 9rem;
+$footer-content-width-sm: 9rem;
+
+$footer-content-height-lg: 6rem;
+$footer-content-height-md: 5rem;
+$footer-content-height-sm: 4rem;
+
+$footer-padding-top-y-lg: 5rem;
+$footer-padding-top-y-md: 3.5rem;
+$footer-padding-top-y-sm: 2rem;
+$footer-padding-bottom-y-lg: 5rem;
+$footer-padding-bottom-y-md: 3.5rem;
+$footer-padding-bottom-y-sm: 2rem;
+
+$footer-height-lg: (
+  $footer-padding-top-y-lg + $footer-padding-bottom-y-lg +
+    $footer-content-height-lg
+);
+$footer-height-md: (
+  $footer-padding-top-y-md + $footer-padding-bottom-y-md +
+    $footer-content-height-md
+);
+$footer-height-sm: (
+  $footer-padding-top-y-sm + $footer-padding-bottom-y-sm +
+    $footer-content-height-sm
+);
+
+//Letters
+$alphabet-height: 100rem;
+$letter-height: calc(#{$alphabet-height} / 26);
+$letter-height--ES: calc(#{$alphabet-height} / 27);
+$alphabet-height--ES: calc(#{$letter-height} * 27);
+
+$alphabet-height_md: 150rem;
+$letter-height_md: calc(#{$alphabet-height_md} / 26);
+$letter-height_md--ES: calc(#{$alphabet-height_md} / 27);
+$alphabet-height_md--ES: calc(#{$letter-height_md} * 27);

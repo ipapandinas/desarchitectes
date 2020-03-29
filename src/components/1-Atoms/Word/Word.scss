@@ -1,0 +1,41 @@
+@import '../../../assets/styles/abstracts';
+
+.Word {
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: $neutral-grey;
+
+  &--active {
+    color: $black;
+  }
+
+  &--ES {
+    font-family: $averiaBold;
+  }
+
+  &--FR {
+    font-family: $timesBold;
+  }
+}
+
+.Word__button {
+  &--ES {
+    height: $letter-height--ES;
+  }
+
+  &--FR {
+    height: $letter-height;
+  }
+}
+
+@include tablet {
+  .Word__button {
+    &--ES {
+      height: $letter-height_md--ES;
+    }
+
+    &--FR {
+      height: $letter-height_md;
+    }
+  }
+}
