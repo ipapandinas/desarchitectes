@@ -5,6 +5,8 @@ import { useLocation } from '@reach/router';
 import { graphql, useStaticQuery } from 'gatsby';
 import { connect } from 'react-redux';
 
+import favicon from '../../../assets/images/d_favicon.png';
+
 const SEO = ({ image, language, word }) => {
   const { pathname } = useLocation();
   const { site } = useStaticQuery(
@@ -65,6 +67,7 @@ const SEO = ({ image, language, word }) => {
       }}
       title={seo.title}
       titleTemplate={titleTemplate}
+      link={[{ rel: 'shortcut icon', type: 'image/png', href: `${favicon}` }]}
     >
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
