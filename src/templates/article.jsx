@@ -2,14 +2,20 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 
+import { SEO } from '../components/1-Atoms';
 import { Article } from '../components/4-Pages';
 import App from '../components/App/App';
 
-const ArticleTemplate = ({ data }) => (
-  <App>
-    <Article data={data.strapiArticle} />
-  </App>
-);
+const ArticleTemplate = ({ data }) => {
+  return (
+    <>
+      <SEO />
+      <App>
+        <Article data={data.strapiArticle} />
+      </App>
+    </>
+  );
+};
 
 ArticleTemplate.propTypes = {
   data: PropTypes.object.isRequired,
@@ -26,6 +32,7 @@ export const query = graphql`
         publicURL
       }
       content {
+        id
         alt_FR
         alt_ES
         image {

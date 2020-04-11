@@ -1,9 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: 'desarchitectes.com',
-    description:
-      'Abécédaire desarchitectes.com / Abecedario desarchitectes.com',
+    title: 'desarchitectes',
+    titleTemplate: '%s · desarchitectes.com',
+    description: 'Abécédaire desarchitectes / Abecedario desarchitectes',
     author: 'Mister Telmo',
+    url: 'https://www.desarchitectes.com',
+    image: '/d_favicon.png',
   },
   plugins: [
     `gatsby-plugin-sass`,
@@ -34,8 +36,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
+        name: 'desarchitectes.com',
+        short_name: 'desarchitectes',
         start_url: '/',
         background_color: '#663399',
         theme_color: '#663399',
