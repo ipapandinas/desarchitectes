@@ -4,7 +4,12 @@ import ReactMarkdown from 'react-markdown';
 export default function formatNewLine(text) {
   const match = /_/gi.exec(text);
   if (!match) {
-    return <ReactMarkdown source={text} />;
+    return (
+      <ReactMarkdown
+        source={text}
+        key={`${text}-${match && match.index}` || text}
+      />
+    );
   }
 
   return [

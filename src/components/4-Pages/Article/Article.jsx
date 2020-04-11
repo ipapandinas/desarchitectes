@@ -35,7 +35,7 @@ function Article(props) {
     }
   }, [data, language, onSetLetter, onSetWord, onTogglePreview]);
 
-  if (!data) {
+  if (!data || !language) {
     return null;
   }
 
@@ -151,6 +151,7 @@ function Article(props) {
 
 Article.defaultProps = {
   data: undefined,
+  language: undefined,
   onSetLetter: undefined,
   onSetWord: undefined,
   onTogglePreview: undefined,
@@ -158,7 +159,7 @@ Article.defaultProps = {
 
 Article.propTypes = {
   data: PropTypes.object,
-  language: PropTypes.string.isRequired,
+  language: PropTypes.string,
   onSetLetter: PropTypes.func,
   onSetWord: PropTypes.func,
   onTogglePreview: PropTypes.func,

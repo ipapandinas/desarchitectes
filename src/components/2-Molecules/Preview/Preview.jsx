@@ -126,9 +126,9 @@ Preview.propTypes = {
   onTogglePreview: PropTypes.func,
   preview: PropTypes.bool,
   sortAsc: PropTypes.bool,
-  suggestionsPrev: PropTypes.arrayOf(string),
-  suggestions: PropTypes.arrayOf(string),
-  suggestionsNext: PropTypes.arrayOf(string),
+  suggestionsPrev: PropTypes.array,
+  suggestions: PropTypes.array,
+  suggestionsNext: PropTypes.array,
 };
 
 const mapStateToProps = state => {

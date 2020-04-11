@@ -27,7 +27,7 @@ function Word(props) {
           'Word--FR': language === 'FR',
         })}
         title={route}
-        to={route}
+        to={`/${route}`}
       >
         {label}
       </Link>

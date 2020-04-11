@@ -22,14 +22,16 @@ function Alphabet(props) {
           <Letter letter={letter} key={letter} />
         ))}
       </div>
-      <div
-        className={classNames('Alphabet__preview', {
-          'Alphabet__preview--display': preview,
-          'Alphabet__preview--ES': language === 'ES',
-        })}
-      >
-        <Preview />
-      </div>
+      {preview && (
+        <div
+          className={classNames('Alphabet__preview', {
+            'Alphabet__preview--display': preview,
+            'Alphabet__preview--ES': language === 'ES',
+          })}
+        >
+          <Preview />
+        </div>
+      )}
     </>
   );
 }

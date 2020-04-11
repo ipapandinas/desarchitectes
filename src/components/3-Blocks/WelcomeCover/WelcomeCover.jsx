@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import { Link } from 'react-router-dom';
 
 import logo from '../../../assets/images/desarchitectes.png';
 
@@ -12,7 +11,6 @@ export default function WelcomeCover() {
 
   return (
     <div className="WelcomeCover">
-      {/* <Link to='/' title='Fermer la bannière accueil' className='WelcomeCover__closeButton'>×</Link> */}
       <img src={logo} alt="Logo desarchitectes" />
     </div>
   );
