@@ -67,7 +67,9 @@ const SEO = ({ image, language, word }) => {
       }}
       title={seo.title}
       titleTemplate={titleTemplate}
-      link={[{ rel: 'shortcut icon', type: 'image/png', href: `${favicon}` }]}
+      link={[
+        { key: 'icon', rel: 'icon', type: 'image/png', href: `${favicon}` },
+      ]}
     >
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
