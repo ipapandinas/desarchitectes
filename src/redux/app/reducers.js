@@ -89,15 +89,20 @@ export function appReducer(state = appDefaultState, action) {
       const es = [];
       const fr = [];
       action.articles.forEach(article => {
-        if (article) {
+        if (article && article.published) {
           es.push(article.title_ES.charAt(0).toUpperCase());
           fr.push(article.title_FR.charAt(0).toUpperCase());
         }
       });
       const lettersUsed = { es, fr };
+
+      const onlineArticles = action.articles.filter(
+        ({ published }) => published
+      );
+
       return {
         ...state,
-        articles: action.articles,
+        articles: onlineArticles,
         lettersUsed,
       };
     }

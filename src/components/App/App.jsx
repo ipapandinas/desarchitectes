@@ -21,9 +21,10 @@ class App extends React.PureComponent {
           query AppQuery {
             allStrapiArticle {
               nodes {
+                published
+                routeName
                 title_FR
                 title_ES
-                routeName
               }
             }
           }

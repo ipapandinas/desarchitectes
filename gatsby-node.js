@@ -26,6 +26,7 @@ exports.createPages = ({ actions, graphql }) => {
       allStrapiArticle {
         edges {
           node {
+            published
             routeName
           }
         }
@@ -35,13 +36,15 @@ exports.createPages = ({ actions, graphql }) => {
   ).then(result => {
     // Create pages for each article.
     result.data.allStrapiArticle.edges.forEach(({ node }) => {
-      createPage({
-        path: `/${node.routeName}`,
-        component: path.resolve(`src/templates/article.jsx`),
-        context: {
-          routeName: node.routeName,
-        },
-      });
+      if (node.published) {
+        createPage({
+          path: `/${node.routeName}`,
+          component: path.resolve(`src/templates/article.jsx`),
+          context: {
+            routeName: node.routeName,
+          },
+        });
+      }
     });
   });
 

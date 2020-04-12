@@ -26,6 +26,7 @@ export default ArticleTemplate;
 export const query = graphql`
   query ArticleTemplate($routeName: String!) {
     strapiArticle(routeName: { eq: $routeName }) {
+      published
       title_ES
       title_FR
       pdf {

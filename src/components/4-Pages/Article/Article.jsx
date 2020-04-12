@@ -39,6 +39,10 @@ function Article(props) {
     return null;
   }
 
+  if (!data.published) {
+    return null;
+  }
+
   const {
     content: articleContent,
     definition: articleDefinition,
