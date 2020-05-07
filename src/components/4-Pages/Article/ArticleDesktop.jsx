@@ -5,8 +5,15 @@ import { bindActionCreators } from 'redux';
 
 import { setLetter, setWord, togglePreview } from '../../../redux';
 
-import { CONTENT_TYPE_MIX } from '../../2-Molecules';
-import { ArticleCorpus } from '../../3-Blocks';
+import { Separator } from '../../1-Atoms';
+import {
+  ArticleContent,
+  CONTENT_TYPE_MEDIA,
+  CONTENT_TYPE_TEXT,
+} from '../../2-Molecules';
+import { ArticleCorpus, Footer } from '../../3-Blocks';
+
+import './ArticleDesktop.scss';
 
 const scrollToTop = () => {
   const element = document.getElementById('articleTop');
@@ -17,7 +24,7 @@ const scrollToTop = () => {
   return null;
 };
 
-function Article(props) {
+function ArticleDesktop(props) {
   const { data, language, onSetLetter, onSetWord, onTogglePreview } = props;
 
   useEffect(() => {
@@ -35,23 +42,38 @@ function Article(props) {
     return null;
   }
 
-  const { published } = data;
+  const { content: articleContent, published } = data;
   if (!published) {
     return null;
   }
 
   return (
-    <div className="Article fade-in" id="articleTop">
-      <ArticleCorpus
-        data={data}
-        language={language}
-        variant={CONTENT_TYPE_MIX}
-      />
+    <div className="ArticleDesktop fade-in" id="articleTop">
+      <div className="ArticleDesktop__left" id="corpus">
+        <ArticleCorpus
+          data={data}
+          language={language}
+          variant={CONTENT_TYPE_TEXT}
+        />
+      </div>
+
+      <Separator />
+
+      <div className="ArticleDesktop__right">
+        {articleContent && (
+          <ArticleContent
+            content={articleContent}
+            language={language}
+            type={CONTENT_TYPE_MEDIA}
+          />
+        )}
+        <Footer />
+      </div>
     </div>
   );
 }
 
-Article.defaultProps = {
+ArticleDesktop.defaultProps = {
   data: undefined,
   language: undefined,
   onSetLetter: undefined,
@@ -59,7 +81,7 @@ Article.defaultProps = {
   onTogglePreview: undefined,
 };
 
-Article.propTypes = {
+ArticleDesktop.propTypes = {
   data: PropTypes.object,
   language: PropTypes.string,
   onSetLetter: PropTypes.func,
@@ -87,4 +109,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Article);
+)(ArticleDesktop);

@@ -14,6 +14,7 @@ function Content(props) {
         'Content',
         language === 'ES' ? 'Content--ES' : 'Content--FR'
       )}
+      id="content"
     >
       {children}
     </div>

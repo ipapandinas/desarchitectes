@@ -12,6 +12,7 @@
 
   &--ES {
     font-family: $averia;
+    height: $letter-height--ES;
   }
 
   &--FR {
@@ -53,6 +54,60 @@
 @include tablet {
   .Letter__button {
     height: $letter-height_md;
-    font-size: 2.5rem;
+    font-size: 2.4rem;
+
+    &--ES {
+      height: $letter-height_md--ES;
+    }
+
+    &--active {
+      &::before {
+        top: 2rem;
+      }
+    }
+  }
+
+  .Letter__indicator {
+    top: 2.1rem;
+  }
+}
+
+@include desktop {
+  .Letter__button {
+    height: $letter-height_lg;
+
+    &--ES {
+      height: $letter-height_lg--ES;
+    }
+  }
+
+  .Letter__indicator {
+    right: 1.2rem;
+    top: 2.1rem;
+  }
+}
+
+@include desktop-xl {
+  .Letter__button {
+    height: $letter-height_xl;
+    font-size: 2.8rem;
+
+    &--ES {
+      height: $letter-height_xl--ES;
+    }
+
+    &--active {
+      &::before {
+        top: 2rem;
+        border-top: 0.6rem solid transparent;
+        border-bottom: 0.6rem solid transparent;
+        border-left: 0.8rem solid $white;
+      }
+    }
+  }
+
+  .Letter__indicator {
+    right: 1.4rem;
+    top: 3rem;
   }
 }

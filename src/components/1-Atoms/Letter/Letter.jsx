@@ -46,6 +46,9 @@ function Letter(props) {
         onClick={() => {
           onSetLetter(letter);
         }}
+        onMouseEnter={() => {
+          onSetLetter(letter);
+        }}
       >
         <span>{letter}</span>
         {isIndicator && <span className="Letter__indicator">•</span>}

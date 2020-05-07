@@ -3,6 +3,21 @@ import PropTypes, { string } from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { useMediaQuery } from 'react-responsive';
+
+import {
+  BK_LG_MIN,
+  BK_MD_MIN,
+  BK_XL_MIN,
+  LETTER_HEIGHT,
+  LETTER_HEIGHT_LG,
+  LETTER_HEIGHT_LG__ES,
+  LETTER_HEIGHT_MD,
+  LETTER_HEIGHT_MD__ES,
+  LETTER_HEIGHT_XL,
+  LETTER_HEIGHT_XL__ES,
+  LETTER_HEIGHT__ES,
+} from '../../../settings/ui';
 
 import { togglePreview } from '../../../redux';
 
@@ -23,6 +38,32 @@ function Preview(props) {
     suggestionsNext,
   } = props;
 
+  // RESPONSIVE
+  const isTablet = useMediaQuery({
+    query: `(min-device-width: ${BK_MD_MIN})`,
+  });
+  const isDesktopLG = useMediaQuery({
+    query: `(min-device-width: ${BK_LG_MIN})`,
+  });
+  const isDesktopXL = useMediaQuery({
+    query: `(min-device-width: ${BK_XL_MIN})`,
+  });
+
+  // RESPONSIVE LETTER HEIGHT
+  let LETTER_H = language === 'ES' ? LETTER_HEIGHT__ES : LETTER_HEIGHT;
+  if (isTablet) {
+    LETTER_H = language === 'ES' ? LETTER_HEIGHT_MD__ES : LETTER_HEIGHT_MD;
+  }
+
+  if (isDesktopLG) {
+    LETTER_H = language === 'ES' ? LETTER_HEIGHT_LG__ES : LETTER_HEIGHT_LG;
+  }
+
+  if (isDesktopXL) {
+    LETTER_H = language === 'ES' ? LETTER_HEIGHT_XL__ES : LETTER_HEIGHT_XL;
+  }
+
+  // SUGGESTIONS
   const nbWordsPreview = index < 6 ? index : 5;
   const nbWordsNext = index > 20 ? 25 - index : 5;
   const nbSuggestionsPrev =
@@ -46,18 +87,19 @@ function Preview(props) {
       }}
     >
       <div
-        className={classNames(
-          'Preview__list',
-          sortAsc ? 'Preview__list--start' : 'Preview__list-end'
-        )}
+        className={classNames('Preview__list', {
+          'Preview__list--start': sortAsc,
+        })}
+        onMouseLeave={() => {
+          onTogglePreview();
+        }}
         style={
           sortAsc
             ? {
-                paddingTop: `calc( (calc(100rem / 26))*${index -
-                  nbSuggestionsPrev} )`,
+                paddingTop: `calc(${LETTER_H} * ${index - nbSuggestionsPrev})`,
               }
             : {
-                paddingBottom: `calc( (calc(100rem / 26))*${alphabet.length -
+                paddingBottom: `calc(${LETTER_H} * ${alphabet.length -
                   1 -
                   index -
                   nbSuggestionsNext} )`,

@@ -41,7 +41,6 @@
 @include tablet {
   .App__content {
     width: $app_content_md;
-    padding-right: 2 * $page-margin-x-md;
     padding-bottom: $footer-height-md;
   }
 
@@ -52,16 +51,28 @@
 
 @include desktop {
   .App__content {
-    max-width: $four_sixth;
-    margin-left: $one_sixth;
-    margin-right: $one_sixth;
+    width: $app_content_lg;
 
     padding-right: 0;
-    padding-bottom: $footer-height-md;
+    padding-bottom: 0;
   }
 
   .App__alphabet {
     left: $app_content_lg;
+  }
+
+  .App__footer {
+    display: none;
+  }
+}
+
+@include desktop-sm {
+  margin: 5rem auto 0;
+}
+
+@include desktop-xl {
+  .App__alphabet--display {
+    margin-left: 1.46rem;
   }
 }
 

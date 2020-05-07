@@ -1,0 +1,21 @@
+@import '../../../assets/styles/abstracts';
+
+@include desktop {
+  .ArticleContent {
+    height: 100%;
+
+    .media-anchor {
+      display: none;
+      position: relative;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+
+      &--active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}

@@ -1,9 +1,7 @@
 @import '../../../assets/styles/abstracts';
 
 .Home {
-  padding-top: $page-margin-y-sm;
-  padding-left: $page-margin-x-sm;
-  padding-right: $page-margin-x-sm;
+  padding: $page-margin-x-sm * 2 $page-margin-x-sm 0 $page-margin-x-sm;
 }
 
 .Home__content {
@@ -32,9 +30,7 @@
 
 @include tablet {
   .Home {
-    padding-top: $block-margin-y-md;
-    padding-left: $block-margin-x-md;
-    padding-right: $block-margin-x-md;
+    padding: $page-margin-x-md * 2;
     font-size: 1.8rem;
     line-height: 1.4;
   }
@@ -53,5 +49,26 @@
     :not(:last-child) {
       padding-right: 4rem;
     }
+  }
+}
+
+@include desktop {
+  .Home {
+    width: $one_half;
+    margin: 20vh auto;
+    padding: 0;
+    font-size: 1.6rem;
+    line-height: 1.2;
+  }
+
+  .Home__socials {
+    font-size: 2rem;
+    padding-bottom: 0;
+  }
+}
+
+@include desktop-xl {
+  .Home {
+    width: $one_third;
   }
 }

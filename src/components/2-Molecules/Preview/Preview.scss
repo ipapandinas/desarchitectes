@@ -36,38 +36,33 @@
   justify-content: flex-start;
 }
 
-.Preview__list--end {
-  justify-content: flex-end;
-}
-
 .Suggestions,
 .Suggestions__prev,
 .Suggestions__next {
   position: relative;
   right: $app_alphabet;
 
-  button {
+  .Word__button {
     background: none;
     border: 0;
-    font-size: 1.5rem;
   }
 }
 
 .Suggestions {
   min-height: $letter-height;
 
-  button {
+  .Word__button {
     color: $black;
   }
 
   &--ES {
-    button {
+    .Word__button {
       font-family: $averiaBold;
     }
   }
 
   &--FR {
-    button {
+    .Word__button {
       font-family: $timesBold;
     }
   }
@@ -75,18 +70,18 @@
 
 .Suggestions__prev,
 .Suggestions__next {
-  button {
+  .Word__button {
     color: $neutral-grey;
   }
 
   &--ES {
-    button {
+    .Word__button {
       font-family: $averia;
     }
   }
 
   &--FR {
-    button {
+    .Word__button {
       font-family: $times;
     }
   }
@@ -101,5 +96,49 @@
 
   .Suggestions {
     min-height: $letter-height_md;
+
+    &--ES {
+      min-height: $letter-height_md--ES;
+    }
+  }
+}
+
+@include desktop {
+  .Preview {
+    padding: 0;
+  }
+
+  .Preview__list {
+    width: $one_quarter;
+    align-items: flex-end;
+    padding: 0 2rem;
+  }
+
+  .Suggestions,
+  .Suggestions__prev,
+  .Suggestions__next {
+    right: $app_alphabet_lg;
+
+    .Word__button {
+      font-size: 1.8rem;
+    }
+  }
+
+  .Suggestions {
+    min-height: $letter-height_lg;
+
+    &--ES {
+      min-height: $letter-height_lg--ES;
+    }
+  }
+}
+
+@include desktop-xl {
+  .Suggestions {
+    min-height: $letter-height_xl;
+
+    &--ES {
+      min-height: $letter-height_xl--ES;
+    }
   }
 }
