@@ -8,20 +8,26 @@
 }
 
 //--------- Media queries ---------//
-@mixin desktop-lg() {
-  @media (min-width: $breakpoint-lg-min) {
+@mixin desktop-xxl() {
+  @media (min-width: $breakpoint-xxl-min) {
+    @content;
+  }
+}
+
+@mixin desktop-xl() {
+  @media (min-width: $breakpoint-xl-min) {
     @content;
   }
 }
 
 @mixin desktop-sm() {
-  @media (min-width: $breakpoint-md-min) and (max-width: $breakpoint-lg-max) {
+  @media (min-width: $breakpoint-lg-min) and (max-width: $breakpoint-lg-max) {
     @content;
   }
 }
 
 @mixin desktop() {
-  @media (min-width: $breakpoint-md-min) {
+  @media (min-width: $breakpoint-lg-min) {
     @content;
   }
 }
@@ -58,6 +64,11 @@
 }
 
 @mixin containerPadding {
+  @include desktop-xl {
+    padding-left: $page-margin-x-xl;
+    padding-right: $page-margin-x-xl;
+  }
+
   @include desktop {
     padding-left: $page-margin-x-lg;
     padding-right: $page-margin-x-lg;
@@ -75,6 +86,11 @@
 }
 
 @mixin revertContainerPadding {
+  @include desktop-xl {
+    margin-left: -$page-margin-x-xl;
+    margin-right: -$page-margin-x-xl;
+  }
+
   @include desktop {
     margin-left: -$page-margin-x-lg;
     margin-right: -$page-margin-x-lg;

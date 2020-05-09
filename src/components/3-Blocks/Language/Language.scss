@@ -12,21 +12,48 @@
   justify-content: center;
   align-items: center;
   background-color: $white;
+}
 
-  button {
-    background: none;
-    border: 0;
-    font-size: 2.5rem;
+.Language__button {
+  background: none;
+  border: 0;
+  font-size: 2.5rem;
+
+  &--fr {
+    margin-left: -7rem;
+    margin-bottom: 1rem;
+    font-family: $times;
+  }
+
+  &--es {
+    margin-left: 7rem;
+    font-family: $averia;
   }
 }
 
-.Language__fr {
-  margin-left: -7rem;
-  margin-bottom: 1rem;
-  font-family: $times;
-}
+@include desktop {
+  .Language {
+    flex-direction: row;
+  }
 
-.Language__es {
-  margin-left: 7rem;
-  font-family: $averia;
+  .Language__button {
+    margin: 0;
+    height: 100%;
+    width: 50%;
+
+    &--fr {
+      padding: 0 0 5rem;
+      font-size: 2.75rem;
+    }
+
+    &--es {
+      padding: 5rem 0 0;
+    }
+
+    &:hover {
+      background: $black;
+      color: $white;
+      z-index: 10;
+    }
+  }
 }

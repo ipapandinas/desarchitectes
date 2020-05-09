@@ -29,6 +29,10 @@
 }
 
 @include tablet {
+  .Word {
+    font-size: 1.6rem;
+  }
+
   .Word__button {
     &--ES {
       height: $letter-height_md--ES;
@@ -36,6 +40,34 @@
 
     &--FR {
       height: $letter-height_md;
+    }
+  }
+}
+
+@include desktop {
+  .Word {
+    font-size: 1.8rem;
+  }
+
+  .Word__button {
+    &--ES {
+      height: $letter-height_lg--ES;
+    }
+
+    &--FR {
+      height: $letter-height_lg;
+    }
+  }
+}
+
+@include desktop-xl {
+  .Word__button {
+    &--ES {
+      height: $letter-height_xl--ES;
+    }
+
+    &--FR {
+      height: $letter-height_xl;
     }
   }
 }

@@ -6,8 +6,7 @@
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   box-sizing: content-box;
-  padding-right: $page-margin-x-sm + $page-margin-x-sm * 0.6;
-  padding-left: $page-margin-x-sm;
+  padding: 0 $page-margin-y-sm 0 $page-margin-x-sm;
 }
 
 .Content--ES {
@@ -18,9 +17,9 @@
   font-family: $times;
 }
 
-@include tablet {
+@include desktop {
   .Content {
-    padding-right: $page-margin-x-md;
-    padding-left: $page-margin-x-md;
+    overflow-y: hidden;
+    padding: 0;
   }
 }

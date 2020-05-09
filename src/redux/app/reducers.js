@@ -143,9 +143,10 @@ export function appReducer(state = appDefaultState, action) {
       };
     }
     case APP_TOGGLE_PREVIEW: {
+      const prevState = { ...state };
       return {
         ...state,
-        preview: !state.preview,
+        preview: !prevState.preview,
       };
     }
     default:

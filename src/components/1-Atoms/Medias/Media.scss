@@ -1,0 +1,92 @@
+@import '../../../assets/styles/abstracts';
+
+.TextMedias {
+  margin: 4rem 0 3rem;
+
+  > * {
+    margin: 0 0 $block-margin-x-sm;
+    width: 100%;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.Media__legend {
+  margin: 0.5rem 0 0;
+
+  > * {
+    margin: 0;
+  }
+}
+
+@include tablet {
+  .TextMedias--single-landscape {
+    .Media__legend {
+      margin: 2rem 0 0;
+    }
+  }
+
+  .TextMedias--single-portrait,
+  .TextMedias--row {
+    > * {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .Media__image {
+      width: $four_sixth;
+    }
+
+    .Media__legend {
+      margin-left: 2rem;
+    }
+  }
+}
+
+@include desktop {
+  .TextMedias,
+  .Media {
+    position: fixed;
+  }
+
+  .TextMedias {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    margin: 0;
+
+    &--single-portrait {
+      width: 75%;
+    }
+
+    &--row {
+      flex-direction: row;
+
+      > * {
+        margin: 0 $block-margin-x-sm * 2 0 0;
+
+        &:last-child {
+          margin: 0;
+        }
+      }
+
+      .Media__image {
+        height: 100%;
+        width: auto;
+      }
+    }
+  }
+
+  .Media__legend {
+    margin: 1rem 0 0;
+  }
+}
+
+@include desktop-xxl {
+  .TextMedias--single-portrait {
+    width: $four_sixth;
+  }
+}

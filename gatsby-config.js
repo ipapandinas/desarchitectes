@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'desarchitectes',
+    title: 'Abécédaire / Abecedario desarchitectes',
     titleTemplate: '%s · desarchitectes.com',
-    description: 'Abécédaire desarchitectes / Abecedario desarchitectes',
-    author: 'Mister Telmo',
+    description: 'Abécédaire / Abecedario desarchitectes',
+    author: 'Mister Telmo · mrtelmo.com',
     url: 'https://www.desarchitectes.com',
     image: '/d_favicon.png',
   },

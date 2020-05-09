@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 
 import { setLanguage } from '../../../redux';
 
+import { Separator } from '../../1-Atoms';
+
 import './Language.scss';
 
 function Language(props) {
@@ -12,23 +14,25 @@ function Language(props) {
   return (
     <div className="Language fade-in">
       <button
-        className="Language__fr"
+        className="Language__button Language__button--fr"
         type="button"
         onClick={() => {
           onSetLanguage('FR');
         }}
       >
-        Français
+        français
       </button>
 
+      <Separator />
+
       <button
-        className="Language__es"
+        className="Language__button Language__button--es"
         type="button"
         onClick={() => {
           onSetLanguage('ES');
         }}
       >
-        Español
+        español
       </button>
     </div>
   );

@@ -7,10 +7,6 @@
   top: 0;
   left: 0;
   z-index: 3;
-
-  &--ES {
-    height: $alphabet-height--ES;
-  }
 }
 
 .Alphabet__preview--display {
@@ -28,10 +24,6 @@
   padding-bottom: $footer-height-sm;
   background: $black;
   z-index: 4;
-
-  &--ES {
-    height: $alphabet-height--ES;
-  }
 }
 
 .Alphabet__letters--display {
@@ -56,5 +48,36 @@
 
   .Alphabet__letters--display {
     left: $app_content_md;
+  }
+}
+
+@include desktop {
+  .Alphabet__preview {
+    width: $app_content_lg;
+    height: $alphabet-height_lg;
+  }
+
+  .Alphabet__preview--display {
+    left: -$app_alphabet_lg;
+  }
+
+  .Alphabet__letters {
+    width: 5.1%;
+    height: $alphabet-height_lg;
+    padding-bottom: 0;
+  }
+
+  .Alphabet__letters--display {
+    left: $app_content_lg;
+  }
+}
+
+@include desktop-xl {
+  .Alphabet__preview {
+    height: $alphabet-height_xl;
+  }
+
+  .Alphabet__letters {
+    height: $alphabet-height_xl;
   }
 }

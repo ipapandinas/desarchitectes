@@ -1,0 +1,54 @@
+@import '../../../assets/styles/abstracts';
+
+.ArticleHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+.ArticleHeader__letter {
+  text-align: center;
+  margin: 0 0 0.7rem;
+
+  &--ES {
+    font-family: $averiaItalic;
+  }
+
+  &--FR {
+    font-family: $timesItalic;
+  }
+}
+
+.ArticleHeader__title {
+  text-align: center;
+  margin: 0 0 1.2rem;
+
+  &--ES {
+    font-family: $averiaBold;
+  }
+
+  &--FR {
+    font-family: $timesBold;
+  }
+}
+
+.ArticleHeader__pdf {
+  width: 10%;
+  text-align: center;
+  margin: 0 auto 2rem;
+}
+
+@include tablet {
+  .ArticleHeader__title {
+    margin: 0 0 2rem;
+  }
+
+  .ArticleHeader__pdf {
+    width: 7%;
+  }
+}
+
+@include desktop-xl {
+  .ArticleHeader__pdf {
+    width: 5%;
+  }
+}

@@ -19,6 +19,28 @@
     background: linear-gradient(180deg, $white 75%, $neutral-white 25%);
   }
 
+  @include desktop-xl {
+    padding: $page-margin-y-lg $page-margin-x-xl;
+
+    &:not(.container--no-v-gutter) {
+      > :not(.width-container):not(:first-child),
+      > .width-container > :not(:first-child) {
+        margin-top: $block-margin-y-xl;
+      }
+    }
+  }
+
+  @include desktop-xxl {
+    padding: $page-margin-y-lg $page-margin-x-xxl;
+
+    &:not(.container--no-v-gutter) {
+      > :not(.width-container):not(:first-child),
+      > .width-container > :not(:first-child) {
+        margin-top: $block-margin-y-xl;
+      }
+    }
+  }
+
   @include desktop {
     padding: $page-margin-y-lg $page-margin-x-lg;
 

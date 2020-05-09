@@ -34,4 +34,18 @@
       height: $footer-content-height-md;
     }
   }
+
+  .Footer__logo {
+    width: $footer-content-width-md;
+  }
+}
+
+@include desktop {
+  .Footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 2rem 0;
+    background: none;
+  }
 }
