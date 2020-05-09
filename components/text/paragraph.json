@@ -12,6 +12,11 @@
     },
     "text_ES": {
       "type": "richtext"
+    },
+    "text_media": {
+      "type": "component",
+      "repeatable": true,
+      "component": "media.image"
     }
   }
 }
