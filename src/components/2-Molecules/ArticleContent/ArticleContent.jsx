@@ -42,7 +42,7 @@ function ArticleContent(props) {
                   className="media-anchor fade-in"
                   containerId="corpus"
                   duration={500}
-                  offset={-150}
+                  offset={-170}
                   smooth
                   spy
                   to={`text-anchor-${id}`}
