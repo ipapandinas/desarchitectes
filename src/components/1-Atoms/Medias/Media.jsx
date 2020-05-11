@@ -14,16 +14,18 @@ function Media(props) {
   }
 
   return (
-    <div className="Media">
-      <Img
-        className="Media__image"
-        alt={media[`alt_${language}`]}
-        fluid={media.image.childImageSharp.fluid}
-      />
-      <div className="Media__legend">
-        {formatNewLine(media[`legend_${language}`])}
+    media.image && (
+      <div className="Media">
+        <Img
+          className="Media__image"
+          alt={media[`alt_${language}`]}
+          fluid={media.image.childImageSharp.fluid}
+        />
+        <div className="Media__legend">
+          {formatNewLine(media[`legend_${language}`])}
+        </div>
       </div>
-    </div>
+    )
   );
 }
 

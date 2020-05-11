@@ -11,6 +11,8 @@ const LANDSCAPE = 'landscape';
 const PORTRAIT = 'portrait';
 
 const COLUMN = 'column';
+const COLUMN__LANDSCAPE_FIRST = 'column__landscape_first';
+const COLUMN__PORTRAIT_FIRST = 'column__portrait_first';
 const ROW = 'row';
 
 function TextMedias(props) {
@@ -23,12 +25,14 @@ function TextMedias(props) {
   const displayDirection = medias => {
     const result = [];
     medias.forEach(media => {
-      const ratio = media.image.childImageSharp.fluid.aspectRatio;
+      if (media.image && media.image.childImageSharp) {
+        const ratio = media.image.childImageSharp.fluid.aspectRatio;
 
-      if (ratio > 1) {
-        result.push(LANDSCAPE);
-      } else {
-        result.push(PORTRAIT);
+        if (ratio > 1) {
+          result.push(LANDSCAPE);
+        } else {
+          result.push(PORTRAIT);
+        }
       }
     });
 
@@ -44,29 +48,52 @@ function TextMedias(props) {
       return ROW;
     }
 
+    if (
+      result.length === 2 &&
+      result[0] === LANDSCAPE &&
+      result[1] === PORTRAIT
+    ) {
+      return COLUMN__LANDSCAPE_FIRST;
+    }
+
+    if (
+      result.length === 2 &&
+      result[0] === PORTRAIT &&
+      result[1] === LANDSCAPE
+    ) {
+      return COLUMN__PORTRAIT_FIRST;
+    }
+
     return COLUMN;
   };
 
   return (
     <div
       className={classNames('TextMedias', {
+        'TextMedias--column':
+          displayDirection(medias) === COLUMN__LANDSCAPE_FIRST ||
+          displayDirection(medias) === COLUMN__PORTRAIT_FIRST,
+        'landscape-first': displayDirection(medias) === COLUMN__LANDSCAPE_FIRST,
+        'portrait-first': displayDirection(medias) === COLUMN__PORTRAIT_FIRST,
+        'TextMedias--row': displayDirection(medias) === ROW,
         'TextMedias--single-landscape': displayDirection(medias) === LANDSCAPE,
         'TextMedias--single-portrait': displayDirection(medias) === PORTRAIT,
-        'TextMedias--row': displayDirection(medias) === ROW,
       })}
     >
       {medias.map(media => {
         return (
-          <div key={media.id}>
-            <Img
-              className="Media__image"
-              alt={media[`alt_${language}`]}
-              fluid={media.image.childImageSharp.fluid}
-            />
-            <div className="Media__legend">
-              {formatNewLine(media[`legend_${language}`])}
+          media.image && (
+            <div className="Media" key={media.id}>
+              <Img
+                className="Media__image"
+                alt={media[`alt_${language}`]}
+                fluid={media.image.childImageSharp.fluid}
+              />
+              <div className="Media__legend">
+                {formatNewLine(media[`legend_${language}`])}
+              </div>
             </div>
-          </div>
+          )
         );
       })}
     </div>

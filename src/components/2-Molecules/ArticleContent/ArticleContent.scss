@@ -1,8 +1,13 @@
+// stylelint-disable declaration-no-important
 @import '../../../assets/styles/abstracts';
 
 @include desktop {
   .ArticleContent {
     height: 100%;
+
+    .text-anchor:nth-child(2) {
+      margin-top: 0 !important;
+    }
 
     .media-anchor {
       display: none;

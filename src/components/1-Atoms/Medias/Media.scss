@@ -1,7 +1,7 @@
 @import '../../../assets/styles/abstracts';
 
 .TextMedias {
-  margin: 4rem 0 3rem;
+  margin: $block-margin-x-sm 0;
 
   > * {
     margin: 0 0 $block-margin-x-sm;
@@ -14,7 +14,7 @@
 }
 
 .Media__legend {
-  margin: 0.5rem 0 0;
+  margin: 1rem 0 0;
 
   > * {
     margin: 0;
@@ -22,48 +22,70 @@
 }
 
 @include tablet {
-  .TextMedias--single-landscape {
-    .Media__legend {
-      margin: 2rem 0 0;
-    }
+  .TextMedias {
+    margin: $block-margin-x-md 0;
   }
 
   .TextMedias--single-portrait,
   .TextMedias--row {
     > * {
-      display: flex;
-      align-items: flex-end;
-    }
-
-    .Media__image {
       width: $four_sixth;
-    }
+      margin: 0 auto;
 
+      &:last-child {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .TextMedias--single-landscape {
     .Media__legend {
-      margin-left: 2rem;
+      margin: 2rem 0 0;
     }
   }
 }
 
 @include desktop {
-  .TextMedias,
-  .Media {
-    position: fixed;
-  }
-
   .TextMedias {
     display: flex;
     flex-direction: column;
     position: absolute;
     width: 100%;
+    max-height: 75%;
+    overflow: hidden;
     margin: 0;
 
-    &--single-portrait {
-      width: 75%;
+    &--column {
+      align-items: center;
+
+      &.landscape-first {
+        > * {
+          &:nth-child(1) {
+            width: $four_sixth;
+          }
+
+          &:nth-child(2) {
+            width: 40%;
+          }
+        }
+      }
+
+      &.portrait-first {
+        > * {
+          &:nth-child(1) {
+            width: 40%;
+          }
+
+          &:nth-child(2) {
+            width: $four_sixth;
+          }
+        }
+      }
     }
 
     &--row {
       flex-direction: row;
+      overflow: visible;
 
       > * {
         margin: 0 $block-margin-x-sm * 2 0 0;
@@ -78,10 +100,15 @@
         width: auto;
       }
     }
+
+    &--single-portrait {
+      width: 75%;
+    }
   }
 
   .Media__legend {
     margin: 1rem 0 0;
+    font-size: 1.4rem;
   }
 }
 

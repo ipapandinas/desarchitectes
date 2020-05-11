@@ -45,18 +45,6 @@ export const query = graphql`
       }
       content {
         id
-        alt_FR
-        alt_ES
-        image {
-          name
-          childImageSharp {
-            fluid(maxWidth: 600) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        legend_ES
-        legend_FR
         text_ES
         text_FR
         text_media {

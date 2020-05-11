@@ -9,7 +9,7 @@ function Text(props) {
   const { text } = props;
 
   if (!text) {
-    return null;
+    return <div className="Text--empty" />;
   }
 
   return <div className="Text">{formatNewLine(text)}</div>;

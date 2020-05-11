@@ -2,7 +2,8 @@ module.exports = {
   siteMetadata: {
     title: 'Abécédaire / Abecedario desarchitectes',
     titleTemplate: '%s · desarchitectes.com',
-    description: 'Abécédaire / Abecedario desarchitectes',
+    description:
+      'Un abécédaire, un zoom sur des objets urbains. | Un abecedario, un zoom sobre objetos urbanos.',
     author: 'Mister Telmo · mrtelmo.com',
     url: 'https://www.desarchitectes.com',
     image: '/d_favicon.png',

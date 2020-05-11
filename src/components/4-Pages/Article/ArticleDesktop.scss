@@ -15,6 +15,10 @@
 .ArticleDesktop__left {
   overflow-x: hidden;
   overflow-y: scroll;
+
+  .ArticleContent {
+    padding-top: 0 !important;
+  }
 }
 
 .ArticleDesktop__right {

@@ -42,7 +42,7 @@ function ArticleContent(props) {
                   className="media-anchor fade-in"
                   containerId="corpus"
                   duration={500}
-                  offset={-210}
+                  offset={-150}
                   smooth
                   spy
                   to={`text-anchor-${id}`}
@@ -52,31 +52,20 @@ function ArticleContent(props) {
                 </Link>
               )
             );
-
           // DESKTOP LEFT SIDE
           case CONTENT_TYPE_TEXT:
             return (
-              text && (
-                <Element name={`text-anchor-${id}`} key={`text-${id}`}>
-                  <Text text={text} />
-                </Element>
-              )
+              <Element
+                className="text-anchor"
+                name={`text-anchor-${id}`}
+                key={`text-${id}`}
+              >
+                <Text text={text} />
+              </Element>
             );
 
           // MOBILE
           case CONTENT_TYPE_MIX: {
-            if (text) {
-              return (
-                <div
-                  className="ArticleContent__paragraph"
-                  key={`paragraph-${id}`}
-                >
-                  <TextMedias medias={medias} language={language} />
-                  <Text text={text} />
-                </div>
-              );
-            }
-
             if (image) {
               return (
                 <div className="ArticleContent__media" key={`media-${id}`}>
@@ -85,7 +74,15 @@ function ArticleContent(props) {
               );
             }
 
-            return null;
+            return (
+              <div
+                className="ArticleContent__paragraph"
+                key={`paragraph-${id}`}
+              >
+                <Text text={text} />
+                <TextMedias medias={medias} language={language} />
+              </div>
+            );
           }
           default:
             return null;

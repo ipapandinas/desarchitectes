@@ -44,7 +44,7 @@ const SEO = ({ image, language, word }) => {
       break;
     }
     case 'ES': {
-      description = 'Un abecedario, un zoom sobre los objetos urbanos.';
+      description = 'Un abecedario, un zoom sobre objetos urbanos.';
       lang = `es`;
       title = 'Abecedario desarchitectes';
       break;
