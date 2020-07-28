@@ -1,17 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'gatsby';
 
+import { useApp } from '../../../hooks';
 import { reset } from '../../../redux';
 
 import { Image } from '../../1-Atoms';
 
 import './Footer.scss';
 
-function Footer(props) {
-  const { language, onReset } = props;
+export default function Footer() {
+  const { language } = useApp();
+  const dispatch = useDispatch();
 
   return (
     <div className="Footer">
@@ -20,7 +20,7 @@ function Footer(props) {
         type="button"
         title={language === 'ES' ? 'Pagina de inició' : "Page d'accueil"}
         onClick={() => {
-          onReset();
+          dispatch(reset());
         }}
       >
         <Link className="Footer__link" title="Home" to="/">
@@ -34,30 +34,3 @@ function Footer(props) {
     </div>
   );
 }
-
-Footer.defaultProps = {
-  language: undefined,
-};
-
-Footer.propTypes = {
-  language: PropTypes.string,
-  onReset: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => {
-  return { language: state.app.language };
-};
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      onReset: reset,
-    },
-    dispatch
-  );
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Footer);

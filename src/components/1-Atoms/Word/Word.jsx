@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'gatsby';
 
+import { useApp } from '../../../hooks';
 import { setWord } from '../../../redux';
 
 import './Word.scss';
 
-function Word(props) {
-  const { active, label, language, onSetWord, route } = props;
+export default function Word(props) {
+  const { active, label, route } = props;
+  const { language } = useApp();
+  const dispatch = useDispatch();
   return (
     <button
       className={classNames('Word__button', {
@@ -18,7 +20,7 @@ function Word(props) {
         'Word__button--FR': language === 'FR',
       })}
       type="button"
-      onClick={() => onSetWord(label)}
+      onClick={() => dispatch(setWord(label))}
     >
       <Link
         className={classNames('Word', {
@@ -44,27 +46,5 @@ Word.defaultProps = {
 Word.propTypes = {
   active: PropTypes.bool,
   label: PropTypes.string,
-  language: PropTypes.string.isRequired,
-  onSetWord: PropTypes.func.isRequired,
   route: PropTypes.string,
 };
-
-const mapStateToProps = state => {
-  return {
-    language: state.app.language,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      onSetWord: setWord,
-    },
-    dispatch
-  );
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Word);

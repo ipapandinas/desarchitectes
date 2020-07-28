@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes, { string } from 'prop-types';
 import classNames from 'classnames';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 
 import {
@@ -19,24 +17,25 @@ import {
   LETTER_HEIGHT__ES,
 } from '../../../settings/ui';
 
+import { useApp } from '../../../hooks';
 import { togglePreview } from '../../../redux';
 
 import { Word } from '../../1-Atoms';
 
 import './Preview.scss';
 
-function Preview(props) {
+export default function Preview() {
   const {
     alphabet,
     index,
     language,
-    onTogglePreview,
     preview,
     sortAsc,
     suggestionsPrev,
     suggestions,
     suggestionsNext,
-  } = props;
+  } = useApp();
+  const dispatch = useDispatch();
 
   // RESPONSIVE
   const isTablet = useMediaQuery({
@@ -80,10 +79,10 @@ function Preview(props) {
       role="button"
       tabIndex={0}
       onClick={() => {
-        onTogglePreview();
+        dispatch(togglePreview());
       }}
       onKeyPress={() => {
-        onTogglePreview();
+        dispatch(togglePreview());
       }}
     >
       <div
@@ -91,7 +90,7 @@ function Preview(props) {
           'Preview__list--start': sortAsc,
         })}
         onMouseLeave={() => {
-          onTogglePreview();
+          dispatch(togglePreview());
         }}
         style={
           sortAsc
@@ -148,54 +147,3 @@ function Preview(props) {
     </div>
   );
 }
-
-Preview.defaultProps = {
-  alphabet: [],
-  index: null,
-  language: undefined,
-  onTogglePreview: undefined,
-  preview: false,
-  sortAsc: true,
-  suggestionsPrev: undefined,
-  suggestions: undefined,
-  suggestionsNext: undefined,
-};
-
-Preview.propTypes = {
-  alphabet: PropTypes.arrayOf(string),
-  index: PropTypes.number,
-  language: PropTypes.string,
-  onTogglePreview: PropTypes.func,
-  preview: PropTypes.bool,
-  sortAsc: PropTypes.bool,
-  suggestionsPrev: PropTypes.array,
-  suggestions: PropTypes.array,
-  suggestionsNext: PropTypes.array,
-};
-
-const mapStateToProps = state => {
-  return {
-    alphabet: state.app.alphabet,
-    index: state.app.index,
-    language: state.app.language,
-    preview: state.app.preview,
-    sortAsc: state.app.sortAsc,
-    suggestionsPrev: state.app.suggestionsPrev,
-    suggestions: state.app.suggestions,
-    suggestionsNext: state.app.suggestionsNext,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      onTogglePreview: togglePreview,
-    },
-    dispatch
-  );
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Preview);

@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
 
 import { setLanguage } from '../../../redux';
 
@@ -9,15 +7,16 @@ import { Separator } from '../../1-Atoms';
 
 import './Language.scss';
 
-function Language(props) {
-  const { onSetLanguage } = props;
+export default function Language() {
+  const dispatch = useDispatch();
+
   return (
     <div className="Language fade-in">
       <button
         className="Language__button Language__button--fr"
         type="button"
         onClick={() => {
-          onSetLanguage('FR');
+          dispatch(setLanguage('FR'));
         }}
       >
         français
@@ -29,7 +28,7 @@ function Language(props) {
         className="Language__button Language__button--es"
         type="button"
         onClick={() => {
-          onSetLanguage('ES');
+          dispatch(setLanguage('ES'));
         }}
       >
         español
@@ -37,25 +36,3 @@ function Language(props) {
     </div>
   );
 }
-
-Language.defaultProps = {
-  onSetLanguage: undefined,
-};
-
-Language.propTypes = {
-  onSetLanguage: PropTypes.func,
-};
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      onSetLanguage: setLanguage,
-    },
-    dispatch
-  );
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Language);

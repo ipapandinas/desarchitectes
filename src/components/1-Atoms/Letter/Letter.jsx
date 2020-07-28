@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
 
+import { useApp } from '../../../hooks';
 import { setLetter } from '../../../redux';
 
 import './Letter.scss';
@@ -11,16 +11,17 @@ import './Letter.scss';
 // indicator: '•', indicates the letters containing articles
 // selector: '>', selects the current letter
 
-function Letter(props) {
+export default function Letter(props) {
+  const { letter } = props;
+
   const {
     language,
-    letter,
-    letterDisplayed,
+    letter: letterDisplayed,
     lettersUsed,
-    onSetLetter,
     preview,
     word,
-  } = props;
+  } = useApp();
+  const dispatch = useDispatch();
 
   const { es, fr } = lettersUsed;
   const isIndicator =
@@ -44,10 +45,10 @@ function Letter(props) {
         })}
         type="button"
         onClick={() => {
-          onSetLetter(letter);
+          dispatch(setLetter(letter));
         }}
         onMouseEnter={() => {
-          onSetLetter(letter);
+          dispatch(setLetter(letter));
         }}
       >
         <span>{letter}</span>
@@ -58,47 +59,13 @@ function Letter(props) {
 }
 
 Letter.defaultProps = {
-  language: undefined,
-  letterDisplayed: undefined,
   lettersUsed: undefined,
-  onSetLetter: undefined,
-  preview: false,
-  word: undefined,
 };
 
 Letter.propTypes = {
-  language: PropTypes.string,
   letter: PropTypes.string.isRequired,
-  letterDisplayed: PropTypes.string,
   lettersUsed: PropTypes.shape({
     es: PropTypes.arrayOf(PropTypes.string),
     fr: PropTypes.arrayOf(PropTypes.string),
   }),
-  onSetLetter: PropTypes.func,
-  preview: PropTypes.bool,
-  word: PropTypes.string,
 };
-
-const mapStateToProps = state => {
-  return {
-    language: state.app.language,
-    letterDisplayed: state.app.letter,
-    lettersUsed: state.app.lettersUsed,
-    preview: state.app.preview,
-    word: state.app.word,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      onSetLetter: setLetter,
-    },
-    dispatch
-  );
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Letter);

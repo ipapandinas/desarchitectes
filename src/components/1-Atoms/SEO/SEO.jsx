@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { useLocation } from '@reach/router';
 import { graphql, useStaticQuery } from 'gatsby';
-import { connect } from 'react-redux';
 
 import favicon from '../../../assets/images/d_favicon.png';
+import { useApp } from '../../../hooks';
 
-const SEO = ({ image, language, word }) => {
+const SEO = ({ image }) => {
+  const { language, word } = useApp();
   const { pathname } = useLocation();
   const { site } = useStaticQuery(
     graphql`
@@ -91,21 +92,10 @@ const SEO = ({ image, language, word }) => {
 
 SEO.propTypes = {
   image: PropTypes.string,
-  language: PropTypes.string,
-  word: PropTypes.string,
 };
 
 SEO.defaultProps = {
   image: null,
-  language: undefined,
-  word: undefined,
 };
 
-const mapStateToProps = state => {
-  return {
-    language: state.app.language,
-    word: state.app.word,
-  };
-};
-
-export default connect(mapStateToProps)(SEO);
+export default SEO;
