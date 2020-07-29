@@ -7,7 +7,7 @@ import { BK_LG_MIN } from '../settings/ui';
 
 import { SEO } from '../components/1-Atoms';
 import { Article, ArticleDesktop } from '../components/4-Pages';
-import App from '../components/App/App';
+import Layout from '../components/layout';
 
 const ArticleTemplate = ({ data }) => {
   // RESPONSIVE
@@ -15,16 +15,13 @@ const ArticleTemplate = ({ data }) => {
     query: `(min-device-width: ${BK_LG_MIN})`,
   });
 
-  let article = <Article data={data.strapiArticle} />;
-  if (isDesktop) {
-    article = <ArticleDesktop data={data.strapiArticle} />;
-  }
+  const Component = isDesktop ? ArticleDesktop : Article;
 
   return (
-    <>
+    <Layout>
       <SEO />
-      <App>{article}</App>
-    </>
+      <Component data={data.strapiArticle} />
+    </Layout>
   );
 };
 
