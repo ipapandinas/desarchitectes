@@ -22,8 +22,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-strapi',
       options: {
-        // apiURL: 'https://desarchitectes.herokuapp.com',
-        apiURL: process.env.API_URL || 'http://localhost:1337',
+        apiURL: 'http://mgmt.desarchitectes.com',
         contentTypes: [
           // List of the Content Types you want to be able to request from Gatsby.
           'article',
