@@ -7,6 +7,7 @@ import { useApp } from '../hooks';
 import { setArticles } from '../redux';
 import { useArticlesQuery } from '../queries';
 
+import { Resize } from './1-Atoms';
 import { Alphabet, Content, Footer, Language, WelcomeCover } from './3-Blocks';
 
 import '../assets/styles/main.scss';
@@ -45,6 +46,8 @@ const Layout = props => {
           <Footer />
         </div>
       </main>
+
+      <Resize />
     </>
   );
 };

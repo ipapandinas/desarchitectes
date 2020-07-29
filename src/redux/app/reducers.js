@@ -1,3 +1,5 @@
+import { getMediaInfo } from '../../services';
+
 import {
   APP_RESET,
   APP_SET_ARTICLES,
@@ -5,6 +7,7 @@ import {
   APP_SET_LETTER,
   APP_SET_WORD,
   APP_TOGGLE_PREVIEW,
+  APP_UPDATE_DEVICE,
   alphabetES,
   alphabetFR,
 } from './types';
@@ -12,6 +15,16 @@ import {
 export const appDefaultState = {
   alphabet: alphabetFR,
   articles: [],
+  device: {
+    isAny: false,
+    isDesktop: false,
+    isMobile: false,
+    isMobileXs: false,
+    isMobileSm: false,
+    isTablet: false,
+    isTabletPortrait: false,
+    isTabletLandscape: false,
+  },
   index: null,
   language: undefined,
   letter: null,
@@ -88,17 +101,20 @@ export function appReducer(state = appDefaultState, action) {
     case APP_SET_ARTICLES: {
       const es = [];
       const fr = [];
-      action.articles.forEach(article => {
-        if (article && article.published) {
-          es.push(article.title_ES.charAt(0).toUpperCase());
-          fr.push(article.title_FR.charAt(0).toUpperCase());
-        }
-      });
-      const lettersUsed = { es, fr };
+      const { articles } = action;
 
-      const onlineArticles = action.articles.filter(
-        ({ published }) => published
+      const onlineArticles = articles.filter(
+        ({ published, title_ES: titleES, title_FR: titleFR }) => {
+          if (published) {
+            es.push(titleES.charAt(0).toUpperCase());
+            fr.push(titleFR.charAt(0).toUpperCase());
+          }
+
+          return published;
+        }
       );
+
+      const lettersUsed = { es, fr };
 
       return {
         ...state,
@@ -147,6 +163,14 @@ export function appReducer(state = appDefaultState, action) {
       return {
         ...state,
         preview: !prevState.preview,
+      };
+    }
+    case APP_UPDATE_DEVICE: {
+      const { media } = action;
+
+      return {
+        ...state,
+        device: getMediaInfo(media),
       };
     }
     default:

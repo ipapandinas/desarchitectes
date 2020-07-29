@@ -4,6 +4,7 @@ export const APP_SET_LANGUAGE = 'APP_SET_LANGUAGE';
 export const APP_SET_LETTER = 'APP_SET_LETTER';
 export const APP_SET_WORD = 'APP_SET_WORD';
 export const APP_TOGGLE_PREVIEW = 'APP_TOGGLE_PREVIEW';
+export const APP_UPDATE_DEVICE = 'APP_UPDATE_DEVICE';
 
 export const alphabetFR = [
   'A',

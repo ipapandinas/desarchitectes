@@ -1,12 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
-import { useMediaQuery } from 'react-responsive';
 
 import {
-  BK_LG_MIN,
-  BK_MD_MIN,
-  BK_XL_MIN,
   LETTER_HEIGHT,
   LETTER_HEIGHT_LG,
   LETTER_HEIGHT_LG__ES,
@@ -17,7 +13,7 @@ import {
   LETTER_HEIGHT__ES,
 } from '../../../settings/ui';
 
-import { useApp } from '../../../hooks';
+import { useApp, useDevice } from '../../../hooks';
 import { togglePreview } from '../../../redux';
 
 import { Word } from '../../1-Atoms';
@@ -35,31 +31,25 @@ export default function Preview() {
     suggestions,
     suggestionsNext,
   } = useApp();
+  const {
+    isDesktop,
+    isTabletPortrait,
+    isTabletLandscape,
+  } = useDevice();
   const dispatch = useDispatch();
-
-  // RESPONSIVE
-  const isTablet = useMediaQuery({
-    query: `(min-device-width: ${BK_MD_MIN})`,
-  });
-  const isDesktopLG = useMediaQuery({
-    query: `(min-device-width: ${BK_LG_MIN})`,
-  });
-  const isDesktopXL = useMediaQuery({
-    query: `(min-device-width: ${BK_XL_MIN})`,
-  });
 
   // RESPONSIVE LETTER HEIGHT
   let LETTER_H = language === 'ES' ? LETTER_HEIGHT__ES : LETTER_HEIGHT;
-  if (isTablet) {
-    LETTER_H = language === 'ES' ? LETTER_HEIGHT_MD__ES : LETTER_HEIGHT_MD;
+  if (isDesktop) {
+    LETTER_H = language === 'ES' ? LETTER_HEIGHT_XL__ES : LETTER_HEIGHT_XL;
   }
 
-  if (isDesktopLG) {
+  if (isTabletLandscape) {
     LETTER_H = language === 'ES' ? LETTER_HEIGHT_LG__ES : LETTER_HEIGHT_LG;
   }
 
-  if (isDesktopXL) {
-    LETTER_H = language === 'ES' ? LETTER_HEIGHT_XL__ES : LETTER_HEIGHT_XL;
+  if (isTabletPortrait) {
+    LETTER_H = language === 'ES' ? LETTER_HEIGHT_MD__ES : LETTER_HEIGHT_MD;
   }
 
   // SUGGESTIONS
