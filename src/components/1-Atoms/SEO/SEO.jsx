@@ -2,37 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { useLocation } from '@reach/router';
-import { graphql, useStaticQuery } from 'gatsby';
 
 import favicon from '../../../assets/images/d_favicon.png';
+import { useSiteMetadata } from '../../../queries';
+
 import { useApp } from '../../../hooks';
 
 const SEO = ({ image }) => {
   const { language, word } = useApp();
   const { pathname } = useLocation();
-  const { site } = useStaticQuery(
-    graphql`
-      query SEO {
-        site {
-          siteMetadata {
-            defaultTitle: title
-            titleTemplate
-            defaultDescription: description
-            siteUrl: url
-            defaultImage: image
-          }
-        }
-      }
-    `
-  );
-
   const {
+    defaultDescription,
+    defaultImage,
     defaultTitle,
     titleTemplate,
-    defaultDescription,
     siteUrl,
-    defaultImage,
-  } = site.siteMetadata;
+  } = useSiteMetadata();
 
   let description = null;
   let lang = `fr`;
