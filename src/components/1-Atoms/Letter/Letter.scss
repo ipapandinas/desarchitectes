@@ -1,5 +1,13 @@
 @import '../../../assets/styles/abstracts';
 
+.Letter {
+  height: $letter-height;
+
+  &--ES {
+    height: $letter-height--ES;
+  }
+}
+
 .Letter__button {
   position: relative;
   background: none;
@@ -7,12 +15,11 @@
   font-size: 2rem;
   color: $neutral-light-grey;
   width: 100%;
-  height: $letter-height;
+  height: 100%;
   padding: 0;
 
   &--ES {
     font-family: $averia;
-    height: $letter-height--ES;
   }
 
   &--FR {
@@ -52,13 +59,16 @@
 }
 
 @include tablet {
-  .Letter__button {
+  .Letter {
     height: $letter-height_md;
-    font-size: 2.4rem;
 
     &--ES {
       height: $letter-height_md--ES;
     }
+  }
+
+  .Letter__button {
+    font-size: 2.4rem;
 
     &--active {
       &::before {
@@ -73,7 +83,7 @@
 }
 
 @include desktop {
-  .Letter__button {
+  .Letter {
     height: $letter-height_lg;
 
     &--ES {
@@ -88,13 +98,16 @@
 }
 
 @include desktop-xl {
-  .Letter__button {
+  .Letter {
     height: $letter-height_xl;
-    font-size: 2.8rem;
 
     &--ES {
       height: $letter-height_xl--ES;
     }
+  }
+
+  .Letter__button {
+    font-size: 2.8rem;
 
     &--active {
       &::before {

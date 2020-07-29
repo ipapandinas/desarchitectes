@@ -2,14 +2,12 @@ import React from 'react';
 
 import { SEO } from '../components/1-Atoms';
 import { Home } from '../components/4-Pages';
-import App from '../components/App/App';
+import Layout from '../components/layout';
 
 const IndexPage = () => (
-  <>
+  <Layout>
     <SEO />
-    <App>
-      <Home />
-    </App>
-  </>
+    <Home />
+  </Layout>
 );
 export default IndexPage;

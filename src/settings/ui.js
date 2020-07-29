@@ -1,0 +1,26 @@
+import styles from '../assets/styles/_export.scss';
+
+export const {
+  ALPHABET_HEIGHT,
+  ALPHABET_HEIGHT_MD,
+  ALPHABET_HEIGHT_LG,
+  ALPHABET_HEIGHT_XL,
+  BREAKPOINT_LG,
+  BREAKPOINT_MD,
+  BREAKPOINT_SM,
+  BREAKPOINT_XS,
+  LETTER_HEIGHT,
+  LETTER_HEIGHT_LG,
+  LETTER_HEIGHT_MD,
+  LETTER_HEIGHT_XL,
+  LETTER_HEIGHT__ES,
+  LETTER_HEIGHT_LG__ES,
+  LETTER_HEIGHT_MD__ES,
+  LETTER_HEIGHT_XL__ES,
+} = styles;
+
+export const MEDIA_LG = 'MEDIA_LG';
+export const MEDIA_MD = 'MEDIA_MD';
+export const MEDIA_SM = 'MEDIA_SM';
+export const MEDIA_XL = 'MEDIA_XL';
+export const MEDIA_XS = 'MEDIA_XS';

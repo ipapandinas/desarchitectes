@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
+import { useApp } from '../../../hooks';
+
 import './Home.scss';
 
-function Home(props) {
-  const { language } = props;
+export default function Home() {
+  const { language } = useApp();
 
   return (
     <div className="Home fade-in">
@@ -92,17 +92,3 @@ function Home(props) {
     </div>
   );
 }
-
-Home.defaultProps = {
-  language: 'FR',
-};
-
-Home.propTypes = {
-  language: PropTypes.string,
-};
-
-const mapStateToProps = state => {
-  return { language: state.app.language };
-};
-
-export default connect(mapStateToProps)(Home);

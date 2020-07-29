@@ -5,6 +5,7 @@ import {
   APP_SET_LETTER,
   APP_SET_WORD,
   APP_TOGGLE_PREVIEW,
+  APP_UPDATE_DEVICE,
 } from './types';
 
 export function reset() {
@@ -44,5 +45,12 @@ export function setWord(word) {
 export function togglePreview() {
   return {
     type: APP_TOGGLE_PREVIEW,
+  };
+}
+
+export function updateDevice(media) {
+  return {
+    media,
+    type: APP_UPDATE_DEVICE,
   };
 }

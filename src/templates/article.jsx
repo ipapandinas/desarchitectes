@@ -1,30 +1,24 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import { useMediaQuery } from 'react-responsive';
 
-import { BK_LG_MIN } from '../settings/ui';
+import { useDevice } from '../hooks';
 
 import { SEO } from '../components/1-Atoms';
 import { Article, ArticleDesktop } from '../components/4-Pages';
-import App from '../components/App/App';
+import Layout from '../components/layout';
 
 const ArticleTemplate = ({ data }) => {
-  // RESPONSIVE
-  const isDesktop = useMediaQuery({
-    query: `(min-device-width: ${BK_LG_MIN})`,
-  });
+  const { isDesktop, isTabletLandscape } = useDevice();
+  const isLaptop = isDesktop || isTabletLandscape;
 
-  let article = <Article data={data.strapiArticle} />;
-  if (isDesktop) {
-    article = <ArticleDesktop data={data.strapiArticle} />;
-  }
+  const Component = isLaptop ? ArticleDesktop : Article;
 
   return (
-    <>
+    <Layout>
       <SEO />
-      <App>{article}</App>
-    </>
+      <Component data={data.strapiArticle} />
+    </Layout>
   );
 };
 

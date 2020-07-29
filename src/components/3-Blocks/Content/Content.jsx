@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { connect } from 'react-redux';
+
+import { useApp } from '../../../hooks';
 
 import './Content.scss';
 
-function Content(props) {
-  const { children, language } = props;
+export default function Content(props) {
+  const { children } = props;
+  const { language } = useApp();
 
   return (
     <div
@@ -23,16 +25,8 @@ function Content(props) {
 
 Content.defaultProps = {
   children: undefined,
-  language: undefined,
 };
 
 Content.propTypes = {
   children: PropTypes.node,
-  language: PropTypes.string,
 };
-
-const mapStateToProps = state => {
-  return { language: state.app.language };
-};
-
-export default connect(mapStateToProps)(Content);

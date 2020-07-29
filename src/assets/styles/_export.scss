@@ -9,13 +9,10 @@
   ALPHABET_HEIGHT_XL: $alphabet-height_xl;
 
   // BREAKPOINTS
-  BK_LG_MAX: $breakpoint-lg-max;
-  BK_LG_MIN: $breakpoint-lg-min;
-  BK_MD_MAX: $breakpoint-md-max;
-  BK_MD_MIN: $breakpoint-md-min;
-  BK_SM_MAX: $breakpoint-sm-max;
-  BK_SM_MIN: $breakpoint-sm-min;
-  BK_XL_MIN: $breakpoint-xl-min;
+  BREAKPOINT_LG: $breakpoint-lg-max;
+  BREAKPOINT_MD: $breakpoint-md-max;
+  BREAKPOINT_SM: $breakpoint-sm-max;
+  BREAKPOINT_XS: $breakpoint-xs-max;
 
   // LETTERS
   //// FR

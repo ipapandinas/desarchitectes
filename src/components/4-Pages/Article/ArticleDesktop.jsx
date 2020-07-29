@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
 
+import { useApp } from '../../../hooks';
 import { setLetter, setWord, togglePreview } from '../../../redux';
 
 import { Separator } from '../../1-Atoms';
@@ -24,19 +24,21 @@ const scrollToTop = () => {
   return null;
 };
 
-function ArticleDesktop(props) {
-  const { data, language, onSetLetter, onSetWord, onTogglePreview } = props;
+export default function ArticleDesktop(props) {
+  const { data } = props;
+  const { language } = useApp();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (data) {
       const word = data[`title_${language}`];
       const letter = word && word.charAt(0).toUpperCase();
-      onSetLetter(letter);
-      onSetWord(word);
-      onTogglePreview();
+      dispatch(setLetter(letter));
+      dispatch(setWord(word));
+      dispatch(togglePreview());
       scrollToTop();
     }
-  }, [data, language, onSetLetter, onSetWord, onTogglePreview]);
+  }, [data, dispatch, language]);
 
   if (!data || !language) {
     return null;
@@ -75,38 +77,8 @@ function ArticleDesktop(props) {
 
 ArticleDesktop.defaultProps = {
   data: undefined,
-  language: undefined,
-  onSetLetter: undefined,
-  onSetWord: undefined,
-  onTogglePreview: undefined,
 };
 
 ArticleDesktop.propTypes = {
   data: PropTypes.object,
-  language: PropTypes.string,
-  onSetLetter: PropTypes.func,
-  onSetWord: PropTypes.func,
-  onTogglePreview: PropTypes.func,
 };
-
-const mapStateToProps = state => {
-  return {
-    language: state.app.language,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      onSetLetter: setLetter,
-      onSetWord: setWord,
-      onTogglePreview: togglePreview,
-    },
-    dispatch
-  );
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ArticleDesktop);
