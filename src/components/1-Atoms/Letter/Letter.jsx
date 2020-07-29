@@ -24,7 +24,7 @@ export default function Letter(props) {
   const dispatch = useDispatch();
 
   const { es, fr } = lettersUsed;
-  const isIndicator =
+  const hasArticle =
     (language === 'ES' && es.some(l => l === letter)) ||
     (language === 'FR' && fr.some(l => l === letter));
 
@@ -36,24 +36,30 @@ export default function Letter(props) {
   }
 
   return (
-    <div className="Letter">
-      <button
-        className={classNames('Letter__button', {
-          'Letter__button--active': isSeparator,
-          'Letter__button--ES': language === 'ES',
-          'Letter__button--FR': language === 'FR',
-        })}
-        type="button"
-        onClick={() => {
-          dispatch(setLetter(letter));
-        }}
-        onMouseEnter={() => {
-          dispatch(setLetter(letter));
-        }}
-      >
-        <span>{letter}</span>
-        {isIndicator && <span className="Letter__indicator">•</span>}
-      </button>
+    <div
+      className={classNames('Letter', {
+        'Letter--ES': language === 'ES',
+        'Letter--FR': language === 'FR',
+      })}
+    >
+      {hasArticle && (
+        <button
+          className={classNames('Letter__button', {
+            'Letter__button--active': isSeparator,
+            'Letter__button--ES': language === 'ES',
+            'Letter__button--FR': language === 'FR',
+          })}
+          type="button"
+          onClick={() => {
+            dispatch(setLetter(letter));
+          }}
+          onMouseEnter={() => {
+            dispatch(setLetter(letter));
+          }}
+        >
+          <span>{letter}</span>
+        </button>
+      )}
     </div>
   );
 }

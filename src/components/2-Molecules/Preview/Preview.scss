@@ -41,6 +41,8 @@
 .Suggestions__next {
   position: relative;
   right: $app_alphabet;
+  display: flex;
+  flex-direction: column;
 
   .Word__button {
     background: none;
