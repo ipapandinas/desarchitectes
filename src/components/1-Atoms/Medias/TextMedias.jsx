@@ -8,6 +8,7 @@ import { formatNewLine } from '../../../services';
 import './Media.scss';
 
 const LANDSCAPE = 'landscape';
+const LONG_PORTRAIT = 'long_portrait';
 const PORTRAIT = 'portrait';
 
 const COLUMN = 'column';
@@ -30,6 +31,8 @@ function TextMedias(props) {
 
         if (ratio > 1) {
           result.push(LANDSCAPE);
+        } else if (ratio < 0.6) {
+          result.push(LONG_PORTRAIT);
         } else {
           result.push(PORTRAIT);
         }
@@ -77,6 +80,8 @@ function TextMedias(props) {
         'portrait-first': displayDirection(medias) === COLUMN__PORTRAIT_FIRST,
         'TextMedias--row': displayDirection(medias) === ROW,
         'TextMedias--single-landscape': displayDirection(medias) === LANDSCAPE,
+        'TextMedias--single-long-portrait':
+          displayDirection(medias) === LONG_PORTRAIT,
         'TextMedias--single-portrait': displayDirection(medias) === PORTRAIT,
       })}
     >

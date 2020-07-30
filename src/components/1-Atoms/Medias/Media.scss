@@ -104,6 +104,10 @@
     &--single-portrait {
       width: 75%;
     }
+
+    &--single-long-portrait {
+      width: 60%;
+    }
   }
 
   .Media__legend {
@@ -115,5 +119,9 @@
 @include desktop-xxl {
   .TextMedias--single-portrait {
     width: $four_sixth;
+  }
+
+  .TextMedias--single-long-portrait {
+    width: $one_half;
   }
 }
