@@ -79,7 +79,7 @@ function ArticleContent(props) {
                 className="ArticleContent__paragraph"
                 key={`paragraph-${id}`}
               >
-                <Text text={text} />
+                {text && <Text text={text} />}
                 <TextMedias medias={medias} language={language} />
               </div>
             );

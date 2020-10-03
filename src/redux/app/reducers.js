@@ -41,45 +41,23 @@ function setSuggestions(alphabet, articles, language, letter) {
   const index = alphabet.indexOf(letter);
 
   return [
-    articles
-      .filter(
-        article =>
-          language &&
-          article[`title_${language}`].charAt(0).toUpperCase() ===
-            alphabet[index - 1]
-      )
-      .map(article => {
-        return {
-          route: article.routeName,
-          word: article[`title_${language}`],
-        };
-      }), // suggestionsPrev
-    articles
-      .filter(
-        article =>
-          language &&
-          article[`title_${language}`].charAt(0).toUpperCase() ===
-            alphabet[index]
-      )
-      .map(article => {
-        return {
-          route: article.routeName,
-          word: article[`title_${language}`],
-        };
-      }), // suggestions
-    articles
-      .filter(
-        article =>
-          language &&
-          article[`title_${language}`].charAt(0).toUpperCase() ===
-            alphabet[index + 1]
-      )
-      .map(article => {
-        return {
-          route: article.routeName,
-          word: article[`title_${language}`],
-        };
-      }), // suggestionsNext
+    articles.filter(
+      article =>
+        language &&
+        article[`title_${language}`].charAt(0).toUpperCase() ===
+          alphabet[index - 1]
+    ), // suggestionsPrev
+    articles.filter(
+      article =>
+        language &&
+        article[`title_${language}`].charAt(0).toUpperCase() === alphabet[index]
+    ), // suggestions
+    articles.filter(
+      article =>
+        language &&
+        article[`title_${language}`].charAt(0).toUpperCase() ===
+          alphabet[index + 1]
+    ), // suggestionsNext
   ];
 }
 
@@ -123,34 +101,36 @@ export function appReducer(state = appDefaultState, action) {
       };
     }
     case APP_SET_LANGUAGE: {
-      const alphabet = action.language === 'ES' ? alphabetES : alphabetFR;
+      const { language } = action;
+      const alphabet = language === 'ES' ? alphabetES : alphabetFR;
       return {
         ...state,
         alphabet,
-        language: action.language,
+        language,
       };
     }
     case APP_SET_LETTER: {
-      const prevState = { ...state };
+      const { letter } = action;
       const suggestions = setSuggestions(
-        prevState.alphabet,
-        prevState.articles,
-        prevState.language,
+        state.alphabet,
+        state.articles,
+        state.language,
         action.letter
       );
       return {
         ...state,
-        index: state.alphabet.indexOf(action.letter),
+        index: state.alphabet.indexOf(letter),
         letter: action.letter,
         preview: true,
-        sortAsc: state.alphabet.indexOf(action.letter) < 13,
+        sortAsc: state.alphabet.indexOf(letter) < 13,
         suggestionsPrev: suggestions[0],
         suggestions: suggestions[1],
         suggestionsNext: suggestions[2],
       };
     }
     case APP_SET_WORD: {
-      const letter = action.word && action.word.charAt(0).toUpperCase();
+      const { word } = action;
+      const letter = word && word.charAt(0).toUpperCase();
       return {
         ...state,
         letter,
@@ -159,15 +139,13 @@ export function appReducer(state = appDefaultState, action) {
       };
     }
     case APP_TOGGLE_PREVIEW: {
-      const prevState = { ...state };
       return {
         ...state,
-        preview: !prevState.preview,
+        preview: !state.preview,
       };
     }
     case APP_UPDATE_DEVICE: {
       const { media } = action;
-
       return {
         ...state,
         device: getMediaInfo(media),

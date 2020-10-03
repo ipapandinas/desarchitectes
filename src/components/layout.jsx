@@ -23,11 +23,18 @@ const Layout = props => {
     dispatch(setArticles(articles));
   }
 
+  if (!language) {
+    return (
+      <>
+        <WelcomeCover />
+        <Language />
+        <Resize />
+      </>
+    );
+  }
+
   return (
     <>
-      {!language && <WelcomeCover />}
-      {!language && <Language />}
-
       <main>
         <div className="App__main">
           <div className="App__content">

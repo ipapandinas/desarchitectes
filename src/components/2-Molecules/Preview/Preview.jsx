@@ -31,11 +31,7 @@ export default function Preview() {
     suggestions,
     suggestionsNext,
   } = useApp();
-  const {
-    isDesktop,
-    isTabletPortrait,
-    isTabletLandscape,
-  } = useDevice();
+  const { isDesktop, isTabletPortrait, isTabletLandscape } = useDevice();
   const dispatch = useDispatch();
 
   // RESPONSIVE LETTER HEIGHT
@@ -104,8 +100,8 @@ export default function Preview() {
           )}
         >
           {suggestionsPrev
-            .map(({ route, word }) => (
-              <Word label={word} key={word} route={route} />
+            .map(({ routeName, [`title_${language}`]: word }) => (
+              <Word label={word} key={word} route={routeName} />
             ))
             .slice(0, nbWordsPreview)}
         </div>
@@ -115,8 +111,8 @@ export default function Preview() {
             language === 'ES' ? 'Suggestions--ES' : 'Suggestions--FR'
           )}
         >
-          {suggestions.map(({ route, word }) => (
-            <Word active label={word} key={word} route={route} />
+          {suggestions.map(({ routeName, [`title_${language}`]: word }) => (
+            <Word active label={word} key={word} route={routeName} />
           ))}
         </div>
         <div
@@ -128,8 +124,8 @@ export default function Preview() {
           )}
         >
           {suggestionsNext
-            .map(({ route, word }) => (
-              <Word label={word} key={word} route={route} />
+            .map(({ routeName, [`title_${language}`]: word }) => (
+              <Word label={word} key={word} route={routeName} />
             ))
             .slice(0, nbWordsNext)}
         </div>
