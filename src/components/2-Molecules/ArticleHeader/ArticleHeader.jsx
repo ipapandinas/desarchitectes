@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { Image } from '../../1-Atoms';
-
 import './ArticleHeader.scss';
 
 function ArticleHeader(props) {
@@ -14,6 +12,7 @@ function ArticleHeader(props) {
   }
 
   const letter = title && title.charAt(0);
+  const pdfLabel = language === 'ES' ? 'Versión PDF' : 'Version PDF';
 
   return (
     <div className="ArticleHeader">
@@ -44,14 +43,7 @@ function ArticleHeader(props) {
       )}
       {pdf && (
         <a className="ArticleHeader__pdf" href={pdf.publicURL}>
-          <Image
-            alt={
-              language === 'ES'
-                ? 'Descargar el articulo en pdf'
-                : "Télécharger l'article en pdf"
-            }
-            filename="logoPdf.png"
-          />
+          {pdfLabel}
         </a>
       )}
     </div>

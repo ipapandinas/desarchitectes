@@ -32,23 +32,31 @@
 }
 
 .ArticleHeader__pdf {
-  width: 10%;
+  width: 9rem;
+  margin: 0 auto;
+  background: none;
+  color: $black;
+  border: 0.1rem solid $black;
+  border-radius: $block-border-radius;
   text-align: center;
-  margin: 0 auto 2rem;
+  text-decoration: none;
+  padding: 0.3rem 1rem;
+
+  &:hover {
+    color: $black;
+    text-decoration: underline;
+    background: none;
+  }
 }
 
 @include tablet {
   .ArticleHeader__title {
     margin: 0 0 2rem;
   }
-
-  .ArticleHeader__pdf {
-    width: 7%;
-  }
 }
 
-@include desktop-xl {
+@include desktop {
   .ArticleHeader__pdf {
-    width: 5%;
+    margin: 0 auto 3rem;
   }
 }
