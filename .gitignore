@@ -59,6 +59,9 @@ typings/
 public
 build
 
+# vscode
+.vscode/
+
 # Mac files
 .DS_Store
 
