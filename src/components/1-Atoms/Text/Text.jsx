@@ -15,8 +15,12 @@ function Text(props) {
   return <div className="Text">{formatNewLine(text)}</div>;
 }
 
+Text.defaultProps = {
+  text: undefined,
+};
+
 Text.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
 };
 
 export default Text;
