@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Element, Link } from 'react-scroll';
 
-import { Media, Text, TextMedias } from '../../1-Atoms';
+import Media from 'components/1-Atoms/Medias/Media';
+import Text from 'components/1-Atoms/Text/Text';
+import TextMedias from 'components/1-Atoms/Medias/TextMedias';
 
 import './ArticleContent.scss';
 

@@ -2,6 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 
+import Word from 'components/1-Atoms/Word/Word';
+
+import { useApp, useDevice } from 'hooks';
+import { togglePreview } from 'reduxApp';
 import {
   LETTER_HEIGHT,
   LETTER_HEIGHT_LG,
@@ -11,12 +15,7 @@ import {
   LETTER_HEIGHT_XL,
   LETTER_HEIGHT_XL__ES,
   LETTER_HEIGHT__ES,
-} from '../../../settings/ui';
-
-import { useApp, useDevice } from '../../../hooks';
-import { togglePreview } from '../../../redux';
-
-import { Word } from '../../1-Atoms';
+} from 'settings/ui';
 
 import './Preview.scss';
 

@@ -1,8 +1,10 @@
+/* eslint-disable import/named */
 import {
   applyMiddleware,
   combineReducers,
   createStore as reduxCreateStore,
 } from 'redux';
+/* eslint-enable */
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 

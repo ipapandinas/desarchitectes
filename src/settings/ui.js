@@ -1,4 +1,4 @@
-import styles from '../assets/styles/_export.scss';
+import styles from 'assets/styles/_export.scss';
 
 export const {
   ALPHABET_HEIGHT,

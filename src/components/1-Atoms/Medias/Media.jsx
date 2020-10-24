@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 
-import { formatNewLine } from '../../../services';
+import { formatNewLine } from 'services';
 
 import './Media.scss';
 

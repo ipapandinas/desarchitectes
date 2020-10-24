@@ -1,10 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { useApp } from '../../../hooks';
+import Letter from 'components/1-Atoms/Letter/Letter';
+import Preview from 'components/2-Molecules/Preview/Preview';
 
-import { Letter } from '../../1-Atoms';
-import { Preview } from '../../2-Molecules';
+import { useApp } from 'hooks';
 
 import './Alphabet.scss';
 

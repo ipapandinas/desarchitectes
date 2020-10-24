@@ -1,4 +1,4 @@
-import { getMediaInfo } from '../../services';
+import { getMediaInfo } from 'services';
 
 import {
   APP_RESET,

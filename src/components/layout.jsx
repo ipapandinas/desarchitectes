@@ -3,14 +3,18 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import { useApp } from '../hooks';
-import { setArticles } from '../redux';
-import { useArticlesQuery } from '../queries';
+import Resize from 'components/1-Atoms/Resize/Resize';
+import Alphabet from 'components/3-Blocks/Alphabet/Alphabet';
+import Content from 'components/3-Blocks/Content/Content';
+import Footer from 'components/3-Blocks/Footer/Footer';
+import Language from 'components/3-Blocks/Language/Language';
+import WelcomeCover from 'components/3-Blocks/WelcomeCover/WelcomeCover';
 
-import { Resize } from './1-Atoms';
-import { Alphabet, Content, Footer, Language, WelcomeCover } from './3-Blocks';
+import { useApp } from 'hooks';
+import { setArticles } from 'reduxApp';
+import { useArticlesQuery } from 'queries';
 
-import '../assets/styles/main.scss';
+import 'assets/styles/main.scss';
 import './layout.scss';
 
 const Layout = props => {

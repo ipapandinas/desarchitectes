@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 
-import { useImageQuery } from '../../../queries';
+import { useImageQuery } from 'queries';
 
 const Image = ({ alt, className, filename }) => {
   const data = useImageQuery();

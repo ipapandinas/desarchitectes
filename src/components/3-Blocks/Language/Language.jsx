@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setLanguage } from '../../../redux';
+import Separator from 'components/1-Atoms/Separator/Separator';
 
-import { Separator } from '../../1-Atoms';
+import { setLanguage } from 'reduxApp';
 
 import './Language.scss';
 

@@ -8,7 +8,7 @@ import {
   MEDIA_SM,
   MEDIA_XL,
   MEDIA_XS,
-} from '../settings';
+} from 'settings';
 
 export function getMedia() {
   if (window.matchMedia(`(max-width: ${BREAKPOINT_XS})`).matches) {

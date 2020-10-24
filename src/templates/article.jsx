@@ -2,11 +2,12 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 
-import { useDevice } from '../hooks';
+import SEO from 'components/1-Atoms/SEO/SEO';
+import Article from 'components/4-Pages/Article/Article';
+import ArticleDesktop from 'components/4-Pages/Article/ArticleDesktop';
+import Layout from 'components/layout';
 
-import { SEO } from '../components/1-Atoms';
-import { Article, ArticleDesktop } from '../components/4-Pages';
-import Layout from '../components/layout';
+import { useDevice } from 'hooks';
 
 const ArticleTemplate = ({ data }) => {
   const { isDesktop, isTabletLandscape } = useDevice();

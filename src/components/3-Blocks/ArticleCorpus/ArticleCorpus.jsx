@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Definition } from '../../1-Atoms';
-import { ArticleContent, ArticleHeader } from '../../2-Molecules';
+import Definition from 'components/1-Atoms/Definition/Definition';
+import ArticleContent from 'components/2-Molecules/ArticleContent/ArticleContent';
+import ArticleHeader from 'components/2-Molecules/ArticleHeader/ArticleHeader';
 
 import './ArticleCorpus.scss';
 

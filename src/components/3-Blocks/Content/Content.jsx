@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { useApp } from '../../../hooks';
+import { useApp } from 'hooks';
 
 import './Content.scss';
 

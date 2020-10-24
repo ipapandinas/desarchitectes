@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import { useApp } from '../../../hooks';
-import { setLetter, setWord, togglePreview } from '../../../redux';
+import { CONTENT_TYPE_MIX } from 'components/2-Molecules/ArticleContent/ArticleContent';
+import ArticleCorpus from 'components/3-Blocks/ArticleCorpus/ArticleCorpus';
 
-import { CONTENT_TYPE_MIX } from '../../2-Molecules';
-import { ArticleCorpus } from '../../3-Blocks';
+import { useApp } from 'hooks';
+import { setLetter, setWord, togglePreview } from 'reduxApp';
 
 const scrollToTop = () => {
   const element = document.getElementById('articleTop');

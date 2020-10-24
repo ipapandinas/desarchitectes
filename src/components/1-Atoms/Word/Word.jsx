@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { Link } from 'gatsby';
 
-import { useApp } from '../../../hooks';
-import { setWord } from '../../../redux';
+import { useApp } from 'hooks';
+import { setWord } from 'reduxApp';
 
 import './Word.scss';
 

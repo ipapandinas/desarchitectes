@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 
-import { useApp } from '../../../hooks';
-import { setLetter } from '../../../redux';
+import { useApp } from 'hooks';
+import { setLetter } from 'reduxApp';
 
 import './Letter.scss';
 

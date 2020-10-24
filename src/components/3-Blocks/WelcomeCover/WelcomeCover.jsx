@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import logo from '../../../assets/images/desarchitectes.png';
+import logo from 'assets/images/desarchitectes.png';
 
 import './WelcomeCover.scss';
 

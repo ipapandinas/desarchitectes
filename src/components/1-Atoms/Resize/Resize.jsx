@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { updateDevice } from '../../../redux';
-import { getMedia } from '../../../services';
+import { updateDevice } from 'reduxApp';
+import { getMedia } from 'services';
 
 export default function Resize() {
   const dispatch = useDispatch();

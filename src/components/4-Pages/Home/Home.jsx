@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
-import { useApp } from '../../../hooks';
+import { useApp } from 'hooks';
 
 import './Home.scss';
 

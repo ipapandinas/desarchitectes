@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { useLocation } from '@reach/router';
 
-import favicon from '../../../assets/images/d_favicon.png';
-import { useSiteMetadata } from '../../../queries';
+import favicon from 'assets/images/d_favicon.png';
+import { useSiteMetadata } from 'queries';
 
-import { useApp } from '../../../hooks';
+import { useApp } from 'hooks';
 
 const SEO = ({ image }) => {
   const { language, word } = useApp();

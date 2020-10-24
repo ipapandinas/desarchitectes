@@ -2,16 +2,16 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import { useApp } from '../../../hooks';
-import { setLetter, setWord, togglePreview } from '../../../redux';
-
-import { Separator } from '../../1-Atoms';
-import {
-  ArticleContent,
+import Separator from 'components/1-Atoms/Separator/Separator';
+import ArticleContent, {
   CONTENT_TYPE_MEDIA,
   CONTENT_TYPE_TEXT,
-} from '../../2-Molecules';
-import { ArticleCorpus, Footer } from '../../3-Blocks';
+} from 'components/2-Molecules/ArticleContent/ArticleContent';
+import ArticleCorpus from 'components/3-Blocks/ArticleCorpus/ArticleCorpus';
+import Footer from 'components/3-Blocks/Footer/Footer';
+
+import { useApp } from 'hooks';
+import { setLetter, setWord, togglePreview } from 'reduxApp';
 
 import './ArticleDesktop.scss';
 
