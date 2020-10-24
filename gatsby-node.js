@@ -51,3 +51,22 @@ exports.createPages = ({ actions, graphql }) => {
   // Query for articles nodes to use in creating pages.
   return getArticles;
 };
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    devtool: 'eval-source-map',
+    resolve: {
+      alias: {
+        assets: path.resolve(__dirname, 'src/assets'),
+        components: path.resolve(__dirname, 'src/components'),
+        hooks: path.resolve(__dirname, 'src/hooks'),
+        pages: path.resolve(__dirname, 'src/pages'),
+        queries: path.resolve(__dirname, 'src/queries'),
+        reduxApp: path.resolve(__dirname, 'src/redux/app'),
+        services: path.resolve(__dirname, 'src/services'),
+        settings: path.resolve(__dirname, 'src/settings'),
+        templates: path.resolve(__dirname, 'src/templates'),
+      },
+    },
+  });
+};

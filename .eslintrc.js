@@ -35,6 +35,15 @@ module.exports = {
     ],
   },
 
+  settings: {
+    'import/resolver': {
+      node: {
+        moduleDirectory: ['node_modules', '.'],
+      },
+      alias: [['reduxApp', './src/redux/app']],
+    },
+  },
+
   globals: {
     globalThis: false,
   },
