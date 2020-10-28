@@ -3,12 +3,10 @@ import { getMediaInfo } from 'services';
 import {
   APP_RESET,
   APP_SET_ARTICLES,
-  APP_SET_LANGUAGE,
   APP_SET_LETTER,
   APP_SET_WORD,
   APP_TOGGLE_PREVIEW,
   APP_UPDATE_DEVICE,
-  alphabetES,
   alphabetFR,
 } from './types';
 
@@ -26,7 +24,6 @@ export const appDefaultState = {
     isTabletLandscape: false,
   },
   index: null,
-  language: undefined,
   letter: null,
   lettersUsed: { es: [], fr: [] },
   preview: false,
@@ -37,26 +34,18 @@ export const appDefaultState = {
   word: undefined,
 };
 
-function setSuggestions(alphabet, articles, language, letter) {
+function setSuggestions(alphabet, articles, letter) {
   const index = alphabet.indexOf(letter);
 
   return [
     articles.filter(
-      article =>
-        language &&
-        article[`title_${language}`].charAt(0).toUpperCase() ===
-          alphabet[index - 1]
+      ({ title }) => title.charAt(0).toUpperCase() === alphabet[index - 1]
     ), // suggestionsPrev
     articles.filter(
-      article =>
-        language &&
-        article[`title_${language}`].charAt(0).toUpperCase() === alphabet[index]
+      ({ title }) => title.charAt(0).toUpperCase() === alphabet[index]
     ), // suggestions
     articles.filter(
-      article =>
-        language &&
-        article[`title_${language}`].charAt(0).toUpperCase() ===
-          alphabet[index + 1]
+      ({ title }) => title.charAt(0).toUpperCase() === alphabet[index + 1]
     ), // suggestionsNext
   ];
 }
@@ -100,21 +89,11 @@ export function appReducer(state = appDefaultState, action) {
         lettersUsed,
       };
     }
-    case APP_SET_LANGUAGE: {
-      const { language } = action;
-      const alphabet = language === 'ES' ? alphabetES : alphabetFR;
-      return {
-        ...state,
-        alphabet,
-        language,
-      };
-    }
     case APP_SET_LETTER: {
       const { letter } = action;
       const suggestions = setSuggestions(
         state.alphabet,
         state.articles,
-        state.language,
         action.letter
       );
       return {

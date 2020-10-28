@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 
-import { useApp } from 'hooks';
+import { useApp, usePageContext } from 'hooks';
 import { setLetter } from 'reduxApp';
 
 import './Letter.scss';
@@ -14,19 +14,15 @@ import './Letter.scss';
 export default function Letter(props) {
   const { letter } = props;
 
-  const {
-    language,
-    letter: letterDisplayed,
-    lettersUsed,
-    preview,
-    word,
-  } = useApp();
+  const { letter: letterDisplayed, lettersUsed, preview, word } = useApp();
   const dispatch = useDispatch();
+  const { pageData } = usePageContext();
+  const { lang } = pageData;
 
   const { es, fr } = lettersUsed;
   const hasArticle =
-    (language === 'ES' && es.some(l => l === letter)) ||
-    (language === 'FR' && fr.some(l => l === letter));
+    (lang === 'es' && es.some(l => l === letter)) ||
+    (lang === 'fr' && fr.some(l => l === letter));
 
   let isSeparator = false;
   if (preview) {
@@ -38,16 +34,16 @@ export default function Letter(props) {
   return (
     <div
       className={classNames('Letter', {
-        'Letter--ES': language === 'ES',
-        'Letter--FR': language === 'FR',
+        'Letter--ES': lang === 'es',
+        'Letter--FR': lang === 'fr',
       })}
     >
       {hasArticle && (
         <button
           className={classNames('Letter__button', {
             'Letter__button--active': isSeparator,
-            'Letter__button--ES': language === 'ES',
-            'Letter__button--FR': language === 'FR',
+            'Letter__button--ES': lang === 'es',
+            'Letter__button--FR': lang === 'fr',
           })}
           type="button"
           onClick={() => {

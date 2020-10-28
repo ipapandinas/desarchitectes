@@ -13,9 +13,9 @@ export const CONTENT_TYPE_MIX = 'MIX';
 export const CONTENT_TYPE_TEXT = 'TEXT';
 
 function ArticleContent(props) {
-  const { content, language, type } = props;
+  const { content, type } = props;
 
-  if (!content || !language) {
+  if (!content) {
     return null;
   }
 
@@ -25,13 +25,7 @@ function ArticleContent(props) {
         if (!item) {
           return null;
         }
-
-        const {
-          id,
-          image,
-          [`text_${language}`]: text,
-          text_media: medias,
-        } = item;
+        const { id, image, text, text_media: medias } = item;
 
         switch (type) {
           // DESKTOP RIGHT SIDE
@@ -50,7 +44,7 @@ function ArticleContent(props) {
                   to={`text-anchor-${id}`}
                   key={`text-media-${id}`}
                 >
-                  <TextMedias medias={medias} language={language} />
+                  <TextMedias medias={medias} />
                 </Link>
               )
             );
@@ -71,7 +65,7 @@ function ArticleContent(props) {
             if (image) {
               return (
                 <div className="ArticleContent__media" key={`media-${id}`}>
-                  <Media media={item} language={language} />
+                  <Media media={item} />
                 </div>
               );
             }
@@ -82,7 +76,7 @@ function ArticleContent(props) {
                 key={`paragraph-${id}`}
               >
                 {text && <Text text={text} />}
-                <TextMedias medias={medias} language={language} />
+                <TextMedias medias={medias} />
               </div>
             );
           }
@@ -96,7 +90,6 @@ function ArticleContent(props) {
 
 ArticleContent.propTypes = {
   content: PropTypes.array.isRequired,
-  language: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
 };
 

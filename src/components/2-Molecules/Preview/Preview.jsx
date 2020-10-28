@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import Word from 'components/1-Atoms/Word/Word';
 
-import { useApp, useDevice } from 'hooks';
+import { useApp, useDevice, usePageContext } from 'hooks';
 import { togglePreview } from 'reduxApp';
 import {
   LETTER_HEIGHT,
@@ -23,7 +23,6 @@ export default function Preview() {
   const {
     alphabet,
     index,
-    language,
     preview,
     sortAsc,
     suggestionsPrev,
@@ -32,19 +31,21 @@ export default function Preview() {
   } = useApp();
   const { isDesktop, isTabletPortrait, isTabletLandscape } = useDevice();
   const dispatch = useDispatch();
+  const { pageData } = usePageContext();
+  const { lang } = pageData;
 
   // RESPONSIVE LETTER HEIGHT
-  let LETTER_H = language === 'ES' ? LETTER_HEIGHT__ES : LETTER_HEIGHT;
+  let LETTER_H = lang === 'es' ? LETTER_HEIGHT__ES : LETTER_HEIGHT;
   if (isDesktop) {
-    LETTER_H = language === 'ES' ? LETTER_HEIGHT_XL__ES : LETTER_HEIGHT_XL;
+    LETTER_H = lang === 'es' ? LETTER_HEIGHT_XL__ES : LETTER_HEIGHT_XL;
   }
 
   if (isTabletLandscape) {
-    LETTER_H = language === 'ES' ? LETTER_HEIGHT_LG__ES : LETTER_HEIGHT_LG;
+    LETTER_H = lang === 'es' ? LETTER_HEIGHT_LG__ES : LETTER_HEIGHT_LG;
   }
 
   if (isTabletPortrait) {
-    LETTER_H = language === 'ES' ? LETTER_HEIGHT_MD__ES : LETTER_HEIGHT_MD;
+    LETTER_H = lang === 'es' ? LETTER_HEIGHT_MD__ES : LETTER_HEIGHT_MD;
   }
 
   // SUGGESTIONS
@@ -93,13 +94,11 @@ export default function Preview() {
         <div
           className={classNames(
             'Suggestions__prev',
-            language === 'ES'
-              ? 'Suggestions__prev--ES'
-              : 'Suggestions__prev--FR'
+            lang === 'ES' ? 'Suggestions__prev--ES' : 'Suggestions__prev--FR'
           )}
         >
           {suggestionsPrev
-            .map(({ routeName, [`title_${language}`]: word }) => (
+            .map(({ routeName, [`title_${lang}`]: word }) => (
               <Word label={word} key={word} route={routeName} />
             ))
             .slice(0, nbWordsPreview)}
@@ -107,23 +106,21 @@ export default function Preview() {
         <div
           className={classNames(
             'Suggestions',
-            language === 'ES' ? 'Suggestions--ES' : 'Suggestions--FR'
+            lang === 'es' ? 'Suggestions--ES' : 'Suggestions--FR'
           )}
         >
-          {suggestions.map(({ routeName, [`title_${language}`]: word }) => (
+          {suggestions.map(({ routeName, [`title_${lang}`]: word }) => (
             <Word active label={word} key={word} route={routeName} />
           ))}
         </div>
         <div
           className={classNames(
             'Suggestions__next',
-            language === 'ES'
-              ? 'Suggestions__next--ES'
-              : 'Suggestions__next--FR'
+            lang === 'es' ? 'Suggestions__next--ES' : 'Suggestions__next--FR'
           )}
         >
           {suggestionsNext
-            .map(({ routeName, [`title_${language}`]: word }) => (
+            .map(({ routeName, [`title_${lang}`]: word }) => (
               <Word label={word} key={word} route={routeName} />
             ))
             .slice(0, nbWordsNext)}

@@ -6,11 +6,13 @@ import { useLocation } from '@reach/router';
 import favicon from 'assets/images/d_favicon.png';
 import { useSiteMetadata } from 'queries';
 
-import { useApp } from 'hooks';
+import { useApp, usePageContext } from 'hooks';
 
 const SEO = ({ image }) => {
-  const { language, word } = useApp();
+  const { word } = useApp();
   const { pathname } = useLocation();
+  const { pageData } = usePageContext();
+  const { lang } = pageData;
   const {
     defaultDescription,
     defaultImage,
@@ -20,18 +22,16 @@ const SEO = ({ image }) => {
   } = useSiteMetadata();
 
   let description = null;
-  let lang = `fr`;
   let title = null;
 
-  switch (language) {
-    case 'FR': {
+  switch (lang) {
+    case 'fr': {
       description = 'Un abécédaire, un zoom sur des objets urbains.';
       title = 'Abécédaire desarchitectes';
       break;
     }
-    case 'ES': {
+    case 'es': {
       description = 'Un abecedario, un zoom sobre objetos urbanos.';
-      lang = `es`;
       title = 'Abecedario desarchitectes';
       break;
     }

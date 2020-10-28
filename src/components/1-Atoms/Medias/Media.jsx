@@ -7,9 +7,9 @@ import { formatNewLine } from 'services';
 import './Media.scss';
 
 function Media(props) {
-  const { media, language } = props;
+  const { media } = props;
 
-  if (!media || !language) {
+  if (!media) {
     return null;
   }
 
@@ -18,11 +18,11 @@ function Media(props) {
       <div className="Media">
         <Img
           className="Media__image"
-          alt={media[`alt_${language}`]}
+          alt={media.alt}
           fluid={media.image.childImageSharp.fluid}
         />
         <div className="Media__legend">
-          {formatNewLine(media[`legend_${language}`])}
+          {formatNewLine(media.legend)}
         </div>
       </div>
     )
@@ -31,7 +31,6 @@ function Media(props) {
 
 Media.propTypes = {
   media: PropTypes.object.isRequired,
-  language: PropTypes.string.isRequired,
 };
 
 export default Media;

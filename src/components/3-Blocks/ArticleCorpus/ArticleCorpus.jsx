@@ -8,41 +8,19 @@ import ArticleHeader from 'components/2-Molecules/ArticleHeader/ArticleHeader';
 import './ArticleCorpus.scss';
 
 function ArticleCorpus(props) {
-  const { data, language, variant } = props;
-
-  if (!data || !language) {
-    return null;
-  }
-
-  const {
-    content: articleContent,
-    definition: articleDefinition,
-    pdf: articleDownload,
-    [`title_${language}`]: articleTitle,
-  } = data;
+  const { data, variant } = props;
+  const { content, definition, pdf, title } = data;
 
   return (
     <div className="ArticleCorpus">
-      <ArticleHeader
-        language={language}
-        pdf={articleDownload}
-        title={articleTitle}
-      />
+      <ArticleHeader pdf={pdf} title={title} />
 
-      <ArticleContent
-        content={articleContent}
-        language={language}
-        type={variant}
-      />
+      <ArticleContent content={content} type={variant} />
 
-      {articleDefinition && (
+      {definition && (
         <div className="Article__footer container">
-          {articleDefinition.map(def => (
-            <Definition
-              definition={def}
-              language={language}
-              key={def && def.id}
-            />
+          {definition.map(def => (
+            <Definition definition={def} key={def && def.id} />
           ))}
         </div>
       )}
@@ -52,7 +30,6 @@ function ArticleCorpus(props) {
 
 ArticleCorpus.propTypes = {
   data: PropTypes.object.isRequired,
-  language: PropTypes.string.isRequired,
   variant: PropTypes.string.isRequired,
 };
 

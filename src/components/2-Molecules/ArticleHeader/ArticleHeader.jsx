@@ -2,17 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { usePageContext } from 'hooks';
+
 import './ArticleHeader.scss';
 
 function ArticleHeader(props) {
-  const { language, pdf, title } = props;
+  const { pdf, title } = props;
+  const { lang } = usePageContext();
 
-  if (!language || !pdf || !title) {
+  if ( !pdf || !title) {
     return null;
   }
 
   const letter = title && title.charAt(0);
-  const pdfLabel = language === 'ES' ? 'Versión PDF' : 'Version PDF';
+  const pdfLabel = lang === 'es' ? 'Versión PDF' : 'Version PDF';
 
   return (
     <div className="ArticleHeader">
@@ -20,20 +23,20 @@ function ArticleHeader(props) {
         <span
           className={classNames(
             'ArticleHeader__letter',
-            language === 'ES'
+            lang === 'es'
               ? 'ArticleHeader__letter--ES'
               : 'ArticleHeader__letter--FR'
           )}
         >
           {letter.toLowerCase()}
-          {language === 'ES' ? ' cómo' : ' comme'}
+          {lang === 'es' ? ' cómo' : ' comme'}
         </span>
       )}
       {title && (
         <span
           className={classNames(
             'ArticleHeader__title',
-            language === 'ES'
+            lang === 'es'
               ? 'ArticleHeader__title--ES'
               : 'ArticleHeader__title--FR'
           )}
@@ -51,7 +54,6 @@ function ArticleHeader(props) {
 }
 
 ArticleHeader.propTypes = {
-  language: PropTypes.string.isRequired,
   pdf: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
 };

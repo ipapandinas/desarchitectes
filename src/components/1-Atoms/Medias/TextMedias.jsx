@@ -17,9 +17,9 @@ const COLUMN__PORTRAIT_FIRST = 'column__portrait_first';
 const ROW = 'row';
 
 function TextMedias(props) {
-  const { medias, language } = props;
+  const { medias } = props;
 
-  if (!medias || !language) {
+  if (!medias) {
     return null;
   }
 
@@ -91,11 +91,11 @@ function TextMedias(props) {
             <div className="Media" key={media.id}>
               <Img
                 className="Media__image"
-                alt={media[`alt_${language}`]}
+                alt={media.alt}
                 fluid={media.image.childImageSharp.fluid}
               />
               <div className="Media__legend">
-                {formatNewLine(media[`legend_${language}`])}
+                {formatNewLine(media.legend)}
               </div>
             </div>
           )
@@ -107,7 +107,6 @@ function TextMedias(props) {
 
 TextMedias.propTypes = {
   medias: PropTypes.array.isRequired,
-  language: PropTypes.string.isRequired,
 };
 
 export default TextMedias;

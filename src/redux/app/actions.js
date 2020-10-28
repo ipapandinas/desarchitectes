@@ -1,7 +1,6 @@
 import {
   APP_RESET,
   APP_SET_ARTICLES,
-  APP_SET_LANGUAGE,
   APP_SET_LETTER,
   APP_SET_WORD,
   APP_TOGGLE_PREVIEW,
@@ -18,13 +17,6 @@ export function setArticles(articles) {
   return {
     articles,
     type: APP_SET_ARTICLES,
-  };
-}
-
-export function setLanguage(language) {
-  return {
-    language,
-    type: APP_SET_LANGUAGE,
   };
 }
 

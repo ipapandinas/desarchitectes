@@ -7,6 +7,7 @@ module.exports = {
     author: 'Mister Telmo · mrtelmo.com',
     url: 'https://www.desarchitectes.com',
     image: '/d_favicon.png',
+    supportedLanguages: ['es', 'fr'],
   },
   plugins: [
     `gatsby-plugin-sass`,

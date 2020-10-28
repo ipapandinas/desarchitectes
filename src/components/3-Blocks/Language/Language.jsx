@@ -1,38 +1,35 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 
 import Separator from 'components/1-Atoms/Separator/Separator';
+import Link from 'components/5-Utils/Link/Link';
 
-import { setLanguage } from 'reduxApp';
+import { usePageContext } from 'hooks';
 
 import './Language.scss';
 
 export default function Language() {
-  const dispatch = useDispatch();
+  const { pageData } = usePageContext();
+  const { routeName } = pageData;
 
   return (
     <div className="Language fade-in">
-      <button
+      <Link
         className="Language__button Language__button--fr"
-        type="button"
-        onClick={() => {
-          dispatch(setLanguage('FR'));
-        }}
+        lang='fr'
+        route={routeName}
       >
         français
-      </button>
+      </Link>
 
       <Separator />
 
-      <button
+      <Link
         className="Language__button Language__button--es"
-        type="button"
-        onClick={() => {
-          dispatch(setLanguage('ES'));
-        }}
+        lang='es'
+        route={routeName}
       >
         español
-      </button>
+      </Link>
     </div>
   );
 }

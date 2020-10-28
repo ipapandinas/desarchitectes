@@ -3,16 +3,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
-import { useApp } from 'hooks';
+import { usePageContext } from 'hooks';
 
 import './Home.scss';
 
 export default function Home() {
-  const { language } = useApp();
+  const { pageData } = usePageContext();
+  const { lang } = pageData;
 
   return (
     <div className="Home fade-in">
-      {language === 'ES' ? (
+      {lang === 'es' ? (
         <div className="Home__content Home__content--ES">
           <p>
             El abecedario desarchitectes es bajo la forma de un abecedario, un
@@ -72,7 +73,7 @@ export default function Home() {
         <a
           href="https://www.instagram.com/desarchitectes/"
           title={
-            language === 'ES'
+            lang === 'es'
               ? 'desarchitectes en Instagram'
               : 'desarchitectes sur Instagram'
           }
@@ -84,7 +85,7 @@ export default function Home() {
 
         <a
           href="mailto:abcdesarchitectes@gmail.com"
-          title={language === 'ES' ? 'Contacto' : 'Contact'}
+          title={lang === 'es' ? 'Contacto' : 'Contact'}
         >
           <FontAwesomeIcon icon={faEnvelope} />
         </a>

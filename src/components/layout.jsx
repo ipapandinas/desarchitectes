@@ -10,7 +10,7 @@ import Footer from 'components/3-Blocks/Footer/Footer';
 import Language from 'components/3-Blocks/Language/Language';
 import WelcomeCover from 'components/3-Blocks/WelcomeCover/WelcomeCover';
 
-import { useApp } from 'hooks';
+import { useApp, usePageContext } from 'hooks';
 import { setArticles } from 'reduxApp';
 import { useArticlesQuery } from 'queries';
 
@@ -19,15 +19,19 @@ import './layout.scss';
 
 const Layout = props => {
   const { children } = props;
-  const { articles: articlesStored, language, preview } = useApp();
-  const articles = useArticlesQuery();
+  const { articles: articlesStored, preview } = useApp();
   const dispatch = useDispatch();
+  const { pageData } = usePageContext();
+  const { lang } = pageData;
+  const articles = useArticlesQuery(lang);
+
+  console.log({ articles });
 
   if (Array.isArray(articlesStored) && articlesStored.length === 0) {
     dispatch(setArticles(articles));
   }
 
-  if (!language) {
+  if (!lang) {
     return (
       <>
         <WelcomeCover />

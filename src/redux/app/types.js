@@ -1,6 +1,5 @@
 export const APP_RESET = 'APP_RESET';
 export const APP_SET_ARTICLES = 'APP_SET_ARTICLES';
-export const APP_SET_LANGUAGE = 'APP_SET_LANGUAGE';
 export const APP_SET_LETTER = 'APP_SET_LETTER';
 export const APP_SET_WORD = 'APP_SET_WORD';
 export const APP_TOGGLE_PREVIEW = 'APP_TOGGLE_PREVIEW';
