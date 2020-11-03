@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import SEO from 'components/1-Atoms/SEO/SEO';
 import Article from 'components/4-Pages/Article/Article';
 import ArticleDesktop from 'components/4-Pages/Article/ArticleDesktop';
-import Layout from 'components/layout';
+import Layout from 'components/5-Utils/Layout/Layout';
 
 import { useDevice } from 'hooks';
 
