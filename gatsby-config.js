@@ -24,11 +24,8 @@ module.exports = {
       resolve: 'gatsby-source-strapi',
       options: {
         apiURL: 'http://mgmt.desarchitectes.com',
-        contentTypes: [
-          // List of the Content Types you want to be able to request from Gatsby.
-          'article',
-          'user',
-        ],
+        contentTypes: ['article', 'user'],
+        singleTypes: ['landing'],
         queryLimit: 1000,
       },
     },
