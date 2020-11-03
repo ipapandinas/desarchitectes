@@ -1,13 +1,12 @@
 import React from 'react';
 
 import SEO from 'components/1-Atoms/SEO/SEO';
-import Home from 'components/4-Pages/Home/Home';
-import Layout from 'components/layout';
+import LayoutNoLang from 'components/5-Utils/Layout/LayoutNoLang';
 
 const IndexPage = () => (
-  <Layout>
+  <LayoutNoLang>
     <SEO />
-    <Home />
-  </Layout>
+  </LayoutNoLang>
 );
+
 export default IndexPage;
