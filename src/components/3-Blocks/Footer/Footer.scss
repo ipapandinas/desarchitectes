@@ -7,19 +7,14 @@
     $footer-padding-bottom-y-sm;
 }
 
-.Footer__button {
-  background: none;
-  border: 0;
-  padding: 0;
-  margin: 0 auto;
-}
-
 .Footer__logo {
   width: $footer-content-width-sm;
   height: auto;
 }
 
 .Footer__link {
+  padding: 0;
+  margin: 0 auto;
   text-decoration: none;
 }
 
