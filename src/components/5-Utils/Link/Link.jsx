@@ -6,22 +6,11 @@ import { PageContext } from 'contexts';
 
 export default function Link({ children, lang, route, ...rest }) {
   const { updatePageData } = useContext(PageContext);
-  if (!route) {
-    return (
-      <button
-        type="button"
-        onClick={() => {
-          updatePageData({ lang });
-        }}
-      >
-        {children}
-      </button>
-    );
-  }
+  const newRoute = route ? `/${lang}/${route}` : `/${lang}`;
 
   return (
     <GatsbyLink
-      to={`/${lang}/${route}`}
+      to={newRoute}
       onClick={() => {
         updatePageData({ lang });
       }}
