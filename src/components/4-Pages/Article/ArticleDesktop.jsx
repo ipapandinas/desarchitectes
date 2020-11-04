@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 
 import Separator from 'components/1-Atoms/Separator/Separator';
 import ArticleContent, {
@@ -9,8 +8,6 @@ import ArticleContent, {
 } from 'components/2-Molecules/ArticleContent/ArticleContent';
 import ArticleCorpus from 'components/3-Blocks/ArticleCorpus/ArticleCorpus';
 import Footer from 'components/3-Blocks/Footer/Footer';
-
-import { setLetter, setWord, togglePreview } from 'reduxApp';
 
 import './ArticleDesktop.scss';
 
@@ -25,16 +22,11 @@ const scrollToTop = () => {
 
 export default function ArticleDesktop(props) {
   const { data } = props;
-  const { content: articleContent, title: word } = data;
-  const dispatch = useDispatch();
+  const { content: articleContent } = data;
 
   useEffect(() => {
-    const letter = word && word.charAt(0).toUpperCase();
-    dispatch(setLetter(letter));
-    dispatch(setWord(word));
-    dispatch(togglePreview());
     scrollToTop();
-  }, [dispatch, word]);
+  }, []);
 
   return (
     <div className="ArticleDesktop fade-in" id="articleTop">
