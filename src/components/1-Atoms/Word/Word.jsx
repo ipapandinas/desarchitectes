@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useDispatch } from 'react-redux';
 
 import Link from 'components/5-Utils/Link/Link';
 
-import { usePageContext } from 'hooks';
-import { setWord } from 'reduxApp';
+import { useAppContext, usePageContext } from 'hooks';
 
 import './Word.scss';
 
 export default function Word(props) {
   const { active, label, route } = props;
-  const dispatch = useDispatch();
+
+  const { setWord } = useAppContext();
   const { pageData } = usePageContext();
   const { lang } = pageData;
+
   return (
     <Link
       className={classNames('Word', {
@@ -23,7 +23,7 @@ export default function Word(props) {
         'Word--FR': lang === 'fr',
       })}
       lang={lang}
-      onClick={() => dispatch(setWord(label))}
+      onClick={() => setWord(label)}
       route={route}
       title={route}
     >
