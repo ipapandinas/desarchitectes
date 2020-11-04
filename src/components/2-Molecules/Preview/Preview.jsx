@@ -1,51 +1,52 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useDispatch } from 'react-redux';
 
 import Word from 'components/1-Atoms/Word/Word';
 
-import { useApp, useDevice, usePageContext } from 'hooks';
-import { togglePreview } from 'reduxApp';
+import { useAppContext, useDevice, usePageContext } from 'hooks';
 import {
   LETTER_HEIGHT,
   LETTER_HEIGHT_LG,
-  LETTER_HEIGHT_LG__ES,
   LETTER_HEIGHT_MD,
-  LETTER_HEIGHT_MD__ES,
   LETTER_HEIGHT_XL,
-  LETTER_HEIGHT_XL__ES,
-  LETTER_HEIGHT__ES,
 } from 'settings/ui';
 
 import './Preview.scss';
 
-export default function Preview() {
+const SuggestionsTypes = PropTypes.shape({
+  routeName: PropTypes.string,
+  title: PropTypes.string,
+});
+
+export default function Preview(props) {
   const {
-    alphabet,
     index,
-    preview,
     sortAsc,
     suggestionsPrev,
     suggestions,
     suggestionsNext,
-  } = useApp();
+  } = props;
   const { isDesktop, isTabletPortrait, isTabletLandscape } = useDevice();
-  const dispatch = useDispatch();
+
+  const { appData, togglePreview } = useAppContext();
+  const { alphabet, preview } = appData;
+
   const { pageData } = usePageContext();
   const { lang } = pageData;
 
   // RESPONSIVE LETTER HEIGHT
-  let LETTER_H = lang === 'es' ? LETTER_HEIGHT__ES : LETTER_HEIGHT;
+  let LETTER_H = LETTER_HEIGHT;
   if (isDesktop) {
-    LETTER_H = lang === 'es' ? LETTER_HEIGHT_XL__ES : LETTER_HEIGHT_XL;
+    LETTER_H = LETTER_HEIGHT_XL;
   }
 
   if (isTabletLandscape) {
-    LETTER_H = lang === 'es' ? LETTER_HEIGHT_LG__ES : LETTER_HEIGHT_LG;
+    LETTER_H = LETTER_HEIGHT_LG;
   }
 
   if (isTabletPortrait) {
-    LETTER_H = lang === 'es' ? LETTER_HEIGHT_MD__ES : LETTER_HEIGHT_MD;
+    LETTER_H = LETTER_HEIGHT_MD;
   }
 
   // SUGGESTIONS
@@ -62,22 +63,12 @@ export default function Preview() {
         'Preview',
         preview ? 'Preview--visible' : 'Preview--hide'
       )}
-      role="button"
-      tabIndex={0}
-      onClick={() => {
-        dispatch(togglePreview());
-      }}
-      onKeyPress={() => {
-        dispatch(togglePreview());
-      }}
     >
       <div
         className={classNames('Preview__list', {
           'Preview__list--start': sortAsc,
         })}
-        onMouseLeave={() => {
-          dispatch(togglePreview());
-        }}
+        onMouseLeave={togglePreview}
         style={
           sortAsc
             ? {
@@ -98,8 +89,8 @@ export default function Preview() {
           )}
         >
           {suggestionsPrev
-            .map(({ routeName, [`title_${lang}`]: word }) => (
-              <Word label={word} key={word} route={routeName} />
+            .map(({ routeName, title }) => (
+              <Word label={title} key={title} route={routeName} />
             ))
             .slice(0, nbWordsPreview)}
         </div>
@@ -109,8 +100,8 @@ export default function Preview() {
             lang === 'es' ? 'Suggestions--ES' : 'Suggestions--FR'
           )}
         >
-          {suggestions.map(({ routeName, [`title_${lang}`]: word }) => (
-            <Word active label={word} key={word} route={routeName} />
+          {suggestions.map(({ routeName, title }) => (
+            <Word active label={title} key={title} route={routeName} />
           ))}
         </div>
         <div
@@ -120,8 +111,8 @@ export default function Preview() {
           )}
         >
           {suggestionsNext
-            .map(({ routeName, [`title_${lang}`]: word }) => (
-              <Word label={word} key={word} route={routeName} />
+            .map(({ routeName, title }) => (
+              <Word label={title} key={title} route={routeName} />
             ))
             .slice(0, nbWordsNext)}
         </div>
@@ -129,3 +120,19 @@ export default function Preview() {
     </div>
   );
 }
+
+Preview.propTypes = {
+  index: PropTypes.number,
+  sortAsc: PropTypes.bool,
+  suggestionsPrev: PropTypes.arrayOf(SuggestionsTypes),
+  suggestions: PropTypes.arrayOf(SuggestionsTypes),
+  suggestionsNext: PropTypes.arrayOf(SuggestionsTypes),
+};
+
+Preview.defaultProps = {
+  index: undefined,
+  sortAsc: true,
+  suggestionsPrev: [],
+  suggestions: [],
+  suggestionsNext: [],
+};
