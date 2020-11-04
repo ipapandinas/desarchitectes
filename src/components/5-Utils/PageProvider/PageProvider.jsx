@@ -1,13 +1,18 @@
-import React, { useCallback, useReducer } from 'react';
+import React, { useCallback, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 import { PageContext } from 'contexts';
+import { useAppContext } from 'hooks';
 
 import pageDataReducer, { PAGE_DATA_UPDATE } from './pageDataReducer';
 
 export default function PageContextProvider(props) {
-  const { pageContext, children } = props;
-  const [pageData, dispatchPageData] = useReducer(pageDataReducer, pageContext);
+  const { pageData: pageDataProps, children } = props;
+  const { setAppData } = useAppContext();
+  const [pageData, dispatchPageData] = useReducer(
+    pageDataReducer,
+    pageDataProps
+  );
 
   const updatePageData = useCallback(
     data =>
@@ -18,6 +23,14 @@ export default function PageContextProvider(props) {
     []
   );
 
+  const { appData } = pageData;
+
+  useEffect(() => {
+    if (appData) {
+      setAppData(appData);
+    }
+  }, [appData, setAppData]);
+
   return (
     <PageContext.Provider value={{ pageData, updatePageData }}>
       {children}
@@ -27,5 +40,5 @@ export default function PageContextProvider(props) {
 
 PageContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  pageContext: PropTypes.object.isRequired,
+  pageData: PropTypes.object.isRequired,
 };
