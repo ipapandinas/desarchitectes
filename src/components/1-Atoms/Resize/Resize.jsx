@@ -1,22 +1,21 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 
-import { updateDevice } from 'reduxApp';
+import { useUiContext } from 'hooks';
 import { getMedia } from 'services';
 
 export default function Resize() {
-  const dispatch = useDispatch();
+  const { updateDevice } = useUiContext();
 
   useEffect(() => {
     function updateMedia() {
       const media = getMedia();
-      dispatch(updateDevice(media));
+      updateDevice(media);
     }
 
     window.addEventListener('resize', updateMedia);
     updateMedia();
     return () => window.removeEventListener('resize', updateMedia);
-  }, [dispatch]);
+  }, [updateDevice]);
 
   return null;
 }

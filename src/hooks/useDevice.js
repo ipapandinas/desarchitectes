@@ -1,7 +1,10 @@
-import { useSelector } from 'react-redux';
+import { useContext } from 'react';
 
-import { identity } from 'services';
+import { UiContext } from 'contexts';
+import { initialUiData } from 'settings';
 
-export default function useDevice(selector = identity) {
-  return useSelector(state => selector(state.app.device));
+export default function useDevice() {
+  const { uiData } = useContext(UiContext);
+  const { device } = uiData || initialUiData.device;
+  return device;
 }
