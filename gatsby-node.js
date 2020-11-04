@@ -1,3 +1,5 @@
+const config = require('./gatsby-config');
+
 const path = require(`path`);
 
 const makeRequest = (graphql, request) =>
@@ -22,34 +24,115 @@ exports.createPages = ({ actions, graphql }) => {
   const getArticles = makeRequest(
     graphql,
     `
-    {
-      allStrapiArticle {
-        edges {
-          node {
-            published
+      query Articles {
+        article: allStrapiArticle(filter: {published: {eq: true}}) {
+          edges {
+            node {
+              internal {
+                type
+              }
+              routeName
+              title_es: title_ES
+              title_fr: title_FR
+            }
+          }
+        }
+        articles_es: allStrapiArticle(filter: {published: {eq: true}}) {
+          nodes {
             routeName
+            title: title_ES
+          }
+        }
+        articles_fr: allStrapiArticle(filter: {published: {eq: true}}) {
+          nodes {
+            routeName
+            title: title_FR
           }
         }
       }
-    }
     `
   ).then(result => {
     // Create pages for each article.
-    result.data.allStrapiArticle.edges.forEach(({ node }) => {
-      if (node.published) {
-        createPage({
-          path: `/${node.routeName}`,
-          component: path.resolve(`src/templates/article.jsx`),
+    result.data.article.edges.forEach(({ node }) => {
+      const { internal, routeName } = node;
+      const pageType = internal && internal.type;
+
+      config.siteMetadata.supportedLanguages.map(lang => {
+        const articles = result.data[`articles_${lang}`].nodes || [];
+        const localizedPath = `/${lang}/${routeName}`;
+        const word = node[`title_${lang}`];
+
+        return createPage({
+          path: localizedPath,
+          component: path.resolve(`src/templates/Article/article-${lang}.jsx`),
           context: {
-            routeName: node.routeName,
+            appData: {
+              articles,
+              word,
+            },
+            lang,
+            pageType,
+            routeName,
           },
         });
-      }
+      });
+
+      createPage({
+        path: `/${routeName}`,
+        component: path.resolve(`src/templates/Article/article.jsx`),
+        context: {
+          pageType,
+          routeName,
+        },
+      });
     });
   });
 
-  // Query for articles nodes to use in creating pages.
-  return getArticles;
+  const getLanding = makeRequest(
+    graphql,
+    `
+      query Landing {
+        landing: strapiLanding {
+          internal {
+            type
+          }
+        }
+        articles_es: allStrapiArticle(filter: {published: {eq: true}}) {
+          nodes {
+            routeName
+            title: title_ES
+          }
+        }
+        articles_fr: allStrapiArticle(filter: {published: {eq: true}}) {
+          nodes {
+            routeName
+            title: title_FR
+          }
+        }
+      }
+    `
+  ).then(result => {
+    const pageType = result.data.landing && result.data.landing.internal.type;
+
+    config.siteMetadata.supportedLanguages.map(lang => {
+      const articles = result.data[`articles_${lang}`].nodes || [];
+      const localizedPath = `/${lang}`;
+
+      return createPage({
+        path: localizedPath,
+        component: path.resolve(`src/templates/Landing/landing-${lang}.jsx`),
+        context: {
+          appData: {
+            articles,
+          },
+          lang,
+          pageType,
+        },
+      });
+    });
+  });
+
+  return Promise.all([getArticles, getLanding]);
 };
 
 exports.onCreateWebpackConfig = ({ actions }) => {
@@ -59,6 +142,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
       alias: {
         assets: path.resolve(__dirname, 'src/assets'),
         components: path.resolve(__dirname, 'src/components'),
+        contexts: path.resolve(__dirname, 'src/contexts'),
         hooks: path.resolve(__dirname, 'src/hooks'),
         pages: path.resolve(__dirname, 'src/pages'),
         queries: path.resolve(__dirname, 'src/queries'),
