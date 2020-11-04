@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Separator from 'components/1-Atoms/Separator/Separator';
-import Link from 'components/5-Utils/Link/Link';
 
 import { usePageContext } from 'hooks';
 
@@ -11,25 +10,25 @@ export default function Language() {
   const { pageData } = usePageContext();
   const { routeName } = pageData;
 
+  const getUri = lang => {
+    if (!routeName) {
+      return `/${lang}`;
+    }
+
+    return `/${lang}/${routeName}`;
+  };
+
   return (
     <div className="Language fade-in">
-      <Link
-        className="Language__button Language__button--fr"
-        lang='fr'
-        route={routeName}
-      >
+      <a className="Language__button Language__button--fr" href={getUri('fr')}>
         français
-      </Link>
+      </a>
 
       <Separator />
 
-      <Link
-        className="Language__button Language__button--es"
-        lang='es'
-        route={routeName}
-      >
+      <a className="Language__button Language__button--es" href={getUri('es')}>
         español
-      </Link>
+      </a>
     </div>
   );
 }
