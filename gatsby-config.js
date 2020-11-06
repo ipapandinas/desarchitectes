@@ -11,8 +11,8 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-sass`,
-    `gatsby-plugin-remove-serviceworker`,
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-remove-serviceworker',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
