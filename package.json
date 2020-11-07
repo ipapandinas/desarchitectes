@@ -29,11 +29,7 @@
     "react-dom": "^16.9.x",
     "react-helmet": "^6.1.x",
     "react-markdown": "^4.2.x",
-    "react-redux": "^7.1.x",
-    "react-scroll": "^1.7.x",
-    "redux": "^4.0.x",
-    "redux-devtools-extension": "^2.13.x",
-    "redux-thunk": "^2.3.x"
+    "react-scroll": "^1.7.x"
   },
   "devDependencies": {
     "eslint": "^6.8.x",

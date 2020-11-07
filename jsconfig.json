@@ -8,7 +8,6 @@
       "hooks": ["src/hooks"],
       "pages": ["src/pages"],
       "queries": ["src/queries"],
-      "reduxApp": ["src/redux/app"],
       "services": ["src/services"],
       "settings": ["src/settings"],
       "templates": ["src/templates"]

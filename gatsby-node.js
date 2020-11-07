@@ -146,7 +146,6 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         hooks: path.resolve(__dirname, 'src/hooks'),
         pages: path.resolve(__dirname, 'src/pages'),
         queries: path.resolve(__dirname, 'src/queries'),
-        reduxApp: path.resolve(__dirname, 'src/redux/app'),
         services: path.resolve(__dirname, 'src/services'),
         settings: path.resolve(__dirname, 'src/settings'),
         templates: path.resolve(__dirname, 'src/templates'),

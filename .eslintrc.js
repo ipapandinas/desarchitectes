@@ -40,7 +40,6 @@ module.exports = {
       node: {
         moduleDirectory: ['node_modules', '.'],
       },
-      alias: [['reduxApp', './src/redux/app']],
     },
   },
 

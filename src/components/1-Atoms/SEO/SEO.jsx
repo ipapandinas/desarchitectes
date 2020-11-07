@@ -6,10 +6,9 @@ import { useLocation } from '@reach/router';
 import favicon from 'assets/images/d_favicon.png';
 import { useSiteMetadata } from 'queries';
 
-import { useApp, usePageContext } from 'hooks';
+import { usePageContext } from 'hooks';
 
 const SEO = ({ image }) => {
-  const { word } = useApp();
   const { pathname } = useLocation();
   const { pageData } = usePageContext();
   const { lang } = pageData;
@@ -42,7 +41,7 @@ const SEO = ({ image }) => {
   const seo = {
     description: description || defaultDescription,
     image: `${siteUrl}${image || defaultImage}`,
-    title: word || title || defaultTitle,
+    title: title || defaultTitle,
     url: `${siteUrl}${pathname}`,
   };
 
