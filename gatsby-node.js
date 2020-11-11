@@ -6,7 +6,7 @@ const makeRequest = (graphql, request) =>
   new Promise((resolve, reject) => {
     // Query for nodes to use in creating pages.
     resolve(
-      graphql(request).then(result => {
+      graphql(request).then((result) => {
         if (result.errors) {
           reject(result.errors);
         }
@@ -51,20 +51,20 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     `
-  ).then(result => {
+  ).then((result) => {
     // Create pages for each article.
     result.data.article.edges.forEach(({ node }) => {
       const { internal, routeName } = node;
       const pageType = internal && internal.type;
 
-      config.siteMetadata.supportedLanguages.map(lang => {
+      config.siteMetadata.supportedLanguages.map((lang) => {
         const articles = result.data[`articles_${lang}`].nodes || [];
         const localizedPath = `/${lang}/${routeName}`;
         const word = node[`title_${lang}`];
 
         return createPage({
           path: localizedPath,
-          component: path.resolve(`src/templates/Article/article-${lang}.jsx`),
+          component: path.resolve(`src/templates/Article/article-${lang}.tsx`),
           context: {
             appData: {
               articles,
@@ -79,7 +79,7 @@ exports.createPages = ({ actions, graphql }) => {
 
       createPage({
         path: `/${routeName}`,
-        component: path.resolve(`src/templates/Article/article.jsx`),
+        component: path.resolve(`src/templates/Article/article.tsx`),
         context: {
           pageType,
           routeName,
@@ -111,16 +111,16 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     `
-  ).then(result => {
+  ).then((result) => {
     const pageType = result.data.landing && result.data.landing.internal.type;
 
-    config.siteMetadata.supportedLanguages.map(lang => {
+    config.siteMetadata.supportedLanguages.map((lang) => {
       const articles = result.data[`articles_${lang}`].nodes || [];
       const localizedPath = `/${lang}`;
 
       return createPage({
         path: localizedPath,
-        component: path.resolve(`src/templates/Landing/landing-${lang}.jsx`),
+        component: path.resolve(`src/templates/Landing/landing-${lang}.tsx`),
         context: {
           appData: {
             articles,
@@ -149,6 +149,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         services: path.resolve(__dirname, 'src/services'),
         settings: path.resolve(__dirname, 'src/settings'),
         templates: path.resolve(__dirname, 'src/templates'),
+        types: path.resolve(__dirname, 'src/types'),
       },
     },
   });

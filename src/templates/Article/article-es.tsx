@@ -1,0 +1,71 @@
+import React, { FC } from 'react';
+import { graphql } from 'gatsby';
+
+import SEO from 'components/1-Atoms/SEO/SEO';
+import Article from 'components/4-Pages/Article/Article';
+import ArticleDesktop from 'components/4-Pages/Article/ArticleDesktop';
+import Layout from 'components/5-Utils/Layout/Layout';
+
+import { useDevice } from 'hooks';
+import { ArticlesDataProps } from 'types/articles';
+
+interface Props {
+  data: {
+    strapiArticle: ArticlesDataProps;
+  };
+}
+
+const ArticleTemplateES: FC<Props> = ({ data }: Props) => {
+  const { isDesktop, isTabletLandscape } = useDevice();
+  const isLaptop = isDesktop || isTabletLandscape;
+
+  if (!data) {
+    return null;
+  }
+
+  const Component = isLaptop ? ArticleDesktop : Article;
+
+  return (
+    <Layout>
+      <SEO />
+      <Component data={data.strapiArticle} />
+    </Layout>
+  );
+};
+
+export default ArticleTemplateES;
+
+export const query = graphql`
+  query ArticleTemplateES($routeName: String!) {
+    strapiArticle(routeName: { eq: $routeName }) {
+      title: title_ES
+      pdf {
+        publicURL
+      }
+      content {
+        id
+        text: text_ES
+        text_media {
+          alt: alt_ES
+          id
+          legend: legend_ES
+          image {
+            name
+            childImageSharp {
+              fluid(maxWidth: 600) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      }
+      definition {
+        id
+        text: content_ES
+        link: link_ES
+        name: name_ES
+        type: type_ES
+      }
+    }
+  }
+`;

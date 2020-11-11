@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "downlevelIteration": true,
+    "allowJs": true,
+    "checkJs": false,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "declaration": false,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "target": "es2015",
+    "module": "es2015",
+    "jsx": "react",
+    "typeRoots": ["../node_modules/@types"],
+    "lib": ["es2017", "dom"]
+  },
+  "compileOnSave": false
+}

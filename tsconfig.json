@@ -1,0 +1,29 @@
+{
+  "extends": "./configs/tsconfig_base",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "assets/*": ["src/assets/*"],
+      "components/*": ["src/components/*"],
+      "contexts/*": ["src/contexts/*"],
+      "hooks": ["src/hooks"],
+      "pages": ["src/pages"],
+      "queries/*": ["src/queries/*"],
+      "services/*": ["src/services/*"],
+      "settings/*": ["src/settings/*"],
+      "templates": ["src/templates"],
+      "types/*": ["src/types/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.jsx",
+    "src/**/*.tsx",
+    "configs/custom_modules.d.ts",
+    "configs/eslint_typescript.js",
+    "*.js",
+    ".commitlintrc.js",
+    ".eslintrc.js"
+  ],
+  "exclude": ["node_modules", "public", ".cache"]
+}
