@@ -16,8 +16,8 @@ interface Props {
 }
 
 const ArticleTemplateES: FC<Props> = ({ data }: Props) => {
-  const { isDesktop, isTabletLandscape } = useDevice();
-  const isLaptop = isDesktop || isTabletLandscape;
+  const device = useDevice();
+  const isLaptop = device?.isDesktop || device?.isTabletLandscape;
 
   if (!data) {
     return null;
