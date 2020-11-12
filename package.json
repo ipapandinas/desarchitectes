@@ -15,6 +15,7 @@
     "@types/react-helmet": "^6.1.0",
     "@types/react-scroll": "^1.8.2",
     "classnames": "^2.2.x",
+    "dotenv": "^8.2.0",
     "eslint-plugin-flowtype": "^5.2.0",
     "gatsby": "^2.18.1x",
     "gatsby-image": "^2.2.x",
@@ -61,8 +62,8 @@
     "gatsby"
   ],
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
+    "build": "GATSBY_ENV=production gatsby build",
+    "develop": "GATSBY_ENV=development gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",

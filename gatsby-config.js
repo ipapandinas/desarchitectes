@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `./.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: 'Abécédaire / Abecedario desarchitectes',
@@ -23,7 +27,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-strapi',
       options: {
-        apiURL: 'http://mgmt.desarchitectes.com',
+        apiURL: process.env.GATSBY_API_URL,
         contentTypes: ['article', 'user'],
         singleTypes: ['landing'],
         queryLimit: 1000,
