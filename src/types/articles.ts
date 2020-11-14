@@ -34,7 +34,7 @@ export interface PdfProps {
   publicURL: string;
 }
 
-export interface SuggestionsProps {
+export type SuggestionsProps = Array<{
   routeName: string;
   title: string;
-}
+}>;

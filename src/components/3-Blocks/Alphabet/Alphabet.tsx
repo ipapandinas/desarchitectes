@@ -1,31 +1,32 @@
-import React, { FC, useMemo } from 'react';
-import classNames from 'classnames';
+import React, { FC, useMemo, useRef } from 'react';
 
 import Letter from 'components/1-Atoms/Letter/Letter';
 import Preview from 'components/2-Molecules/Preview/Preview';
 
-import { useAppContext, usePageContext } from 'hooks';
+import { useAppContext } from 'hooks';
 import { SuggestionsProps } from 'types/articles';
 
-import './Alphabet.scss';
+import styles from './Alphabet.module.scss';
 
 const Alphabet: FC = () => {
   const { appData } = useAppContext()!;
   const { alphabet, articles, preview, runLetter } = appData;
 
-  const { pageData } = usePageContext()!;
-  const { lang } = pageData;
+  const defaultRef = useRef<HTMLButtonElement>(null);
+  const refs = useRef<(HTMLButtonElement | null)[]>(
+    Array(alphabet.length).fill(defaultRef)
+  );
 
   const runLetterIdx = runLetter ? alphabet.indexOf(runLetter) : -1;
+  const runLetterRef = refs.current[runLetterIdx];
   const sortAsc = runLetterIdx < 13;
 
-  const [suggestionsPrev, suggestions, suggestionsNext] = useMemo(() => {
-    const sPrev: SuggestionsProps[] = [];
-    const s: SuggestionsProps[] = [];
-    const sNext: SuggestionsProps[] = [];
+  const suggestions: SuggestionsProps[] = useMemo(() => {
+    const sPrev: SuggestionsProps = [];
+    const s: SuggestionsProps = [];
+    const sNext: SuggestionsProps = [];
 
     if (runLetterIdx !== -1) {
-      // TODO: use reduce
       articles.forEach((article) => {
         const { title } = article;
         const firstLetter = title.charAt(0).toUpperCase();
@@ -48,29 +49,25 @@ const Alphabet: FC = () => {
 
   return (
     <>
-      <div
-        className={classNames('Alphabet__letters', {
-          'Alphabet__letters--display': preview,
-          'Alphabet__letters--ES': lang === 'es',
-        })}
-      >
-        {alphabet.map((letter) => (
-          <Letter key={letter} active={letter === runLetter} letter={letter} />
+      <div className={styles.letters}>
+        {alphabet.map((letter, idx) => (
+          <Letter
+            key={letter}
+            active={letter === runLetter}
+            letter={letter}
+            ref={(ref) => {
+              refs.current[idx] = ref;
+            }}
+          />
         ))}
       </div>
       {preview && (
-        <div
-          className={classNames('Alphabet__preview', {
-            'Alphabet__preview--display': preview,
-            'Alphabet__preview--ES': lang === 'es',
-          })}
-        >
+        <div className={styles.preview}>
           <Preview
-            index={runLetterIdx}
+            runLetterIdx={runLetterIdx}
+            runLetterRef={runLetterRef}
             sortAsc={sortAsc}
-            suggestionsPrev={suggestionsPrev}
-            suggestions={suggestions}
-            suggestionsNext={suggestionsNext}
+            results={suggestions}
           />
         </div>
       )}
