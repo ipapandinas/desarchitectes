@@ -24,11 +24,13 @@ const ArticleTemplateFR: FC<Props> = ({ data }: Props) => {
   }
 
   const Component = isLaptop ? ArticleDesktop : Article;
+  const { strapiArticle: pageData } = data;
+  const { title: pageTitle } = pageData;
 
   return (
     <Layout>
-      <SEO />
-      <Component data={data.strapiArticle} />
+      <SEO pageTitle={pageTitle} />
+      <Component data={pageData} />
     </Layout>
   );
 };

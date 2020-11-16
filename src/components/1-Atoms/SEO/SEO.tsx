@@ -2,82 +2,72 @@ import React, { FC } from 'react';
 import { Helmet } from 'react-helmet';
 import { useLocation } from '@reach/router';
 
-import favicon from 'assets/images/d_favicon.png';
+import d_favicon from 'assets/images/d_favicon.png';
 import useSiteMetadata from 'queries/seo';
 
 import { usePageContext } from 'hooks';
 
 interface Props {
-  image?: string;
+  pageTitle?: string;
 }
 
-const SEO: FC<Props> = ({ image }: Props) => {
+const SEO: FC<Props> = ({ pageTitle }: Props) => {
   const { pathname } = useLocation();
   const { pageData } = usePageContext()!;
   const { lang } = pageData;
-  const {
-    defaultDescription,
-    defaultImage,
-    defaultTitle,
-    titleTemplate,
-    siteUrl,
-  } = useSiteMetadata();
+  const { metaDefault, metaES, metaFR } = useSiteMetadata();
 
-  let description = null;
-  let title = null;
-
+  let metaData = metaDefault.siteMetadata;
   switch (lang) {
-    case 'fr': {
-      description = 'Un abécédaire, un zoom sur des objets urbains.';
-      title = 'Abécédaire desarchitectes';
+    case 'es':
+      metaData = metaES.siteMetadata;
       break;
-    }
-    case 'es': {
-      description = 'Un abecedario, un zoom sobre objetos urbanos.';
-      title = 'Abecedario desarchitectes';
+    case 'fr':
+      metaData = metaFR.siteMetadata;
       break;
-    }
     default:
       break;
   }
 
-  const seo = {
-    description: description || defaultDescription,
-    image: `${siteUrl}${image || defaultImage}`,
-    title: title || defaultTitle,
-    url: `${siteUrl}${pathname}`,
-  };
+  const {
+    author,
+    description,
+    image,
+    siteUrl,
+    title: defaultTitle,
+    titleTemplate,
+  } = metaData;
+  const favicon = `${siteUrl}${image}`;
+  const title = pageTitle ?? defaultTitle;
+  const url = `${siteUrl}${pathname}`;
 
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={seo.title}
+      title={title}
       titleTemplate={titleTemplate}
       link={[
         {
           key: 'icon',
           rel: 'icon',
           type: 'image/png',
-          href: `${favicon}`,
+          href: `${d_favicon}`,
         },
       ]}
     >
-      <meta name="description" content={seo.description} />
-      <meta name="image" content={seo.image} />
-      {seo.url && <meta property="og:url" content={seo.url} />}
-      {seo.title && <meta property="og:title" content={seo.title} />}
-      {seo.description && (
-        <meta property="og:description" content={seo.description} />
-      )}
-      {seo.image && <meta property="og:image" content={seo.image} />}
+      <meta name="author" content={author} />
+      <meta name="description" content={description} />
+      <meta name="image" content={favicon} />
+      {url && <meta property="og:url" content={url} />}
+      {title && <meta property="og:title" content={title} />}
+      {description && <meta property="og:description" content={description} />}
+      {favicon && <meta property="og:image" content={favicon} />}
       <meta name="twitter:card" content="summary_large_image" />
-      {seo.title && <meta name="twitter:title" content={seo.title} />}
-      {seo.description && (
-        <meta name="twitter:description" content={seo.description} />
-      )}
-      {seo.image && <meta name="twitter:image" content={seo.image} />}
+      {title && <meta name="twitter:title" content={title} />}
+      {description && <meta name="twitter:description" content={description} />}
+      {favicon && <meta name="twitter:image" content={favicon} />}
     </Helmet>
   );
 };

@@ -4,11 +4,12 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: 'Abécédaire / Abecedario desarchitectes',
+    titleES: 'Abecedario desarchitectes',
+    titleFR: 'Abécédaire desarchitectes',
     titleTemplate: '%s · desarchitectes.com',
-    description:
-      'Un abécédaire, un zoom sur des objets urbains. | Un abecedario, un zoom sobre objetos urbanos.',
-    author: 'Mister Telmo · mrtelmo.com',
+    descriptionES: 'Un abecedario, un zoom sobre objetos urbanos.',
+    descriptionFR: 'Un abécédaire, un zoom sur des objets urbains.',
+    author: 'Mr Telmo · mrtelmo.com',
     url: 'https://www.desarchitectes.com',
     image: '/d_favicon.png',
     supportedLanguages: ['es', 'fr'],

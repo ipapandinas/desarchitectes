@@ -1,34 +1,62 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
-interface SiteMetadataNode {
+interface MetadataNode {
   author: string;
-  defaultDescription: string;
-  defaultImage: string;
-  defaultTitle: string;
-  titleTemplate: string;
+  description: string;
+  image: string;
   siteUrl: string;
+  title: string;
+  titleTemplate: string;
 }
 
-type SiteMetadataQuery = () => SiteMetadataNode;
+interface SiteMetadataNode {
+  siteMetadata: MetadataNode;
+}
+
+type SiteMetadataQuery = () => {
+  metaDefault: SiteMetadataNode;
+  metaES: SiteMetadataNode;
+  metaFR: SiteMetadataNode;
+};
 
 const useSiteMetadata: SiteMetadataQuery = () => {
-  const { site } = useStaticQuery(
+  const metadata = useStaticQuery(
     graphql`
       query {
-        site {
+        metaDefault: site {
           siteMetadata {
             author
-            defaultDescription: description
-            defaultImage: image
-            defaultTitle: title
-            titleTemplate
+            description: descriptionFR
+            image
             siteUrl: url
+            title: titleFR
+            titleTemplate
+          }
+        }
+        metaES: site {
+          siteMetadata {
+            author
+            description: descriptionES
+            image
+            siteUrl: url
+            title: titleES
+            titleTemplate
+          }
+        }
+        metaFR: site {
+          siteMetadata {
+            author
+            description: descriptionFR
+            image
+            siteUrl: url
+            title: titleFR
+            titleTemplate
           }
         }
       }
     `
   );
-  return site.siteMetadata;
+  return metadata;
 };
 
 export default useSiteMetadata;
