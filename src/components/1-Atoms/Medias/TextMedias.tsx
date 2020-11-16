@@ -61,13 +61,6 @@ const TextMedias: FC<Props> = ({ medias }: Props) => {
     );
   };
 
-  console.log({
-    class: textMediasClass(),
-    displayDirection,
-    mediasAspectType,
-    nbMedias,
-  });
-
   return (
     <div className={classnames(styles.tm, textMediasClass())}>
       {medias.map(({ alt, id, image, legend }) => (
