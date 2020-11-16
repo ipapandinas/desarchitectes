@@ -26,7 +26,7 @@ const Article: FC<Props> = ({ data }: Props) => {
   }, []);
 
   return (
-    <div className="Article fade-in" id="articleTop">
+    <div className="fade-in" id="articleTop">
       <ArticleCorpus
         content={content}
         definition={definition}

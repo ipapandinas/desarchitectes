@@ -1,0 +1,25 @@
+@import '~assets/styles/abstracts';
+
+.preview {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.letters {
+  width: $alphabet-width-sm;
+  padding: 0 0 $footer-height-sm;
+  background: $black;
+  z-index: 100;
+
+  @include tablet {
+    width: $alphabet-width-md;
+    padding: 0 0 $footer-height-md;
+  }
+
+  @include desktop {
+    width: $alphabet-width-lg;
+    padding: 0;
+  }
+}

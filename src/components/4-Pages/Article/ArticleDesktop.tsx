@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react';
+import classnames from 'classnames';
 
 import Separator from 'components/1-Atoms/Separator/Separator';
 import ArticleContent, {
@@ -10,7 +11,7 @@ import Footer from 'components/3-Blocks/Footer/Footer';
 
 import { ArticlesDataProps } from 'types/articles';
 
-import './ArticleDesktop.scss';
+import styles from './ArticleDesktop.module.scss';
 
 const scrollToTop = () => {
   const element = document.getElementById('articleTop');
@@ -33,8 +34,8 @@ const ArticleDesktop: FC<Props> = ({ data }: Props) => {
   }, []);
 
   return (
-    <div className="ArticleDesktop fade-in" id="articleTop">
-      <div className="ArticleDesktop__left" id="corpus">
+    <div className={classnames(styles.root, 'fade-in')} id="articleTop">
+      <div className={styles.left} id="corpus">
         <ArticleCorpus
           content={content}
           definition={definition}
@@ -46,7 +47,7 @@ const ArticleDesktop: FC<Props> = ({ data }: Props) => {
 
       <Separator />
 
-      <div className="ArticleDesktop__right">
+      <div className={styles.right}>
         {content && (
           <ArticleContent content={content} type={CONTENT_TYPE_MEDIA} />
         )}

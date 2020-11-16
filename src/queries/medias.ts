@@ -4,7 +4,7 @@ import { ImageNodeProps } from 'types/medias';
 
 type ImageQuery = () => Array<{ node: ImageNodeProps }>;
 
-const useImageQuery: ImageQuery = () => {
+export const useImageQuery: ImageQuery = () => {
   const { images } = useStaticQuery(
     graphql`
       query {
@@ -26,5 +26,3 @@ const useImageQuery: ImageQuery = () => {
   );
   return images.edges;
 };
-
-export default useImageQuery;

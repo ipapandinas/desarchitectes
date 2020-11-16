@@ -1,37 +1,25 @@
 @import '~assets/styles/abstracts';
 
-.ArticleHeader {
+.root {
   display: flex;
   flex-direction: column;
 }
 
-.ArticleHeader__letter {
+.letter {
   text-align: center;
   margin: 0 0 0.7rem;
-
-  &--ES {
-    font-family: $averiaItalic;
-  }
-
-  &--FR {
-    font-family: $timesItalic;
-  }
 }
 
-.ArticleHeader__title {
+.title {
   text-align: center;
   margin: 0 0 1.2rem;
 
-  &--ES {
-    font-family: $averiaBold;
-  }
-
-  &--FR {
-    font-family: $timesBold;
+  @include tablet {
+    margin: 0 0 2rem;
   }
 }
 
-.ArticleHeader__pdf {
+.pdf {
   width: 9rem;
   margin: 0 auto;
   background: none;
@@ -41,6 +29,7 @@
   text-align: center;
   text-decoration: none;
   padding: 0.3rem 1rem;
+  white-space: nowrap;
 
   &:hover {
     color: $black;
@@ -50,13 +39,13 @@
 }
 
 @include tablet {
-  .ArticleHeader__title {
+  .title {
     margin: 0 0 2rem;
   }
 }
 
 @include desktop {
-  .ArticleHeader__pdf {
+  .pdf {
     margin: 0 auto 3rem;
   }
 }

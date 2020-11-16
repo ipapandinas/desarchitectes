@@ -1,0 +1,77 @@
+@import '~assets/styles/main.scss';
+
+.root {
+  display: grid;
+  grid-template-rows: 1fr auto;
+
+  &ES {
+    font-family: $averia;
+
+    .bold {
+      font-family: $averiaBold;
+    }
+
+    .italic {
+      font-family: $averiaItalic;
+    }
+  }
+
+  &FR {
+    font-family: $times;
+
+    .bold {
+      font-family: $timesBold;
+    }
+
+    .italic {
+      font-family: $timesItalic;
+    }
+  }
+}
+
+.app {
+  position: relative;
+  overflow: hidden;
+
+  .content {
+    height: 100%;
+    box-sizing: content-box;
+    margin: 0 $alphabet-width-sm 0 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    line-height: 1.4;
+
+    @include tablet {
+      margin: 0 $alphabet-width-md 0 0;
+      line-height: 1.6;
+    }
+
+    @include desktop {
+      margin: 0 $alphabet-width-lg 0 0;
+      line-height: 1.6;
+    }
+  }
+
+  .alphabet {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    &Active {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr $alphabet-width-sm;
+
+      @include tablet {
+        grid-template-columns: 1fr $alphabet-width-md;
+      }
+
+      @include desktop {
+        grid-template-columns: 1fr $alphabet-width-lg;
+      }
+    }
+  }
+}

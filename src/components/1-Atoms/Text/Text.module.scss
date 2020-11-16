@@ -1,17 +1,15 @@
 @import '~assets/styles/abstracts';
 
-.Text {
+.root {
   text-align: justify;
   text-justify: auto;
-
-  &--empty {
-    display: none;
-    height: 6rem;
-  }
 }
 
-@include desktop {
-  .Text--empty {
+.empty {
+  display: none;
+  height: 6rem;
+
+  @include desktop {
     display: block;
   }
 }

@@ -2,24 +2,25 @@
 @import '~assets/styles/abstracts';
 
 @include desktop {
-  .ArticleContent {
+  .root {
     height: 100%;
 
-    .text-anchor:nth-child(2) {
+    .textAnchor:nth-child(2) {
       margin-top: 0 !important;
     }
 
-    .media-anchor {
+    .mediaAnchor {
       display: none;
       position: relative;
       flex-direction: column;
       height: 100%;
       width: 100%;
+      margin-top: 0 !important;
+      padding: 0 !important;
 
-      &--active {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      &Active {
+        display: grid;
+        place-items: center;
       }
     }
   }

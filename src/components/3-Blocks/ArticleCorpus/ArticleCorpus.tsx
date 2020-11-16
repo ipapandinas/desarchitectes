@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import classnames from 'classnames';
 
 import Definition from 'components/1-Atoms/Definition/Definition';
 import ArticleContent from 'components/2-Molecules/ArticleContent/ArticleContent';
@@ -6,7 +7,7 @@ import ArticleHeader from 'components/2-Molecules/ArticleHeader/ArticleHeader';
 
 import { ContentProps, DefinitionProps, PdfProps } from 'types/articles';
 
-import './ArticleCorpus.scss';
+import styles from './ArticleCorpus.module.scss';
 
 interface Props {
   content: ContentProps[];
@@ -23,13 +24,13 @@ const ArticleCorpus: FC<Props> = ({
   title,
   variant,
 }: Props) => (
-  <div className="ArticleCorpus">
+  <div className={styles.root}>
     <ArticleHeader pdf={pdf} title={title} />
 
     <ArticleContent content={content} type={variant} />
 
     {definition && (
-      <div className="Article__footer container">
+      <div className={classnames(styles.footer, 'container')}>
         {definition.map(({ id, link, name, text, type }) => (
           <Definition
             key={id}

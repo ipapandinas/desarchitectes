@@ -1,20 +1,28 @@
 import React, { FC } from 'react';
+import classnames from 'classnames';
 import Img from 'gatsby-image';
 
 import formatNewLine from 'services/textFormat';
 import { MediaProps } from 'types/medias';
 
-import './Media.scss';
+import styles from './Media.module.scss';
+import tmStyles from './TextMedias.module.scss';
 
-const Media: FC<MediaProps> = ({ alt, id, image, legend }: MediaProps) => (
-  <div className="Media" key={id}>
-    <Img
-      className="Media__image"
-      alt={alt}
-      fluid={image.childImageSharp.fluid}
-    />
-    <div className="Media__legend">{formatNewLine(legend)}</div>
-  </div>
-);
+const Media: FC<MediaProps> = ({ alt, image, legend }: MediaProps) => {
+  if (!image) {
+    return null;
+  }
+
+  return (
+    <div className={classnames(styles.root, tmStyles.media)}>
+      <Img
+        className={classnames(styles.image, tmStyles.image)}
+        alt={alt}
+        fluid={image.childImageSharp.fluid}
+      />
+      <div className={styles.legend}>{formatNewLine(legend)}</div>
+    </div>
+  );
+};
 
 export default Media;

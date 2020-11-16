@@ -11,17 +11,10 @@ $averiaBold: 'AveriaSerif-Bold';
 $averiaBoldItalic: 'AveriaSerif-Bold-Italic';
 $averiaItalic: 'AveriaSerif-Italic';
 
-// Weight
-$bold: 600;
-
 //---------- Colors ----------//
 // stylelint-disable color-no-hex
 // Primary
 $salmon-pink: #c74971;
-
-// Secondary
-
-// Semantic
 
 // Neutral
 $neutral-black: #1b1b1b;
@@ -44,8 +37,8 @@ $black: #000000;
 $breakpoint-sm-min: 576px;
 $breakpoint-md-min: 768px;
 $breakpoint-lg-min: 992px;
-$breakpoint-xl-min: 1280px;
-$breakpoint-xxl-min: 1440px;
+$breakpoint-xl-min: 1440px;
+$breakpoint-xxl-min: 1800px;
 
 $breakpoint-xs-max: $breakpoint-sm-min - 1;
 $breakpoint-sm-max: $breakpoint-md-min - 1;
@@ -66,34 +59,29 @@ $page-margin-x-xxl: 14rem;
 $page-margin-x-xl: 12rem;
 $page-margin-x-lg: 10rem;
 $page-margin-x-md: 6.4rem;
-$page-margin-x-sm: 1.5rem;
+$page-margin-x-sm: 3.2rem;
 
 $page-margin-y-xl: 4.4rem;
 $page-margin-y-lg: 3.8rem;
-$page-margin-y-md: 3.2rem;
-$page-margin-y-sm: 2.4rem;
+$page-margin-y-md: 5.6rem;
+$page-margin-y-sm: 4.8rem;
 
 $block-margin-x-xl: 12rem;
-$block-margin-x-lg: 10rem;
-$block-margin-x-md: 3.2rem;
+$block-margin-x-lg: 6.4rem;
+$block-margin-x-md: 4.8rem;
 $block-margin-x-sm: 2rem;
 
 $block-margin-y-xl: 6rem;
 $block-margin-y-lg: 6rem;
 $block-margin-y-md: 6.4rem;
-$block-margin-y-sm: 4rem;
+$block-margin-y-sm: 5.6rem;
 
 $block-border-radius: 0.3rem;
 
 // Sizes
-$app_content: 89%;
-$app_alphabet: 11%;
-
-$app_content_md: 93%;
-$app_alphabet_md: 7%;
-
-$app_content_lg: 95%;
-$app_alphabet_lg: 5%;
+$alphabet-width-lg: 8rem;
+$alphabet-width-md: 8rem;
+$alphabet-width-sm: 5rem;
 
 $one_sixth: 16.667%;
 $one_quarter: 25%;
@@ -103,7 +91,7 @@ $four_sixth: 66.667%;
 
 // Footer
 $footer-content-width-lg: 9rem;
-$footer-content-width-md: 11rem;
+$footer-content-width-md: 12rem;
 $footer-content-width-sm: 9rem;
 
 $footer-content-height-lg: 6rem;
@@ -131,18 +119,9 @@ $footer-height-sm: (
 );
 
 //Letters
-$alphabet-height: 100rem;
-$letter-height: calc(#{$alphabet-height} / 26);
-$letter-height--ES: calc(#{$alphabet-height} / 27);
+$letter-height-lg: 5.8rem;
+$letter-height-md: 5.8rem;
+$letter-height-sm: 3.8rem;
 
-$alphabet-height_md: 150rem;
-$letter-height_md: calc(#{$alphabet-height_md} / 26);
-$letter-height_md--ES: calc(#{$alphabet-height_md} / 27);
-
-$alphabet-height_lg: 150rem;
-$letter-height_lg: calc(#{$alphabet-height_lg} / 26);
-$letter-height_lg--ES: calc(#{$alphabet-height_lg} / 27);
-
-$alphabet-height_xl: 200rem;
-$letter-height_xl: calc(#{$alphabet-height_xl} / 26);
-$letter-height_xl--ES: calc(#{$alphabet-height_xl} / 27);
+// Welcome cover image
+$welcome-cover-image-height: 8rem;

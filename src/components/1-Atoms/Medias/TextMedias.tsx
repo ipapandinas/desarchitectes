@@ -1,101 +1,78 @@
 import React, { FC } from 'react';
-import classNames from 'classnames';
-import Img from 'gatsby-image';
+import classnames from 'classnames';
 
-import formatNewLine from 'services/textFormat';
+import Media from 'components/1-Atoms/Medias/Media';
+
 import { MediaProps } from 'types/medias';
 
-import './Media.scss';
+import styles from './TextMedias.module.scss';
 
 interface Props {
   medias: MediaProps[];
 }
 
 const LANDSCAPE = 'landscape';
-const LONG_PORTRAIT = 'long_portrait';
 const PORTRAIT = 'portrait';
+const PORTRAIT_LONG = 'portraitLong';
 
 const COLUMN = 'column';
-const COLUMN_LANDSCAPE_FIRST = 'COLUMN_LANDSCAPE_FIRST';
-const COLUMN_PORTRAIT_FIRST = 'COLUMN_PORTRAIT_FIRST';
 const ROW = 'row';
 
 const TextMedias: FC<Props> = ({ medias }: Props) => {
-  const displayDirection = (list: MediaProps[]) => {
-    const result: string[] = [];
-    list.forEach((media) => {
-      if (media.image && media.image.childImageSharp) {
-        const ratio = media.image.childImageSharp.fluid.aspectRatio;
+  const mediasAspectType = medias.reduce((acc: string[], { image }) => {
+    const ratio = image?.childImageSharp.fluid.aspectRatio;
 
-        if (ratio > 1) {
-          result.push(LANDSCAPE);
-        } else if (ratio < 0.6) {
-          result.push(LONG_PORTRAIT);
-        } else {
-          result.push(PORTRAIT);
-        }
+    if (ratio) {
+      if (ratio > 0.9) {
+        return [...acc, LANDSCAPE];
       }
-    });
+      if (ratio < 0.6) {
+        return [...acc, PORTRAIT_LONG];
+      }
+      return [...acc, PORTRAIT];
+    }
+    return acc;
+  }, []);
 
-    if (result.length === 1) {
-      return result[0];
+  const nbMedias = mediasAspectType.length;
+  let displayDirection = nbMedias > 0 ? mediasAspectType[0] : undefined;
+  if (nbMedias === 2) {
+    displayDirection = mediasAspectType.includes(LANDSCAPE) ? COLUMN : ROW;
+  }
+
+  if (!displayDirection) {
+    return null;
+  }
+
+  const textMediasClass = () => {
+    if (nbMedias === 1) {
+      return styles[`${displayDirection}Single`];
     }
 
-    if (
-      result.length === 2 &&
-      result[0] === PORTRAIT &&
-      result[1] === PORTRAIT
-    ) {
-      return ROW;
+    if (displayDirection === ROW) {
+      return styles.row;
     }
 
-    if (
-      result.length === 2 &&
-      result[0] === LANDSCAPE &&
-      result[1] === PORTRAIT
-    ) {
-      return COLUMN_LANDSCAPE_FIRST;
-    }
-
-    if (
-      result.length === 2 &&
-      result[0] === PORTRAIT &&
-      result[1] === LANDSCAPE
-    ) {
-      return COLUMN_PORTRAIT_FIRST;
-    }
-
-    return COLUMN;
+    return classnames(
+      styles.column,
+      [PORTRAIT, PORTRAIT_LONG].includes(mediasAspectType[0])
+        ? styles.portraitFirst
+        : styles.landscapeFirst
+    );
   };
 
+  console.log({
+    class: textMediasClass(),
+    displayDirection,
+    mediasAspectType,
+    nbMedias,
+  });
+
   return (
-    <div
-      className={classNames('TextMedias', {
-        'TextMedias--column':
-          displayDirection(medias) === COLUMN_LANDSCAPE_FIRST ||
-          displayDirection(medias) === COLUMN_PORTRAIT_FIRST,
-        'landscape-first': displayDirection(medias) === COLUMN_LANDSCAPE_FIRST,
-        'portrait-first': displayDirection(medias) === COLUMN_PORTRAIT_FIRST,
-        'TextMedias--row': displayDirection(medias) === ROW,
-        'TextMedias--single-landscape': displayDirection(medias) === LANDSCAPE,
-        'TextMedias--single-long-portrait':
-          displayDirection(medias) === LONG_PORTRAIT,
-        'TextMedias--single-portrait': displayDirection(medias) === PORTRAIT,
-      })}
-    >
-      {medias.map(
-        (media) =>
-          media.image && (
-            <div className="Media" key={media.id}>
-              <Img
-                className="Media__image"
-                alt={media.alt}
-                fluid={media.image.childImageSharp.fluid}
-              />
-              <div className="Media__legend">{formatNewLine(media.legend)}</div>
-            </div>
-          )
-      )}
+    <div className={classnames(styles.tm, textMediasClass())}>
+      {medias.map(({ alt, id, image, legend }) => (
+        <Media key={id} alt={alt} image={image} legend={legend} />
+      ))}
     </div>
   );
 };

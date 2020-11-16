@@ -1,7 +1,7 @@
 @import '~assets/styles/abstracts';
 
-.ArticleCorpus {
-  padding: $page-margin-y-sm 0;
+.root {
+  padding: $page-margin-y-sm 0 0;
 }
 
 @include desktop {

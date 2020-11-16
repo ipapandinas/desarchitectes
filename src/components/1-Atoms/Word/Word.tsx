@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
+import layoutStyles from 'components/5-Utils/Layout/Layout.module.scss';
 import Link from 'components/5-Utils/Link/Link';
 
 import { usePageContext } from 'hooks';
 
-import './Word.scss';
+import styles from './Word.module.scss';
 
 interface Props {
   active?: boolean;
@@ -19,10 +20,9 @@ const Word: FC<Props> = ({ active, label, route }: Props) => {
 
   return (
     <Link
-      className={classNames('Word', {
-        'Word--active': active,
-        'Word--ES': lang === 'es',
-        'Word--FR': lang === 'fr',
+      className={classnames(styles.root, {
+        [styles.active]: active,
+        [layoutStyles.bold]: active,
       })}
       lang={lang}
       route={route}

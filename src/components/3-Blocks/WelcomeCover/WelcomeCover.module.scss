@@ -1,6 +1,6 @@
-@import '~assets/styles/abstracts';
+@import '~assets/styles/1-settings';
 
-.WelcomeCover {
+.root {
   position: absolute;
   z-index: 50000;
   left: 0;
@@ -12,22 +12,22 @@
   align-items: center;
   background-color: $white;
   padding: 0 10rem;
-  -moz-animation: WelcomeCoverAnimation 0.5s ease-in 1.8s forwards;
+  -moz-animation: WelcomeCoverAnimation $transition-duration-medium ease-in 1.8s forwards;
 
   /* Firefox */
-  -webkit-animation: WelcomeCoverAnimation 0.5s ease-in 1.8s forwards;
+  -webkit-animation: WelcomeCoverAnimation $transition-duration-medium ease-in 1.8s forwards;
 
   /* Safari and Chrome */
-  -o-animation: WelcomeCoverAnimation 0.5s ease-in 1.8s forwards;
+  -o-animation: WelcomeCoverAnimation $transition-duration-medium ease-in 1.8s forwards;
 
   /* Opera */
-  animation: WelcomeCoverAnimation 0.5s ease-in 1.8s forwards;
+  animation: WelcomeCoverAnimation $transition-duration-medium ease-in 1.8s forwards;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 
-  img {
+  .image {
     width: auto;
-    height: $footer-content-height-sm * 2;
+    height: $welcome-cover-image-height;
   }
 }
 
@@ -39,7 +39,7 @@
   to {
     visibility: hidden;
     opacity: 0;
-    transition: all 0.3s ease-in-out;
+    transition: all $transition-duration-fast ease-in-out;
   }
 }
 @-webkit-keyframes WelcomeCoverAnimation {
@@ -50,11 +50,11 @@
   to {
     visibility: hidden;
     opacity: 0;
-    transition: all 0.3s ease-in-out;
+    transition: all $transition-duration-fast ease-in-out;
   }
 }
 
-.WelcomeCover__closeButton {
+.close {
   color: $black;
   font-size: 40px;
   height: 30px;

@@ -2,28 +2,9 @@
 
 // Export variables to the JS environment.
 :export {
-  // ALPHABET
-  ALPHABET_HEIGHT: $alphabet-height;
-  ALPHABET_HEIGHT_LG: $alphabet-height_lg;
-  ALPHABET_HEIGHT_MD: $alphabet-height_md;
-  ALPHABET_HEIGHT_XL: $alphabet-height_xl;
-
   // BREAKPOINTS
   BREAKPOINT_LG: $breakpoint-lg-max;
   BREAKPOINT_MD: $breakpoint-md-max;
   BREAKPOINT_SM: $breakpoint-sm-max;
   BREAKPOINT_XS: $breakpoint-xs-max;
-
-  // LETTERS
-  //// FR
-  LETTER_HEIGHT: $letter-height;
-  LETTER_HEIGHT_LG: $letter-height_lg;
-  LETTER_HEIGHT_MD: $letter-height_md;
-  LETTER_HEIGHT_XL: $letter-height_xl;
-
-  //// ES
-  LETTER_HEIGHT__ES: $letter-height--ES;
-  LETTER_HEIGHT_LG__ES: $letter-height_lg--ES;
-  LETTER_HEIGHT_MD__ES: $letter-height_md--ES;
-  LETTER_HEIGHT_XL__ES: $letter-height_xl--ES;
 }

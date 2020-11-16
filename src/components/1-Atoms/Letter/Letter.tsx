@@ -1,51 +1,44 @@
-import React, { FC } from 'react';
-import classNames from 'classnames';
+import React, { forwardRef } from 'react';
+import classnames from 'classnames';
 
-import { useAppContext, usePageContext } from 'hooks';
+import { useAppContext } from 'hooks';
 
-import './Letter.scss';
+import styles from './Letter.module.scss';
 
 interface Props {
   active?: boolean;
   letter: string;
 }
 
-const Letter: FC<Props> = ({ active, letter }: Props) => {
-  const { appData, setLetter } = useAppContext()!;
-  const { letters, preview, word } = appData;
+const Letter = forwardRef<HTMLButtonElement, Props>(
+  ({ active, letter }, ref) => {
+    const { appData, setLetter } = useAppContext()!;
+    const { letters, preview, word } = appData;
 
-  const { pageData } = usePageContext()!;
-  const { lang } = pageData;
+    const hasArticle = letters && letters.includes(letter);
+    const isActive =
+      (preview && active) ||
+      (!preview && word && letter === word.charAt(0).toUpperCase());
 
-  const hasArticle = letters && letters.includes(letter);
-  const isIndicator =
-    (preview && active) ||
-    (!preview && word && letter === word.charAt(0).toUpperCase());
+    if (!hasArticle) {
+      return <div className={styles.root} />;
+    }
 
-  return (
-    <div
-      key={letter}
-      className={classNames('Letter', {
-        'Letter--ES': lang === 'es',
-        'Letter--FR': lang === 'fr',
-      })}
-    >
-      {hasArticle && (
-        <button
-          className={classNames('Letter__button', {
-            'Letter__button--active': isIndicator,
-            'Letter__button--ES': lang === 'es',
-            'Letter__button--FR': lang === 'fr',
-          })}
-          type="button"
-          onClick={() => setLetter(letter)}
-          onMouseEnter={() => setLetter(letter)}
-        >
-          <span>{letter}</span>
-        </button>
-      )}
-    </div>
-  );
-};
+    return (
+      <button
+        key={letter}
+        className={classnames(styles.root, {
+          [styles.active]: isActive,
+        })}
+        type="button"
+        onClick={() => setLetter(letter)}
+        onMouseEnter={() => setLetter(letter)}
+        ref={ref}
+      >
+        <span>{letter}</span>
+      </button>
+    );
+  }
+);
 
 export default Letter;

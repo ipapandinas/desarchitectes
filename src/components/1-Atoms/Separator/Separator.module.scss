@@ -1,11 +1,9 @@
 @import '~assets/styles/abstracts';
 
-.Separator {
+.root {
   display: none;
-}
 
-@include desktop {
-  .Separator {
+  @include desktop {
     display: flex;
     align-items: center;
     position: absolute;
@@ -25,11 +23,11 @@
       height: 100%;
     }
 
-    .separator--left {
+    .separatorLeft {
       margin-right: 2rem;
     }
 
-    .separator--right {
+    .separatorRight {
       margin-left: 2rem;
     }
   }

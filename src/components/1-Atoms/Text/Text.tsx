@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import formatNewLine from 'services/textFormat';
 
-import './Text.scss';
+import styles from './Text.module.scss';
 
 interface Props {
   text: string;
@@ -10,10 +10,10 @@ interface Props {
 
 const Text: FC<Props> = ({ text }: Props) => {
   if (!text) {
-    return <div className="Text--empty" />;
+    return <div className={styles.empty} />;
   }
 
-  return <div className="Text">{formatNewLine(text)}</div>;
+  return <div className={styles.root}>{formatNewLine(text)}</div>;
 };
 
 export default Text;

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Img from 'gatsby-image';
 
-import useImageQuery from 'queries/medias';
+import { useImageQuery } from 'queries/medias';
 import { ImageNodeProps } from 'types/medias';
 
 interface Props {

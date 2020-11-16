@@ -1,17 +1,17 @@
 import React, { FC } from 'react';
 
-import './Separator.scss';
+import styles from './Separator.module.scss';
 
 const Separator: FC = () => (
-  <div className="Separator">
-    <div className="separator--left">
-      <div className="dots" />
-      <div className="dots" />
+  <div className={styles.root}>
+    <div className={styles.separatorLeft}>
+      <div className={styles.dots} />
+      <div className={styles.dots} />
     </div>
-    <div className="line" />
-    <div className="separator--right">
-      <div className="dots" />
-      <div className="dots" />
+    <div className={styles.line} />
+    <div className={styles.separatorRight}>
+      <div className={styles.dots} />
+      <div className={styles.dots} />
     </div>
   </div>
 );

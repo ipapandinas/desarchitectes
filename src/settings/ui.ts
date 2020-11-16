@@ -1,18 +1,10 @@
 import styles from 'assets/styles/_export.scss';
 
 export const {
-  ALPHABET_HEIGHT,
-  ALPHABET_HEIGHT_MD,
-  ALPHABET_HEIGHT_LG,
-  ALPHABET_HEIGHT_XL,
   BREAKPOINT_LG,
   BREAKPOINT_MD,
   BREAKPOINT_SM,
   BREAKPOINT_XS,
-  LETTER_HEIGHT,
-  LETTER_HEIGHT_LG,
-  LETTER_HEIGHT_MD,
-  LETTER_HEIGHT_XL,
 } = styles;
 
 export const MEDIA_LG = 'MEDIA_LG';

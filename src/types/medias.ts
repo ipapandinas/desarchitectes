@@ -2,7 +2,7 @@ import { FluidObject } from 'gatsby-image';
 
 export interface MediaProps {
   alt?: string;
-  id: number;
+  id?: number;
   image: {
     childImageSharp: { fluid: FluidObject };
   };

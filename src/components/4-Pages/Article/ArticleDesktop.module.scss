@@ -1,30 +1,30 @@
 // stylelint-disable declaration-no-important
 @import '~assets/styles/abstracts';
 
-.ArticleDesktop {
+.root {
   display: flex;
   justify-content: center;
 }
 
-.ArticleDesktop__left,
-.ArticleDesktop__right {
+.left,
+.right {
   height: 100vh;
   width: 50%;
 }
 
-.ArticleDesktop__left {
+.left {
   overflow-x: hidden;
   overflow-y: scroll;
 
-  .ArticleContent {
+  .articleContent {
     padding-top: 0 !important;
   }
 }
 
-.ArticleDesktop__right {
+.right {
   position: relative;
 
-  .ArticleContent {
+  .articleContent {
     display: flex;
     justify-content: center;
     align-items: center;
