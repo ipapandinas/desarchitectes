@@ -25,6 +25,14 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: `${__dirname}/src/assets/svg`,
+        },
+      },
+    },
+    {
       resolve: 'gatsby-source-strapi',
       options: {
         apiURL: process.env.GATSBY_API_URL,

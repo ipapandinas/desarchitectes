@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 
-import logo from 'assets/images/desarchitectes.png';
+import DesarchitectesLogo from 'assets/svg/desarchitectes.svg';
 
-import './WelcomeCover.scss';
+import styles from './WelcomeCover.module.scss';
 
 const WelcomeCover: FC = () => (
-  <div className="WelcomeCover">
-    <img src={logo} alt="Logo desarchitectes" />
+  <div className={styles.root}>
+    <DesarchitectesLogo className={styles.image} />
   </div>
 );
 
