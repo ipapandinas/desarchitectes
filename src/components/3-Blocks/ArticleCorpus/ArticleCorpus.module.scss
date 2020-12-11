@@ -1,0 +1,19 @@
+@import '~assets/styles/abstracts';
+
+.root {
+  padding: $page-margin-y-sm 0 0;
+}
+
+@include desktop {
+  .ArticleCorpus {
+    width: 100%;
+    padding: $page-margin-y-lg 0;
+  }
+}
+
+@include desktop-xl {
+  .ArticleCorpus {
+    width: 102%; // compensate scroll bar
+    padding: $page-margin-y-xl 0;
+  }
+}

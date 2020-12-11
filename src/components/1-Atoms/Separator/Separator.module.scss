@@ -1,0 +1,34 @@
+@import '~assets/styles/abstracts';
+
+.root {
+  display: none;
+
+  @include desktop {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    background: $white;
+
+    .dots {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: $black;
+      border-radius: 50%;
+      margin: 10rem 0;
+    }
+
+    .line {
+      border: 0.05rem solid;
+      height: 100%;
+    }
+
+    .separatorLeft {
+      margin-right: 2rem;
+    }
+
+    .separatorRight {
+      margin-left: 2rem;
+    }
+  }
+}

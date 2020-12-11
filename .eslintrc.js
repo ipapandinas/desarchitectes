@@ -1,24 +1,53 @@
 module.exports = {
+  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
+  parserOptions: {
+    project: './tsconfig.json',
+  },
+  env: {
+    browser: true,
+    node: true,
+    es6: true,
+  },
+
+  plugins: ['@typescript-eslint', 'react'],
   extends: [
+    'eslint:recommended',
+    'plugin:prettier/recommended',
+    'plugin:react/recommended',
     'react-app',
-    'plugin:jsx-a11y/recommended',
-    'airbnb',
-    'prettier',
-    'prettier/react',
+    './configs/eslint_typescript.js',
   ],
-
-  plugins: ['jsx-a11y'],
-
   rules: {
     'import/no-named-as-default': 'off',
     'import/prefer-default-export': 'off',
+    'implicit-arrow-linebreak': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
-    'jsx-a11y/label-has-associated-control': ['error', { assert: 'either' }],
+    'function-paren-newline': 'off',
+    'object-curly-newline': [
+      'error',
+      {
+        ObjectExpression: 'always',
+        ObjectPattern: {
+          multiline: true,
+        },
+      },
+    ],
     'no-console': 'error',
     'no-eval': 'error',
     'no-shadow': 'off',
-    'react/forbid-prop-types': 'off',
-    'react/jsx-props-no-spreading': 'off',
+    'no-import-assign': 'off',
+    'no-setter-return': 'off',
+    'no-dupe-else-if': 'off',
+    'operator-linebreak': [
+      2,
+      'after',
+      {
+        overrides: {
+          '?': 'before',
+          ':': 'before',
+        },
+      },
+    ],
     'react/no-danger': 'error',
     'react/no-danger-with-children': 'error',
     'react/prefer-stateless-function': 'error',
@@ -34,16 +63,16 @@ module.exports = {
       },
     ],
   },
-
   settings: {
     'import/resolver': {
       node: {
         moduleDirectory: ['node_modules', '.'],
       },
-      alias: [['reduxApp', './src/redux/app']],
+    },
+    react: {
+      version: 'detect',
     },
   },
-
   globals: {
     globalThis: false,
   },

@@ -1,17 +1,23 @@
+require('dotenv').config({
+  path: `./.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
-    title: 'Abécédaire / Abecedario desarchitectes',
+    titleES: 'Abecedario desarchitectes',
+    titleFR: 'Abécédaire desarchitectes',
     titleTemplate: '%s · desarchitectes.com',
-    description:
-      'Un abécédaire, un zoom sur des objets urbains. | Un abecedario, un zoom sobre objetos urbanos.',
-    author: 'Mister Telmo · mrtelmo.com',
+    descriptionES: 'Un abecedario, un zoom sobre objetos urbanos.',
+    descriptionFR: 'Un abécédaire, un zoom sur des objets urbains.',
+    author: 'Mr Telmo · mrtelmo.com',
     url: 'https://www.desarchitectes.com',
     image: '/d_favicon.png',
+    supportedLanguages: ['es', 'fr'],
   },
   plugins: [
     `gatsby-plugin-sass`,
-    `gatsby-plugin-remove-serviceworker`,
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-remove-serviceworker',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -20,14 +26,19 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: `${__dirname}/src/assets/svg`,
+        },
+      },
+    },
+    {
       resolve: 'gatsby-source-strapi',
       options: {
-        apiURL: 'http://mgmt.desarchitectes.com',
-        contentTypes: [
-          // List of the Content Types you want to be able to request from Gatsby.
-          'article',
-          'user',
-        ],
+        apiURL: process.env.GATSBY_API_URL,
+        contentTypes: ['article', 'user'],
+        singleTypes: ['landing'],
         queryLimit: 1000,
       },
     },

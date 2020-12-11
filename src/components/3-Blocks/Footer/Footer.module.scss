@@ -1,0 +1,33 @@
+@import '~assets/styles/abstracts';
+
+.root {
+  width: 100%;
+  display: flex;
+  background: $white;
+  padding: $footer-padding-top-y-sm $page-margin-x-sm
+    $footer-padding-bottom-y-sm;
+
+  @include tablet {
+    padding: $footer-padding-top-y-md $page-margin-x-md
+      $footer-padding-bottom-y-md;
+  }
+
+  @include desktop {
+    display: none;
+  }
+}
+
+.logo {
+  width: $footer-content-width-sm;
+  height: auto;
+
+  @include tablet {
+    width: $footer-content-width-md;
+  }
+}
+
+.link {
+  padding: 0;
+  margin: 0 auto;
+  text-decoration: none;
+}

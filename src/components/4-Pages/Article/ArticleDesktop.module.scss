@@ -1,0 +1,38 @@
+// stylelint-disable declaration-no-important
+@import '~assets/styles/abstracts';
+
+.root {
+  display: flex;
+  justify-content: center;
+}
+
+.left,
+.right {
+  height: 100vh;
+  width: 50%;
+}
+
+.left {
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  .articleContent {
+    padding-top: 0 !important;
+  }
+}
+
+.right {
+  position: relative;
+
+  .articleContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+
+    > * {
+      margin-top: 0 !important;
+    }
+  }
+}
