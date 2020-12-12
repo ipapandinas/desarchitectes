@@ -3,13 +3,7 @@ import React, { FC, ReactNode, useCallback, useReducer } from 'react';
 import { AppContext } from 'contexts/appContext';
 
 import appDataReducer from './reducer';
-import {
-  APP_DATA_SET,
-  AppData,
-  LETTER_SET,
-  PREVIEW_TOGGLE,
-  WORD_SET,
-} from './types';
+import { APP_DATA_SET, AppData, WORD_SET } from './types';
 
 interface Props {
   appData: AppData;
@@ -31,15 +25,6 @@ const AppContextProvider: FC<Props> = ({
     []
   );
 
-  const setLetter = useCallback(
-    (runLetter) =>
-      dispatchAppData({
-        runLetter,
-        type: LETTER_SET,
-      }),
-    []
-  );
-
   const setWord = useCallback(
     (word) =>
       dispatchAppData({
@@ -49,22 +34,12 @@ const AppContextProvider: FC<Props> = ({
     []
   );
 
-  const togglePreview = useCallback(
-    () =>
-      dispatchAppData({
-        type: PREVIEW_TOGGLE,
-      }),
-    []
-  );
-
   return (
     <AppContext.Provider
       value={{
         appData,
         setAppData,
-        setLetter,
         setWord,
-        togglePreview,
       }}
     >
       {children}

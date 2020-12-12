@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 
 import Separator from 'components/1-Atoms/Separator/Separator';
@@ -13,25 +13,12 @@ import { ArticlesDataProps } from 'types/articles';
 
 import styles from './ArticleDesktop.module.scss';
 
-const scrollToTop = () => {
-  const element = document.getElementById('articleTop');
-  if (element) {
-    element.scrollIntoView();
-  }
-
-  return null;
-};
-
 interface Props {
   data: ArticlesDataProps;
 }
 
 const ArticleDesktop: FC<Props> = ({ data }: Props) => {
   const { content, definition, pdf, title } = data;
-
-  useEffect(() => {
-    scrollToTop();
-  }, []);
 
   return (
     <div className={classnames(styles.root, 'fade-in')} id="articleTop">

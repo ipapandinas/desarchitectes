@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import classnames from 'classnames';
 
 import Separator from 'components/1-Atoms/Separator/Separator';
@@ -11,13 +11,16 @@ const Language: FC = () => {
   const { pageData } = usePageContext()!;
   const { routeName } = pageData;
 
-  const getUri = (lang: string) => {
-    if (!routeName) {
-      return `/${lang}`;
-    }
+  const getUri = useCallback(
+    (lang: string) => {
+      if (!routeName) {
+        return `/${lang}`;
+      }
 
-    return `/${lang}/${routeName}`;
-  };
+      return `/${lang}/${routeName}`;
+    },
+    [routeName]
+  );
 
   return (
     <div className={classnames(styles.root, 'fade-in')}>

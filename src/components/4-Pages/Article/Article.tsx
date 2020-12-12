@@ -1,18 +1,9 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
 import { CONTENT_TYPE_MIX } from 'components/2-Molecules/ArticleContent/ArticleContent';
 import ArticleCorpus from 'components/3-Blocks/ArticleCorpus/ArticleCorpus';
 
 import { ArticlesDataProps } from 'types/articles';
-
-const scrollToTop = () => {
-  const element = document.getElementById('articleTop');
-  if (element) {
-    element.scrollIntoView();
-  }
-
-  return null;
-};
 
 interface Props {
   data: ArticlesDataProps;
@@ -20,10 +11,6 @@ interface Props {
 
 const Article: FC<Props> = ({ data }: Props) => {
   const { content, definition, pdf, title } = data;
-
-  useEffect(() => {
-    scrollToTop();
-  }, []);
 
   return (
     <div className="fade-in" id="articleTop">

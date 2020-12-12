@@ -1,10 +1,16 @@
 @import '~assets/styles/abstracts';
 
-.preview {
-  grid-column: 1;
-  grid-row: 1;
-  position: relative;
-  overflow: hidden;
+.root {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  width: auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
 }
 
 .letters {

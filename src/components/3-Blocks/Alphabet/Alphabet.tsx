@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useRef } from 'react';
+import React, { FC, useCallback, useMemo, useRef, useState } from 'react';
 
 import Letter from 'components/1-Atoms/Letter/Letter';
 import Preview from 'components/2-Molecules/Preview/Preview';
@@ -10,16 +10,24 @@ import styles from './Alphabet.module.scss';
 
 const Alphabet: FC = () => {
   const { appData } = useAppContext()!;
-  const { alphabet, articles, preview, runLetter } = appData;
+  const { alphabet, articles } = appData;
+
+  const [isPreview, setPreview] = useState(false);
+  const [runLetter, setLetter] = useState('');
 
   const defaultRef = useRef<HTMLButtonElement>(null);
   const refs = useRef<(HTMLButtonElement | null)[]>(
     Array(alphabet.length).fill(defaultRef)
   );
 
-  const runLetterIdx = runLetter ? alphabet.indexOf(runLetter) : -1;
-  const runLetterRef = refs.current[runLetterIdx];
-  const sortAsc = runLetterIdx < 13;
+  const runLetterIdx = useMemo(
+    () => (runLetter ? alphabet.indexOf(runLetter) : -1),
+    [alphabet, runLetter]
+  );
+  const runLetterRef = useMemo(() => refs.current[runLetterIdx], [
+    runLetterIdx,
+  ]);
+  const sortAsc = useMemo(() => runLetterIdx < 13, [runLetterIdx]);
 
   const suggestions: SuggestionsProps[] = useMemo(() => {
     const sPrev: SuggestionsProps = [];
@@ -47,13 +55,21 @@ const Alphabet: FC = () => {
     return [sPrev, s, sNext];
   }, [alphabet, articles, runLetter, runLetterIdx]);
 
+  const handleLetter = useCallback((letter) => {
+    setLetter(letter);
+    setPreview(true);
+  }, []);
+  const resetLetter = useCallback(() => setLetter(''), []);
+
   return (
-    <>
+    <div className={styles.root}>
       <div className={styles.letters}>
         {alphabet.map((letter, idx) => (
           <Letter
             key={letter}
             active={letter === runLetter}
+            handleLetter={handleLetter}
+            isPreview={runLetterIdx > 0}
             letter={letter}
             ref={(ref) => {
               refs.current[idx] = ref;
@@ -61,17 +77,16 @@ const Alphabet: FC = () => {
           />
         ))}
       </div>
-      {preview && (
-        <div className={styles.preview}>
-          <Preview
-            runLetterIdx={runLetterIdx}
-            runLetterRef={runLetterRef}
-            sortAsc={sortAsc}
-            results={suggestions}
-          />
-        </div>
-      )}
-    </>
+      <Preview
+        isPreview={isPreview}
+        resetLetter={resetLetter}
+        results={suggestions}
+        runLetterIdx={runLetterIdx}
+        runLetterRef={runLetterRef}
+        setPreview={setPreview}
+        sortAsc={sortAsc}
+      />
+    </div>
   );
 };
 

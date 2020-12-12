@@ -51,27 +51,4 @@
       line-height: 1.6;
     }
   }
-
-  .alphabet {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-
-    &Active {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr $alphabet-width-sm;
-
-      @include tablet {
-        grid-template-columns: 1fr $alphabet-width-md;
-      }
-
-      @include desktop {
-        grid-template-columns: 1fr $alphabet-width-lg;
-      }
-    }
-  }
 }

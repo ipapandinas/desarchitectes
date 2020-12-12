@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import classnames from 'classnames';
 
 import { usePageContext } from 'hooks';
@@ -16,15 +16,19 @@ const ArticleHeader: FC<Props> = ({ pdf, title }: Props) => {
   const { pageData } = usePageContext()!;
   const { lang } = pageData;
 
-  const letter = title && title.charAt(0);
-  const pdfLabel = lang === 'es' ? 'Versión PDF' : 'Version PDF';
+  const letter = useMemo(() => title?.charAt(0), [title]);
+  const likeLabel = useMemo(() => (lang === 'es' ? ' cómo' : ' comme'), [lang]);
+  const pdfLabel = useMemo(
+    () => (lang === 'es' ? 'Versión PDF' : 'Version PDF'),
+    [lang]
+  );
 
   return (
     <div className={styles.root}>
       {letter && (
         <span className={classnames(styles.letter, layoutStyles.italic)}>
           {letter.toLowerCase()}
-          {lang === 'es' ? ' cómo' : ' comme'}
+          {likeLabel}
         </span>
       )}
       {title && (

@@ -17,7 +17,7 @@ const Definition: FC<Props> = ({ link, name, text, type }: Props) => (
         title={`Référence vers ${link}`}
         rel="noopener noreferrer"
       >
-        {link}
+        {`Ref: (${link})`}
       </a>
     )}
   </div>

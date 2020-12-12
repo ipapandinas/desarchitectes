@@ -2,7 +2,7 @@
   "name": "desarchitectes.com",
   "private": true,
   "description": "Abécédaire / Abecedario desarchitectes",
-  "version": "0.1.0",
+  "version": "1.2.1",
   "author": "Mister Telmo <contact.mrtelmo@gmail.com>",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.x",
@@ -64,34 +64,30 @@
   ],
   "scripts": {
     "build": "GATSBY_ENV=production gatsby build",
-    "develop": "GATSBY_ENV=development gatsby develop",
+    "develop": "GATSBY_ENV=development gatsby develop -H 0.0.0.0",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve -H 0.0.0.0",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "eslint": "eslint --max-warnings=0 --fix --ignore-pattern './node_modules/' --ignore-pattern '!.*.js' \"./**/*.{js,jsx,ts,tsx}\"",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md,html}\"",
     "stylelint": "stylelint \"./**/*.{css,scss}\" --fix",
     "post-checkout": "if [[ $HUSKY_GIT_PARAMS =~ 1$ ]]; then npm ci; fi",
-    "type-check": "tsc --skipLibCheck"
+    "type-check": "tsc --project tsconfig.json --pretty --noEmit --skipLibCheck"
   },
   "lint-staged": {
     "./**/*.{js,jsx,ts,tsx}": [
+      "bash -c 'npm run type-check'",
       "eslint --max-warnings=0 --fix --ignore-pattern './node_modules/' --ignore-pattern '!.*.js' \"./**/*.{js,jsx,ts,tsx}\" --no-ignore",
-      "git add",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "./**/*.{css,scss}": [
       "stylelint --fix",
-      "git add",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "./**/*.{json,md,html}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "husky": {

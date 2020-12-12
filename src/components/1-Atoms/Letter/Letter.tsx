@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import classnames from 'classnames';
 
 import { useAppContext } from 'hooks';
@@ -7,18 +7,26 @@ import styles from './Letter.module.scss';
 
 interface Props {
   active?: boolean;
+  handleLetter: (letter: string) => void;
+  isPreview: boolean;
   letter: string;
 }
 
 const Letter = forwardRef<HTMLButtonElement, Props>(
-  ({ active, letter }, ref) => {
-    const { appData, setLetter } = useAppContext()!;
-    const { letters, preview, word } = appData;
+  ({ active, handleLetter, isPreview, letter }, ref) => {
+    const { appData } = useAppContext()!;
+    const { letters, word } = appData;
 
-    const hasArticle = letters && letters.includes(letter);
-    const isActive =
-      (preview && active) ||
-      (!preview && word && letter === word.charAt(0).toUpperCase());
+    const hasArticle = useMemo(() => letters && letters.includes(letter), [
+      letter,
+      letters,
+    ]);
+    const isActive = useMemo(
+      () =>
+        (isPreview && active) ||
+        (!isPreview && word && letter === word.charAt(0).toUpperCase()),
+      [active, isPreview, letter, word]
+    );
 
     if (!hasArticle) {
       return <div className={styles.root} />;
@@ -31,8 +39,8 @@ const Letter = forwardRef<HTMLButtonElement, Props>(
           [styles.active]: isActive,
         })}
         type="button"
-        onClick={() => setLetter(letter)}
-        onMouseEnter={() => setLetter(letter)}
+        onClick={() => handleLetter(letter)}
+        onMouseEnter={() => handleLetter(letter)}
         ref={ref}
       >
         <span>{letter}</span>

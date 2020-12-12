@@ -1,11 +1,4 @@
-import {
-  APP_DATA_SET,
-  AppActionTypes,
-  AppData,
-  LETTER_SET,
-  PREVIEW_TOGGLE,
-  WORD_SET,
-} from './types';
+import { APP_DATA_SET, AppActionTypes, AppData, WORD_SET } from './types';
 
 export default function appDataReducer(
   state: AppData,
@@ -26,26 +19,10 @@ export default function appDataReducer(
       };
     }
 
-    case LETTER_SET: {
-      const { runLetter } = action;
-      return {
-        ...state,
-        preview: true,
-        runLetter,
-      };
-    }
-
-    case PREVIEW_TOGGLE:
-      return {
-        ...state,
-        preview: !state.preview,
-      };
-
     case WORD_SET: {
       const { word } = action;
       return {
         ...state,
-        preview: false,
         word,
       };
     }

@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import styles from './Separator.module.scss';
 
-const Separator: FC = () => (
+const Separator: FC = memo(() => (
   <div className={styles.root}>
     <div className={styles.separatorLeft}>
       <div className={styles.dots} />
@@ -14,6 +14,6 @@ const Separator: FC = () => (
       <div className={styles.dots} />
     </div>
   </div>
-);
+));
 
 export default Separator;

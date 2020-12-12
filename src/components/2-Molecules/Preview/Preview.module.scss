@@ -1,20 +1,18 @@
 @import '~assets/styles/abstracts';
 
+$previewWidth: calc(100vw - #{$alphabet-width-sm});
+
 .root {
-  width: 100%;
   height: 100%;
-  position: absolute;
-  left: 100%;
   background: linear-gradient(to right, rgba(255, 255, 255, 0.9), $white);
   border: 0;
   text-align: right;
-  padding: 0 $block-margin-x-sm;
+  padding: 0 $block-margin-x-sm 0 0;
   display: grid;
-  grid-template-columns: 1fr 50%;
+  grid-template-columns: 1fr 40%;
 
   @include tablet {
     padding: 0 $block-margin-x-md;
-    grid-template-columns: 1fr 40%;
   }
 
   @include desktop {
@@ -28,12 +26,12 @@
     forwards;
   @keyframes slideIn {
     0% {
-      left: 100%;
       opacity: 0;
+      width: auto;
     }
     100% {
-      left: 0;
       opacity: 1;
+      width: $previewWidth;
     }
   }
 
@@ -43,26 +41,27 @@
   }
 }
 .hide {
-  animation: slideOut $transition-duration-medium cubic-bezier(0.96, 0, 1, 1)
+  animation: slideOut $transition-duration-fast cubic-bezier(0.96, 0, 1, 1)
     forwards;
   @keyframes slideOut {
     0% {
-      left: 0;
       opacity: 1;
+      width: $previewWidth;
     }
     100% {
-      left: 100%;
       opacity: 0;
+      width: auto;
     }
   }
+}
 
-  @include desktop {
-    animation: slideOut $transition-duration-fast cubic-bezier(0.96, 0, 1, 1)
-      forwards;
-  }
+.preview {
+  width: auto;
+  grid-row: 1;
 }
 
 .close {
   border: 0;
   background: none;
+  margin: 0;
 }
