@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo, useRef, useState } from 'react';
+import React, { FC, memo, useCallback, useMemo, useRef, useState } from 'react';
 
 import Letter from 'components/1-Atoms/Letter/Letter';
 import Preview from 'components/2-Molecules/Preview/Preview';
@@ -8,7 +8,7 @@ import { SuggestionsProps } from 'types/articles';
 
 import styles from './Alphabet.module.scss';
 
-const Alphabet: FC = () => {
+const Alphabet: FC = memo(() => {
   const { appData } = useAppContext()!;
   const { alphabet, articles } = appData;
 
@@ -88,6 +88,6 @@ const Alphabet: FC = () => {
       />
     </div>
   );
-};
+});
 
 export default Alphabet;
