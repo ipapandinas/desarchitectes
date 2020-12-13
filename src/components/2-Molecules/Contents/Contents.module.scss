@@ -1,0 +1,42 @@
+// stylelint-disable declaration-no-important
+@import '~assets/styles/abstracts';
+
+@include desktop {
+  .mediaAnchor {
+    display: none;
+    position: relative;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin-top: 0 !important;
+    padding: 0 !important;
+
+    &Active {
+      display: grid;
+      place-items: center;
+    }
+  }
+
+  .textAnchor {
+    position: relative;
+
+    .activeTextAnchor {
+      height: 100%;
+      width: 0.2rem;
+      background: $black;
+      position: absolute;
+      top: 0;
+      left: -2rem;
+    }
+  }
+
+  .textAnchor:nth-child(1) {
+    .activeTextAnchor {
+      display: none;
+    }
+  }
+
+  .textAnchor:nth-child(2) {
+    margin-top: 0 !important;
+  }
+}

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import Link from 'components/5-Utils/Link/Link';
 
 import DesarchitectesLogo from 'assets/svg/desarchitectes.svg';
@@ -7,7 +7,7 @@ import { usePageContext } from 'hooks';
 
 import styles from './Footer.module.scss';
 
-const Footer: FC = () => {
+const Footer: FC = memo(() => {
   const { pageData } = usePageContext()!;
   const { lang } = pageData;
 
@@ -23,6 +23,6 @@ const Footer: FC = () => {
       </Link>
     </footer>
   );
-};
+});
 
 export default Footer;

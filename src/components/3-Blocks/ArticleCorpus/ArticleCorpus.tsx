@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import classnames from 'classnames';
 
 import Definition from 'components/1-Atoms/Definition/Definition';
@@ -10,6 +10,7 @@ import { ContentProps, DefinitionProps, PdfProps } from 'types/articles';
 import styles from './ArticleCorpus.module.scss';
 
 interface Props {
+  activeTextAnchor?: string;
   content: ContentProps[];
   definition: DefinitionProps[];
   pdf: PdfProps;
@@ -18,18 +19,36 @@ interface Props {
 }
 
 const ArticleCorpus: FC<Props> = ({
+  activeTextAnchor,
   content,
   definition,
   pdf,
   title,
   variant,
-}: Props) => (
-  <div className={styles.root}>
-    <ArticleHeader pdf={pdf} title={title} />
+}: Props) => {
+  const Header = useMemo(() => <ArticleHeader pdf={pdf} title={title} />, [
+    pdf,
+    title,
+  ]);
 
-    <ArticleContent content={content} type={variant} />
+  const Content = useMemo(() => {
+    if (!content) {
+      return null;
+    }
+    return (
+      <ArticleContent
+        activeTextAnchor={activeTextAnchor}
+        content={content}
+        type={variant}
+      />
+    );
+  }, [activeTextAnchor, content, variant]);
 
-    {definition && (
+  const Definitions = useMemo(() => {
+    if (!definition) {
+      return null;
+    }
+    return (
       <div className={classnames(styles.footer, 'container')}>
         {definition.map(({ id, link, name, text, type }) => (
           <Definition
@@ -41,8 +60,16 @@ const ArticleCorpus: FC<Props> = ({
           />
         ))}
       </div>
-    )}
-  </div>
-);
+    );
+  }, [definition]);
+
+  return (
+    <div className={styles.root}>
+      {Header}
+      {Content}
+      {Definitions}
+    </div>
+  );
+};
 
 export default ArticleCorpus;

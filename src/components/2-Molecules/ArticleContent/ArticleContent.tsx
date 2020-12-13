@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
 import classnames from 'classnames';
-import { Element, Link } from 'react-scroll';
 
-import Media from 'components/1-Atoms/Medias/Media';
-import Text from 'components/1-Atoms/Text/Text';
-import TextMedias from 'components/1-Atoms/Medias/TextMedias';
+import ContentMedia from 'components/2-Molecules/Contents/ContentMedia';
+import ContentMix from 'components/2-Molecules/Contents/ContentMix';
+import ContentText from 'components/2-Molecules/Contents/ContentText';
 import articleStyles from 'components/4-Pages/Article/ArticleDesktop.module.scss';
 
 import { ContentProps } from 'types/articles';
@@ -16,11 +15,18 @@ export const CONTENT_TYPE_MIX = 'MIX';
 export const CONTENT_TYPE_TEXT = 'TEXT';
 
 interface Props {
+  activeTextAnchor?: string;
   content: ContentProps[];
+  setTextAnchor?: (textAnchor: string) => void;
   type: string;
 }
 
-const ArticleContent: FC<Props> = ({ content, type }: Props) => (
+const ArticleContent: FC<Props> = ({
+  activeTextAnchor,
+  content,
+  setTextAnchor,
+  type,
+}: Props) => (
   <div
     className={classnames(
       styles.root,
@@ -34,59 +40,42 @@ const ArticleContent: FC<Props> = ({ content, type }: Props) => (
         // DESKTOP RIGHT SIDE
         case CONTENT_TYPE_MEDIA:
           return (
-            medias instanceof Array &&
-            medias.length > 0 && (
-              <Link
-                activeClass={styles.mediaAnchorActive}
-                className={classnames(styles.mediaAnchor, 'fade-in')}
-                containerId="corpus"
-                duration={500}
-                offset={-180}
-                smooth
-                spy
-                to={`text-anchor-${id}`}
-                key={`text-media-${id}`}
-              >
-                <TextMedias medias={medias} />
-              </Link>
-            )
+            <ContentMedia
+              key={id}
+              id={id}
+              medias={medias}
+              setTextAnchor={setTextAnchor}
+            />
           );
         // DESKTOP LEFT SIDE
         case CONTENT_TYPE_TEXT:
           return (
-            <Element
-              className={styles.textAnchor}
-              name={`text-anchor-${id}`}
-              key={`text-${id}`}
-            >
-              <Text text={text} />
-            </Element>
+            <ContentText
+              key={id}
+              activeTextAnchor={activeTextAnchor}
+              id={id}
+              text={text}
+            />
           );
 
         // MOBILE
-        case CONTENT_TYPE_MIX: {
-          if (image) {
-            return (
-              <div className={styles.media} key={`media-${id}`}>
-                <Media alt={alt} id={id} image={image} legend={legend} />
-              </div>
-            );
-          }
-
+        case CONTENT_TYPE_MIX:
           return (
-            <div className={styles.paragraph} key={`paragraph-${id}`}>
-              <Text text={text} />
-              {medias instanceof Array && medias.length > 0 && (
-                <TextMedias medias={medias} />
-              )}
-            </div>
+            <ContentMix
+              key={id}
+              alt={alt}
+              id={id}
+              image={image}
+              legend={legend}
+              text={text}
+              text_media={medias}
+            />
           );
-        }
+
         default:
           return null;
       }
     })}
   </div>
 );
-
 export default ArticleContent;

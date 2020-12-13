@@ -19,8 +19,9 @@
     }
 
     .line {
-      border: 0.05rem solid;
       height: 100%;
+      width: 0.2rem;
+      background: $black;
     }
 
     .separatorLeft {
