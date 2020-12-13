@@ -36,7 +36,7 @@
 }
 
 .credits {
-  padding: 0 0 $page-margin-y-sm;
+  padding: 0 0 ($page-margin-y-sm + $footer-height-sm);
 
   .telmoCredits {
     display: flex;
@@ -64,7 +64,7 @@
   }
 
   @include tablet {
-    padding: 0 0 $page-margin-y-md;
+    padding: 0 0 ($page-margin-y-sm + $footer-height-md);
 
     .telmoCredits {
       margin: 0.8rem 0 0;

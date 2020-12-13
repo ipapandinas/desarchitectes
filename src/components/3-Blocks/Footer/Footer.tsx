@@ -1,4 +1,6 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useEffect, useState } from 'react';
+import classnames from 'classnames';
+
 import Link from 'components/5-Utils/Link/Link';
 
 import DesarchitectesLogo from 'assets/svg/desarchitectes.svg';
@@ -7,12 +9,29 @@ import { usePageContext } from 'hooks';
 
 import styles from './Footer.module.scss';
 
-const Footer: FC = memo(() => {
+interface Props {
+  isVisible: boolean;
+}
+
+const Footer: FC<Props> = memo(({ isVisible }: Props) => {
   const { pageData } = usePageContext()!;
   const { lang } = pageData;
 
+  const [fisrtRender, setFisrtRender] = useState(isVisible);
+
+  useEffect(() => {
+    if (fisrtRender && isVisible === false) {
+      setFisrtRender(false);
+    }
+  }, [fisrtRender, isVisible]);
+
   return (
-    <footer className={styles.root}>
+    <footer
+      className={classnames(styles.root, {
+        [styles.rootVisible]: !fisrtRender && isVisible,
+        [styles.rootHide]: !isVisible,
+      })}
+    >
       <Link
         className={styles.link}
         lang={lang}

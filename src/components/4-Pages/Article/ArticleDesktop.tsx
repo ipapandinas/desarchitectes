@@ -7,7 +7,6 @@ import ArticleContent, {
   CONTENT_TYPE_TEXT,
 } from 'components/2-Molecules/ArticleContent/ArticleContent';
 import ArticleCorpus from 'components/3-Blocks/ArticleCorpus/ArticleCorpus';
-import Footer from 'components/3-Blocks/Footer/Footer';
 
 import { ArticlesDataProps } from 'types/articles';
 
@@ -44,7 +43,6 @@ const ArticleDesktop: FC<Props> = ({ data }: Props) => {
             type={CONTENT_TYPE_MEDIA}
           />
         )}
-        <Footer />
       </div>
     </div>
   );

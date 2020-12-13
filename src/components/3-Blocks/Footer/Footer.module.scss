@@ -6,14 +6,70 @@
   background: $white;
   padding: $footer-padding-top-y-sm $page-margin-x-sm
     $footer-padding-bottom-y-sm;
+  position: absolute;
+  bottom: 0;
+  z-index: 100;
 
   @include tablet {
+    position: absolute;
     padding: $footer-padding-top-y-md $page-margin-x-md
       $footer-padding-bottom-y-md;
   }
 
   @include desktop {
     display: none;
+  }
+}
+
+.rootVisible {
+  animation: slideIn $transition-duration-medium cubic-bezier(0, 0.52, 0, 1)
+    forwards;
+  @keyframes slideIn {
+    0% {
+      bottom: -8.6rem;
+    }
+    100% {
+      bottom: 0;
+    }
+  }
+
+  @include tablet {
+    animation: slideInTablet $transition-duration-medium
+      cubic-bezier(0, 0.52, 0, 1) forwards;
+    @keyframes slideInTablet {
+      0% {
+        bottom: -15rem;
+      }
+      100% {
+        bottom: 0;
+      }
+    }
+  }
+}
+
+.rootHide {
+  animation: slideOut $transition-duration-medium cubic-bezier(0.96, 0, 1, 1)
+    forwards;
+  @keyframes slideOut {
+    0% {
+      bottom: 0;
+    }
+    100% {
+      bottom: -8.6rem;
+    }
+  }
+
+  @include tablet {
+    animation: slideOutTablet $transition-duration-medium
+      cubic-bezier(0.96, 0, 1, 1) forwards;
+    @keyframes slideOutTablet {
+      0% {
+        bottom: 0;
+      }
+      100% {
+        bottom: -15rem;
+      }
+    }
   }
 }
 
