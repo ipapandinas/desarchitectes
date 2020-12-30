@@ -73,5 +73,11 @@ module.exports = {
         siteUrl: 'https://desarchitectes.com/',
       },
     },
+    {
+      resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
+      options: {
+        devMode: true,
+      },
+    },
   ],
 };

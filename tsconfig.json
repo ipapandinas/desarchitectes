@@ -25,5 +25,5 @@
     ".commitlintrc.js",
     ".eslintrc.js"
   ],
-  "exclude": ["node_modules", "public", ".cache"]
+  "exclude": ["./node_modules", "./public", "./public/render-page.js", ".cache"]
 }
