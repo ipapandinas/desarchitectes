@@ -5,11 +5,6 @@
   "version": "1.2.1",
   "author": "Mister Telmo <contact.mrtelmo@gmail.com>",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.x",
-    "@fortawesome/free-brands-svg-icons": "^5.10.x",
-    "@fortawesome/free-regular-svg-icons": "^5.10.x",
-    "@fortawesome/free-solid-svg-icons": "^5.10.x",
-    "@fortawesome/react-fontawesome": "^0.1.x",
     "@reach/router": "^1.3.x",
     "@types/classnames": "^2.2.11",
     "@types/react-helmet": "^6.1.0",
@@ -80,7 +75,7 @@
   "lint-staged": {
     "./**/*.{js,jsx,ts,tsx}": [
       "bash -c 'npm run type-check'",
-      "eslint --max-warnings=0 --fix --ignore-pattern './node_modules/' --ignore-pattern '!.*.js' \"./**/*.{js,jsx,ts,tsx}\" --no-ignore",
+      "eslint --max-warnings=0 --fix --ignore-pattern './node_modules/' --ignore-pattern '!.*.js' \"./**/*.{js,jsx,ts,tsx}\"",
       "prettier --write"
     ],
     "./**/*.{css,scss}": [

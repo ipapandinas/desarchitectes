@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
 import classnames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
+import IgIcon from 'assets/svg/ig.svg';
+import MailIcon from 'assets/svg/mail.svg';
 import TelmoIcon from 'assets/svg/telmo.svg';
 
 import layoutStyles from 'components/5-Utils/Layout/Layout.module.scss';
@@ -44,14 +43,14 @@ const Home: FC<Props> = ({ content }: Props) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FontAwesomeIcon icon={faInstagram} />
+          <IgIcon className={styles.igIcon} />
         </a>
 
         <a
           href="mailto:abcdesarchitectes@gmail.com"
           title={lang === 'es' ? 'Contacto' : 'Contact'}
         >
-          <FontAwesomeIcon icon={faEnvelope} />
+          <MailIcon className={styles.mailIcon} />
         </a>
       </div>
 
