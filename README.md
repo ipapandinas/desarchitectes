@@ -10,6 +10,6 @@
 
 An abecedary, a zoom on daily urban objects: [desarchitectes.com](https://desarchitectes.com).
 
-Current version: 1.1 (released 10/05/2020)
+Current version: 1.2 (released 11/12/2020)
 
 Initial version: 1.0 (released 29/03/2020)
