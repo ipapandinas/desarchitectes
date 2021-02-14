@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "connection": "default",
+  "collectionName": "landings",
+  "info": {
+    "name": "landing"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "content_FR": {
+      "type": "richtext"
+    },
+    "content_ES": {
+      "type": "richtext"
+    }
+  }
+}
