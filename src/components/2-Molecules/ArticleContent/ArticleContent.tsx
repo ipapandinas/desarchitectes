@@ -1,39 +1,39 @@
-import React, { FC } from 'react';
-import classnames from 'classnames';
+import React, { FC } from 'react'
+import classnames from 'classnames'
 
-import ContentMedia from 'components/2-Molecules/Contents/ContentMedia';
-import ContentMix from 'components/2-Molecules/Contents/ContentMix';
-import ContentText from 'components/2-Molecules/Contents/ContentText';
-import articleStyles from 'components/4-Pages/Article/ArticleDesktop.module.scss';
+import ContentMedia from 'components/2-Molecules/Contents/ContentMedia'
+import ContentMix from 'components/2-Molecules/Contents/ContentMix'
+import ContentText from 'components/2-Molecules/Contents/ContentText'
+import articleStyles from 'components/4-Pages/Article/ArticleDesktop.module.scss'
 
-import { ContentProps } from 'types/articles';
+import { ContentProps } from 'types/articles'
 
-import styles from './ArticleContent.module.scss';
+import styles from './ArticleContent.module.scss'
 
-export const CONTENT_TYPE_MEDIA = 'MEDIA';
-export const CONTENT_TYPE_MIX = 'MIX';
-export const CONTENT_TYPE_TEXT = 'TEXT';
+export const CONTENT_TYPE_MEDIA = 'MEDIA'
+export const CONTENT_TYPE_MIX = 'MIX'
+export const CONTENT_TYPE_TEXT = 'TEXT'
 
 interface Props {
-  activeTextAnchor?: string;
-  content: ContentProps[];
-  setTextAnchor?: (textAnchor: string) => void;
-  type: string;
+  activeTextAnchor?: string
+  content: ContentProps[]
+  setTextAnchor?: (textAnchor: string) => void
+  type: string
 }
 
 const ArticleContent: FC<Props> = ({
   activeTextAnchor,
   content,
   setTextAnchor,
-  type,
-}: Props) => (
+  type
+}) => (
   <div
     className={classnames(
       styles.root,
       articleStyles.articleContent,
       'container'
     )}
-    id="articleContent"
+    id='articleContent'
   >
     {content.map(({ alt, id, image, legend, text, text_media: medias }) => {
       switch (type) {
@@ -46,7 +46,7 @@ const ArticleContent: FC<Props> = ({
               medias={medias}
               setTextAnchor={setTextAnchor}
             />
-          );
+          )
         // DESKTOP LEFT SIDE
         case CONTENT_TYPE_TEXT:
           return (
@@ -56,7 +56,7 @@ const ArticleContent: FC<Props> = ({
               id={id}
               text={text}
             />
-          );
+          )
 
         // MOBILE
         case CONTENT_TYPE_MIX:
@@ -70,12 +70,12 @@ const ArticleContent: FC<Props> = ({
               text={text}
               text_media={medias}
             />
-          );
+          )
 
         default:
-          return null;
+          return null
       }
     })}
   </div>
-);
-export default ArticleContent;
+)
+export default ArticleContent

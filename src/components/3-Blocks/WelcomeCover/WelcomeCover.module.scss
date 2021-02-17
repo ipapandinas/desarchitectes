@@ -12,16 +12,20 @@
   align-items: center;
   background-color: $white;
   padding: 0 10rem;
-  -moz-animation: WelcomeCoverAnimation $transition-duration-medium ease-in 1.8s forwards;
+  -moz-animation: WelcomeCoverAnimation $transition-duration-medium ease-in 1.8s
+    forwards;
 
   /* Firefox */
-  -webkit-animation: WelcomeCoverAnimation $transition-duration-medium ease-in 1.8s forwards;
+  -webkit-animation: WelcomeCoverAnimation $transition-duration-medium ease-in
+    1.8s forwards;
 
   /* Safari and Chrome */
-  -o-animation: WelcomeCoverAnimation $transition-duration-medium ease-in 1.8s forwards;
+  -o-animation: WelcomeCoverAnimation $transition-duration-medium ease-in 1.8s
+    forwards;
 
   /* Opera */
-  animation: WelcomeCoverAnimation $transition-duration-medium ease-in 1.8s forwards;
+  animation: WelcomeCoverAnimation $transition-duration-medium ease-in 1.8s
+    forwards;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 

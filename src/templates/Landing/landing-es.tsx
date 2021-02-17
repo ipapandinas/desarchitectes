@@ -1,30 +1,30 @@
-import React, { FC } from 'react';
-import { graphql } from 'gatsby';
+import React, { FC } from 'react'
+import { graphql } from 'gatsby'
 
-import SEO from 'components/1-Atoms/SEO/SEO';
-import Home from 'components/4-Pages/Home/Home';
-import Layout from 'components/5-Utils/Layout/Layout';
+import Seo from 'components/1-Atoms/SEO/SEO'
+import Home from 'components/4-Pages/Home/Home'
+import Layout from 'components/5-Utils/Layout/Layout'
 
 interface Props {
   data: {
     strapiLanding: {
-      content: string;
-    };
-  };
+      content: string
+    }
+  }
 }
 
-const LandingTemplateES: FC<Props> = ({ data }: Props) => {
-  const { content } = data?.strapiLanding;
+const LandingTemplateES: FC<Props> = ({ data }) => {
+  const { content } = data?.strapiLanding
 
   return (
     <Layout>
-      <SEO />
-      {content && <Home content={content} />}
+      <Seo />
+      {content !== undefined && <Home content={content} />}
     </Layout>
-  );
-};
+  )
+}
 
-export default LandingTemplateES;
+export default LandingTemplateES
 
 export const query = graphql`
   query LandingTemplateES {
@@ -32,4 +32,4 @@ export const query = graphql`
       content: content_ES
     }
   }
-`;
+`

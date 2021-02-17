@@ -1,7 +1,7 @@
-import { useContext } from 'react';
+import { useContext } from 'react'
 
-import { UiContext, UiContextProps } from 'contexts/uiContext';
+import { UiContext, UiContextProps } from 'contexts/uiContext'
 
-export default function useUiContext(): UiContextProps {
-  return useContext(UiContext);
+export default function useUiContext (): UiContextProps {
+  return useContext(UiContext)
 }

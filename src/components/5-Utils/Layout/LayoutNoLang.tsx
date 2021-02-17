@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
-import Resize from 'components/1-Atoms/Resize/Resize';
-import Language from 'components/3-Blocks/Language/Language';
-import WelcomeCover from 'components/3-Blocks/WelcomeCover/WelcomeCover';
+import Resize from 'components/1-Atoms/Resize/Resize'
+import Language from 'components/3-Blocks/Language/Language'
+import WelcomeCover from 'components/3-Blocks/WelcomeCover/WelcomeCover'
 
-import 'assets/styles/main.scss';
+import 'assets/styles/main.scss'
 
 const LayoutNoLang: FC = () => (
   <>
@@ -12,6 +12,6 @@ const LayoutNoLang: FC = () => (
     <Language />
     <Resize />
   </>
-);
+)
 
-export default LayoutNoLang;
+export default LayoutNoLang

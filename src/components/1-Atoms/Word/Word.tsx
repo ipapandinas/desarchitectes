@@ -1,28 +1,28 @@
-import React, { FC } from 'react';
-import classnames from 'classnames';
+import React, { FC } from 'react'
+import classnames from 'classnames'
 
-import layoutStyles from 'components/5-Utils/Layout/Layout.module.scss';
-import Link from 'components/5-Utils/Link/Link';
+import layoutStyles from 'components/5-Utils/Layout/Layout.module.scss'
+import Link from 'components/5-Utils/Link/Link'
 
-import { usePageContext } from 'hooks';
+import { usePageContext } from 'hooks'
 
-import styles from './Word.module.scss';
+import styles from './Word.module.scss'
 
 interface Props {
-  active?: boolean;
-  label: string;
-  route: string;
+  active?: boolean
+  label: string
+  route: string
 }
 
-const Word: FC<Props> = ({ active, label, route }: Props) => {
-  const { pageData } = usePageContext()!;
-  const { lang } = pageData;
+const Word: FC<Props> = ({ active, label, route }) => {
+  const { pageData } = usePageContext() ?? {}
+  const lang = pageData?.lang
 
   return (
     <Link
       className={classnames(styles.root, {
         [styles.active]: active,
-        [layoutStyles.bold]: active,
+        [layoutStyles.bold]: active
       })}
       lang={lang}
       route={route}
@@ -31,7 +31,7 @@ const Word: FC<Props> = ({ active, label, route }: Props) => {
     >
       {label}
     </Link>
-  );
-};
+  )
+}
 
-export default Word;
+export default Word

@@ -1,23 +1,23 @@
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby'
 
 interface MetadataNode {
-  author: string;
-  description: string;
-  image: string;
-  siteUrl: string;
-  title: string;
-  titleTemplate: string;
+  author: string
+  description: string
+  image: string
+  siteUrl: string
+  title: string
+  titleTemplate: string
 }
 
 interface SiteMetadataNode {
-  siteMetadata: MetadataNode;
+  siteMetadata: MetadataNode
 }
 
 type SiteMetadataQuery = () => {
-  metaDefault: SiteMetadataNode;
-  metaES: SiteMetadataNode;
-  metaFR: SiteMetadataNode;
-};
+  metaDefault: SiteMetadataNode
+  metaES: SiteMetadataNode
+  metaFR: SiteMetadataNode
+}
 
 const useSiteMetadata: SiteMetadataQuery = () => {
   const metadata = useStaticQuery(
@@ -55,8 +55,8 @@ const useSiteMetadata: SiteMetadataQuery = () => {
         }
       }
     `
-  );
-  return metadata;
-};
+  )
+  return metadata
+}
 
-export default useSiteMetadata;
+export default useSiteMetadata

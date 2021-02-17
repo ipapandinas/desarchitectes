@@ -1,28 +1,28 @@
-import React, { FC, useState } from 'react';
-import classnames from 'classnames';
+import React, { FC, useState } from 'react'
+import classnames from 'classnames'
 
-import Separator from 'components/1-Atoms/Separator/Separator';
+import Separator from 'components/1-Atoms/Separator/Separator'
 import ArticleContent, {
   CONTENT_TYPE_MEDIA,
-  CONTENT_TYPE_TEXT,
-} from 'components/2-Molecules/ArticleContent/ArticleContent';
-import ArticleCorpus from 'components/3-Blocks/ArticleCorpus/ArticleCorpus';
+  CONTENT_TYPE_TEXT
+} from 'components/2-Molecules/ArticleContent/ArticleContent'
+import ArticleCorpus from 'components/3-Blocks/ArticleCorpus/ArticleCorpus'
 
-import { ArticlesDataProps } from 'types/articles';
+import { ArticlesDataProps } from 'types/articles'
 
-import styles from './ArticleDesktop.module.scss';
+import styles from './ArticleDesktop.module.scss'
 
 interface Props {
-  data: ArticlesDataProps;
+  data: ArticlesDataProps
 }
 
-const ArticleDesktop: FC<Props> = ({ data }: Props) => {
-  const { content, definition, pdf, title } = data;
-  const [activeTextAnchor, setTextAnchor] = useState('');
+const ArticleDesktop: FC<Props> = ({ data }) => {
+  const { content, definition, pdf, title } = data
+  const [activeTextAnchor, setTextAnchor] = useState('')
 
   return (
-    <div className={classnames(styles.root, 'fade-in')} id="articleTop">
-      <div className={styles.left} id="corpus">
+    <div className={classnames(styles.root, 'fade-in')} id='articleTop'>
+      <div className={styles.left} id='corpus'>
         <ArticleCorpus
           activeTextAnchor={activeTextAnchor}
           content={content}
@@ -36,7 +36,7 @@ const ArticleDesktop: FC<Props> = ({ data }: Props) => {
       <Separator />
 
       <div className={styles.right}>
-        {content && (
+        {content.length > 0 && (
           <ArticleContent
             content={content}
             setTextAnchor={setTextAnchor}
@@ -45,7 +45,7 @@ const ArticleDesktop: FC<Props> = ({ data }: Props) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ArticleDesktop;
+export default ArticleDesktop

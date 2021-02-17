@@ -1,7 +1,7 @@
-import { createContext } from 'react';
+import { createContext } from 'react'
 
-import { AppProviderValue } from 'components/5-Utils/AppProvider/types';
+import { AppProviderValue } from 'components/5-Utils/AppProvider/types'
 
-export type AppContextProps = AppProviderValue | undefined;
+export type AppContextProps = AppProviderValue | undefined
 
-export const AppContext = createContext<AppContextProps>(undefined!);
+export const AppContext = createContext<AppContextProps>(undefined)

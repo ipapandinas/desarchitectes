@@ -1,52 +1,51 @@
-import React, { forwardRef, useMemo } from 'react';
-import classnames from 'classnames';
+import React, { forwardRef, useMemo } from 'react'
+import classnames from 'classnames'
 
-import { useAppContext } from 'hooks';
+import { useAppContext } from 'hooks'
 
-import styles from './Letter.module.scss';
+import styles from './Letter.module.scss'
 
 interface Props {
-  active?: boolean;
-  handleLetter: (letter: string) => void;
-  isPreview: boolean;
-  letter: string;
+  active: boolean
+  handleLetter: (letter: string) => void
+  isPreview: boolean
+  letter: string
 }
 
 const Letter = forwardRef<HTMLButtonElement, Props>(
   ({ active, handleLetter, isPreview, letter }, ref) => {
-    const { appData } = useAppContext()!;
-    const { letters, word } = appData;
+    const { appData } = useAppContext() ?? {}
+    const letters = appData?.letters
+    const word = appData?.word
 
-    const hasArticle = useMemo(() => letters && letters.includes(letter), [
+    const hasArticle = useMemo(() => letters?.includes(letter), [
       letter,
-      letters,
-    ]);
+      letters
+    ])
     const isActive = useMemo(
-      () =>
-        (isPreview && active) ||
-        (!isPreview && word && letter === word.charAt(0).toUpperCase()),
+      () => (isPreview && active) || letter === word?.charAt(0).toUpperCase(),
       [active, isPreview, letter, word]
-    );
+    )
 
-    if (!hasArticle) {
-      return <div className={styles.root} />;
+    if (hasArticle === undefined || !hasArticle) {
+      return <div className={styles.root} />
     }
 
     return (
       <button
         key={letter}
         className={classnames(styles.root, {
-          [styles.active]: isActive,
+          [styles.active]: isActive
         })}
-        type="button"
+        type='button'
         onClick={() => handleLetter(letter)}
         onMouseEnter={() => handleLetter(letter)}
         ref={ref}
       >
         <span>{letter}</span>
       </button>
-    );
+    )
   }
-);
+)
 
-export default Letter;
+export default Letter

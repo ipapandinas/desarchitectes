@@ -1,35 +1,35 @@
-import React, { FC, memo, useEffect, useState } from 'react';
-import classnames from 'classnames';
+import React, { FC, memo, useEffect, useState } from 'react'
+import classnames from 'classnames'
 
-import Link from 'components/5-Utils/Link/Link';
+import Link from 'components/5-Utils/Link/Link'
 
-import DesarchitectesLogo from 'assets/svg/desarchitectes.svg';
+import DesarchitectesLogo from 'assets/svg/desarchitectes.svg'
 
-import { usePageContext } from 'hooks';
+import { usePageContext } from 'hooks'
 
-import styles from './Footer.module.scss';
+import styles from './Footer.module.scss'
 
 interface Props {
-  isVisible: boolean;
+  isVisible: boolean
 }
 
-const Footer: FC<Props> = memo(({ isVisible }: Props) => {
-  const { pageData } = usePageContext()!;
-  const { lang } = pageData;
+const Footer: FC<Props> = memo(({ isVisible }) => {
+  const { pageData } = usePageContext() ?? {}
+  const lang = pageData?.lang
 
-  const [fisrtRender, setFisrtRender] = useState(isVisible);
+  const [fisrtRender, setFisrtRender] = useState(isVisible)
 
   useEffect(() => {
-    if (fisrtRender && isVisible === false) {
-      setFisrtRender(false);
+    if (fisrtRender && !isVisible) {
+      setFisrtRender(false)
     }
-  }, [fisrtRender, isVisible]);
+  }, [fisrtRender, isVisible])
 
   return (
     <footer
       className={classnames(styles.root, {
         [styles.rootVisible]: !fisrtRender && isVisible,
-        [styles.rootHide]: !isVisible,
+        [styles.rootHide]: !isVisible
       })}
     >
       <Link
@@ -41,7 +41,7 @@ const Footer: FC<Props> = memo(({ isVisible }: Props) => {
         <DesarchitectesLogo className={styles.logo} />
       </Link>
     </footer>
-  );
-});
+  )
+})
 
-export default Footer;
+export default Footer

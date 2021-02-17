@@ -1,59 +1,53 @@
-import React, {
-  FC,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useReducer,
-} from 'react';
+import React, { FC, ReactNode, useCallback, useEffect, useReducer } from 'react'
 
-import { PageContext } from 'contexts/pageContext';
-import { useAppContext } from 'hooks';
+import { PageContext } from 'contexts/pageContext'
+import { useAppContext } from 'hooks'
 
-import pageDataReducer from './reducer';
-import { PAGE_DATA_UPDATE, PageData } from './types';
+import pageDataReducer from './reducer'
+import { PAGE_DATA_UPDATE, PageData } from './types'
 
 interface Props {
-  pageData: PageData;
-  children: ReactNode;
+  pageData: PageData
+  children: ReactNode
 }
 
 const PageContextProvider: FC<Props> = ({
   pageData: pageDataProps,
-  children,
-}: Props) => {
-  const { setAppData } = useAppContext()!;
+  children
+}) => {
+  const { setAppData } = useAppContext() ?? {}
   const [pageData, dispatchPageData] = useReducer(
     pageDataReducer,
     pageDataProps
-  );
+  )
 
   const updatePageData = useCallback(
     (data) =>
       dispatchPageData({
         data,
-        type: PAGE_DATA_UPDATE,
+        type: PAGE_DATA_UPDATE
       }),
     []
-  );
+  )
 
-  const { appData } = pageData;
+  const { appData } = pageData
 
   useEffect(() => {
-    if (appData) {
-      setAppData(appData);
+    if (appData !== undefined && setAppData !== undefined) {
+      setAppData(appData)
     }
-  }, [appData, setAppData]);
+  }, [appData, setAppData])
 
   return (
     <PageContext.Provider
       value={{
         pageData,
-        updatePageData,
+        updatePageData
       }}
     >
       {children}
     </PageContext.Provider>
-  );
-};
+  )
+}
 
-export default PageContextProvider;
+export default PageContextProvider

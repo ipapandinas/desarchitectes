@@ -1,19 +1,19 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
-import { CONTENT_TYPE_MIX } from 'components/2-Molecules/ArticleContent/ArticleContent';
-import ArticleCorpus from 'components/3-Blocks/ArticleCorpus/ArticleCorpus';
+import { CONTENT_TYPE_MIX } from 'components/2-Molecules/ArticleContent/ArticleContent'
+import ArticleCorpus from 'components/3-Blocks/ArticleCorpus/ArticleCorpus'
 
-import { ArticlesDataProps } from 'types/articles';
+import { ArticlesDataProps } from 'types/articles'
 
 interface Props {
-  data: ArticlesDataProps;
+  data: ArticlesDataProps
 }
 
-const Article: FC<Props> = ({ data }: Props) => {
-  const { content, definition, pdf, title } = data;
+const Article: FC<Props> = ({ data }) => {
+  const { content, definition, pdf, title } = data
 
   return (
-    <div className="fade-in" id="articleTop">
+    <div className='fade-in' id='articleTop'>
       <ArticleCorpus
         content={content}
         definition={definition}
@@ -22,7 +22,7 @@ const Article: FC<Props> = ({ data }: Props) => {
         variant={CONTENT_TYPE_MIX}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Article;
+export default Article

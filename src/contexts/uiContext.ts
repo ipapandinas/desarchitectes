@@ -1,7 +1,7 @@
-import { createContext } from 'react';
+import { createContext } from 'react'
 
-import { UiProviderValue } from 'components/5-Utils/UiProvider/types';
+import { UiProviderValue } from 'components/5-Utils/UiProvider/types'
 
-export type UiContextProps = UiProviderValue | undefined;
+export type UiContextProps = UiProviderValue | undefined
 
-export const UiContext = createContext<UiContextProps>(undefined!);
+export const UiContext = createContext<UiContextProps>(undefined)

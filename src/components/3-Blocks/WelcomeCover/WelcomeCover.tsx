@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
-import DesarchitectesLogo from 'assets/svg/desarchitectes.svg';
+import DesarchitectesLogo from 'assets/svg/desarchitectes.svg'
 
-import styles from './WelcomeCover.module.scss';
+import styles from './WelcomeCover.module.scss'
 
 const WelcomeCover: FC = () => (
   <div className={styles.root}>
     <DesarchitectesLogo className={styles.image} />
   </div>
-);
+)
 
-export default WelcomeCover;
+export default WelcomeCover

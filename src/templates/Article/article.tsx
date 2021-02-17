@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
-import SEO from 'components/1-Atoms/SEO/SEO';
-import LayoutNoLang from 'components/5-Utils/Layout/LayoutNoLang';
+import Seo from 'components/1-Atoms/SEO/SEO'
+import LayoutNoLang from 'components/5-Utils/Layout/LayoutNoLang'
 
 const ArticleTemplate: FC = () => (
   <LayoutNoLang>
-    <SEO />
+    <Seo />
   </LayoutNoLang>
-);
+)
 
-export default ArticleTemplate;
+export default ArticleTemplate

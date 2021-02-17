@@ -1,26 +1,26 @@
-import React, { FC, useCallback } from 'react';
-import classnames from 'classnames';
+import React, { FC, useCallback } from 'react'
+import classnames from 'classnames'
 
-import Separator from 'components/1-Atoms/Separator/Separator';
+import Separator from 'components/1-Atoms/Separator/Separator'
 
-import { usePageContext } from 'hooks';
+import { usePageContext } from 'hooks'
 
-import styles from './Language.module.scss';
+import styles from './Language.module.scss'
 
 const Language: FC = () => {
-  const { pageData } = usePageContext()!;
-  const { routeName } = pageData;
+  const { pageData } = usePageContext() ?? {}
+  const routeName = pageData?.routeName
 
   const getUri = useCallback(
     (lang: string) => {
-      if (!routeName) {
-        return `/${lang}`;
+      if (routeName === undefined) {
+        return `/${lang}`
       }
 
-      return `/${lang}/${routeName}`;
+      return `/${lang}/${routeName}`
     },
     [routeName]
-  );
+  )
 
   return (
     <div className={classnames(styles.root, 'fade-in')}>
@@ -40,7 +40,7 @@ const Language: FC = () => {
         español
       </a>
     </div>
-  );
-};
+  )
+}
 
-export default Language;
+export default Language

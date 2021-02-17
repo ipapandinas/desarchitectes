@@ -2,8 +2,8 @@ export const initialAppData = {
   alphabet: [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'],
   articles: [],
   letters: [],
-  preview: false,
-};
+  preview: false
+}
 
 export const initialUiData = {
   device: {
@@ -14,6 +14,6 @@ export const initialUiData = {
     isMobileSm: false,
     isTablet: false,
     isTabletPortrait: false,
-    isTabletLandscape: false,
-  },
-};
+    isTabletLandscape: false
+  }
+}

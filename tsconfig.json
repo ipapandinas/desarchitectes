@@ -20,7 +20,6 @@
     "src/**/*.jsx",
     "src/**/*.tsx",
     "configs/custom_modules.d.ts",
-    "configs/eslint_typescript.js",
     "*.js",
     ".commitlintrc.js",
     ".eslintrc.js"

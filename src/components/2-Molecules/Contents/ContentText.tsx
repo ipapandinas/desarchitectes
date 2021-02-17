@@ -1,17 +1,17 @@
-import React, { FC, memo } from 'react';
-import { Element } from 'react-scroll';
+import React, { FC, memo } from 'react'
+import { Element } from 'react-scroll'
 
-import Text from 'components/1-Atoms/Text/Text';
+import Text from 'components/1-Atoms/Text/Text'
 
-import styles from './Contents.module.scss';
+import styles from './Contents.module.scss'
 
 interface Props {
-  activeTextAnchor?: string;
-  id: number;
-  text: string;
+  activeTextAnchor?: string
+  id: number
+  text: string
 }
 
-const ContentText: FC<Props> = memo(({ activeTextAnchor, id, text }: Props) => (
+const ContentText: FC<Props> = memo(({ activeTextAnchor, id, text }) => (
   <Element
     className={styles.textAnchor}
     name={`text-anchor-${id}`}
@@ -22,6 +22,6 @@ const ContentText: FC<Props> = memo(({ activeTextAnchor, id, text }: Props) => (
     )}
     <Text text={text} />
   </Element>
-));
+))
 
-export default ContentText;
+export default ContentText

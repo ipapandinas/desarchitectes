@@ -1,33 +1,33 @@
-import { APP_DATA_SET, AppActionTypes, AppData, WORD_SET } from './types';
+import { APP_DATA_SET, AppActionTypes, AppData, WORD_SET } from './types'
 
-export default function appDataReducer(
+export default function appDataReducer (
   state: AppData,
   action: AppActionTypes
 ): AppData {
   switch (action.type) {
     case APP_DATA_SET: {
-      const { data } = action;
-      const { articles } = data;
+      const { data } = action
+      const { articles } = data
       const firstLetters = articles.map(({ title }) =>
         title.charAt(0).toUpperCase()
-      );
-      const letters = [...new Set(firstLetters)];
+      )
+      const letters = [...new Set(firstLetters)]
       return {
         ...state,
         ...data,
-        letters,
-      };
+        letters
+      }
     }
 
     case WORD_SET: {
-      const { word } = action;
+      const { word } = action
       return {
         ...state,
-        word,
-      };
+        word
+      }
     }
 
     default:
-      throw new Error();
+      throw new Error()
   }
 }

@@ -1,6 +1,6 @@
-const config = require('./gatsby-config');
+const config = require('./gatsby-config')
 
-const path = require(`path`);
+const path = require('path')
 
 const makeRequest = (graphql, request) =>
   new Promise((resolve, reject) => {
@@ -8,18 +8,18 @@ const makeRequest = (graphql, request) =>
     resolve(
       graphql(request).then((result) => {
         if (result.errors) {
-          reject(result.errors);
+          reject(result.errors)
         }
 
-        return result;
+        return result
       })
-    );
-  });
+    )
+  })
 
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions;
+  const { createPage } = actions
 
   const getArticles = makeRequest(
     graphql,
@@ -54,13 +54,13 @@ exports.createPages = ({ actions, graphql }) => {
   ).then((result) => {
     // Create pages for each article.
     result.data.article.edges.forEach(({ node }) => {
-      const { internal, routeName } = node;
-      const pageType = internal && internal.type;
+      const { internal, routeName } = node
+      const pageType = internal && internal.type
 
       config.siteMetadata.supportedLanguages.map((lang) => {
-        const articles = result.data[`articles_${lang}`].nodes || [];
-        const localizedPath = `/${lang}/${routeName}`;
-        const word = node[`title_${lang}`];
+        const articles = result.data[`articles_${lang}`].nodes || []
+        const localizedPath = `/${lang}/${routeName}`
+        const word = node[`title_${lang}`]
 
         return createPage({
           path: localizedPath,
@@ -68,25 +68,25 @@ exports.createPages = ({ actions, graphql }) => {
           context: {
             appData: {
               articles,
-              word,
+              word
             },
             lang,
             pageType,
-            routeName,
-          },
-        });
-      });
+            routeName
+          }
+        })
+      })
 
       createPage({
         path: `/${routeName}`,
-        component: path.resolve(`src/templates/Article/article.tsx`),
+        component: path.resolve('src/templates/Article/article.tsx'),
         context: {
           pageType,
-          routeName,
-        },
-      });
-    });
-  });
+          routeName
+        }
+      })
+    })
+  })
 
   const getLanding = makeRequest(
     graphql,
@@ -112,28 +112,28 @@ exports.createPages = ({ actions, graphql }) => {
       }
     `
   ).then((result) => {
-    const pageType = result.data.landing && result.data.landing.internal.type;
+    const pageType = result.data.landing && result.data.landing.internal.type
 
     config.siteMetadata.supportedLanguages.map((lang) => {
-      const articles = result.data[`articles_${lang}`].nodes || [];
-      const localizedPath = `/${lang}`;
+      const articles = result.data[`articles_${lang}`].nodes || []
+      const localizedPath = `/${lang}`
 
       return createPage({
         path: localizedPath,
         component: path.resolve(`src/templates/Landing/landing-${lang}.tsx`),
         context: {
           appData: {
-            articles,
+            articles
           },
           lang,
-          pageType,
-        },
-      });
-    });
-  });
+          pageType
+        }
+      })
+    })
+  })
 
-  return Promise.all([getArticles, getLanding]);
-};
+  return Promise.all([getArticles, getLanding])
+}
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
@@ -149,8 +149,8 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         services: path.resolve(__dirname, 'src/services'),
         settings: path.resolve(__dirname, 'src/settings'),
         templates: path.resolve(__dirname, 'src/templates'),
-        types: path.resolve(__dirname, 'src/types'),
-      },
-    },
-  });
-};
+        types: path.resolve(__dirname, 'src/types')
+      }
+    }
+  })
+}

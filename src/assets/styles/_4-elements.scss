@@ -6,19 +6,20 @@
   box-sizing: inherit;
 }
 
-:root {
+html {
   box-sizing: border-box;
+  font: normal 400 1.6rem $times;
   font-size: 62.5%;
-}
-
-#root {
-  height: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   font: normal 400 1.6rem $times;
   color: $neutral-black;
   margin: 0;
+  word-wrap: break-word;
+  font-kerning: normal;
 
   @include tablet {
     font-size: 1.8rem;

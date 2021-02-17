@@ -11,7 +11,6 @@
     "@types/react-scroll": "^1.8.x",
     "classnames": "^2.2.x",
     "dotenv": "^8.2.x",
-    "eslint-plugin-flowtype": "^5.2.x",
     "gatsby": "^2.32.x",
     "gatsby-image": "^2.11.x",
     "gatsby-plugin-manifest": "^2.12.x",
@@ -33,27 +32,17 @@
     "typescript": "^4.0.x"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.6.x",
-    "@typescript-eslint/parser": "^4.6.x",
-    "eslint": "^7.13.x",
-    "eslint-config-airbnb-typescript": "^12.0.x",
-    "eslint-config-prettier": "^7.2.x",
-    "eslint-config-react-app": "^6.0.x",
-    "eslint-plugin-import": "^2.22.x",
-    "eslint-plugin-jsx-a11y": "^6.4.x",
-    "eslint-plugin-prettier": "^3.1.x",
-    "eslint-plugin-react": "^7.21.x",
-    "eslint-plugin-react-hooks": "^4.2.x",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.x",
     "husky": "^5.0.x",
     "lint-staged": "^10.5.x",
     "node-sass": "^5.0.x",
-    "prettier": "^2.1.x",
+    "prettier": "^2.2.x",
     "stylelint": "^13.10.x",
     "stylelint-config-airbnb": "^0.0.x",
     "stylelint-config-prettier": "^8.0.x",
     "stylelint-order": "^4.1.x",
-    "stylelint-scss": "^3.19.x"
+    "stylelint-scss": "^3.19.x",
+    "ts-standard": "^10.0.x"
   },
   "keywords": [
     "gatsby"
@@ -66,7 +55,7 @@
     "serve": "gatsby serve -H 0.0.0.0",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "eslint": "eslint --max-warnings=0 --fix --ignore-pattern './node_modules/' --ignore-pattern '!.*.js' \"./**/*.{js,jsx,ts,tsx}\"",
+    "ts-standard": "ts-standard --fix",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md,html}\"",
     "stylelint": "stylelint \"./**/*.{css,scss}\" --fix",
     "post-checkout": "if [[ $HUSKY_GIT_PARAMS =~ 1$ ]]; then npm ci; fi",
@@ -75,8 +64,8 @@
   "lint-staged": {
     "./**/*.{js,jsx,ts,tsx}": [
       "bash -c 'npm run type-check'",
-      "eslint --max-warnings=0 --fix --ignore-pattern './node_modules/' --ignore-pattern '!.*.js' \"./**/*.{js,jsx,ts,tsx}\"",
-      "prettier --write"
+      "prettier --write",
+      "ts-standard --fix"
     ],
     "./**/*.{css,scss}": [
       "stylelint --fix",
@@ -89,7 +78,6 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "post-checkout": "npm run post-checkout",
       "post-merge": "npm ci",
       "post-rebase": "npm i"
     }

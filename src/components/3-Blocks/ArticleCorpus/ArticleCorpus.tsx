@@ -1,21 +1,21 @@
-import React, { FC, useMemo } from 'react';
-import classnames from 'classnames';
+import React, { FC, useMemo } from 'react'
+import classnames from 'classnames'
 
-import Definition from 'components/1-Atoms/Definition/Definition';
-import ArticleContent from 'components/2-Molecules/ArticleContent/ArticleContent';
-import ArticleHeader from 'components/2-Molecules/ArticleHeader/ArticleHeader';
+import Definition from 'components/1-Atoms/Definition/Definition'
+import ArticleContent from 'components/2-Molecules/ArticleContent/ArticleContent'
+import ArticleHeader from 'components/2-Molecules/ArticleHeader/ArticleHeader'
 
-import { ContentProps, DefinitionProps, PdfProps } from 'types/articles';
+import { ContentProps, DefinitionProps, PdfProps } from 'types/articles'
 
-import styles from './ArticleCorpus.module.scss';
+import styles from './ArticleCorpus.module.scss'
 
 interface Props {
-  activeTextAnchor?: string;
-  content: ContentProps[];
-  definition: DefinitionProps[];
-  pdf: PdfProps;
-  title: string;
-  variant: string;
+  activeTextAnchor?: string
+  content: ContentProps[]
+  definition: DefinitionProps[]
+  pdf: PdfProps
+  title: string
+  variant: string
 }
 
 const ArticleCorpus: FC<Props> = ({
@@ -24,16 +24,16 @@ const ArticleCorpus: FC<Props> = ({
   definition,
   pdf,
   title,
-  variant,
-}: Props) => {
+  variant
+}) => {
   const Header = useMemo(() => <ArticleHeader pdf={pdf} title={title} />, [
     pdf,
-    title,
-  ]);
+    title
+  ])
 
   const Content = useMemo(() => {
-    if (!content) {
-      return null;
+    if (content.length === 0) {
+      return null
     }
     return (
       <ArticleContent
@@ -41,12 +41,12 @@ const ArticleCorpus: FC<Props> = ({
         content={content}
         type={variant}
       />
-    );
-  }, [activeTextAnchor, content, variant]);
+    )
+  }, [activeTextAnchor, content, variant])
 
   const Definitions = useMemo(() => {
-    if (!definition) {
-      return null;
+    if (definition.length === 0) {
+      return null
     }
     return (
       <div className={classnames(styles.footer, 'container')}>
@@ -60,8 +60,8 @@ const ArticleCorpus: FC<Props> = ({
           />
         ))}
       </div>
-    );
-  }, [definition]);
+    )
+  }, [definition])
 
   return (
     <div className={styles.root}>
@@ -69,7 +69,7 @@ const ArticleCorpus: FC<Props> = ({
       {Content}
       {Definitions}
     </div>
-  );
-};
+  )
+}
 
-export default ArticleCorpus;
+export default ArticleCorpus

@@ -1,32 +1,32 @@
-import React, { FC } from 'react';
-import { Helmet } from 'react-helmet';
-import { useLocation } from '@reach/router';
+import React, { FC } from 'react'
+import { Helmet } from 'react-helmet'
+import { useLocation } from '@reach/router'
 
-import d_favicon from 'assets/images/d_favicon.png';
-import useSiteMetadata from 'queries/seo';
+import d_favicon from 'assets/images/d_favicon.png'
+import useSiteMetadata from 'queries/seo'
 
-import { usePageContext } from 'hooks';
+import { usePageContext } from 'hooks'
 
 interface Props {
-  pageTitle?: string;
+  pageTitle?: string
 }
 
-const SEO: FC<Props> = ({ pageTitle }: Props) => {
-  const { pathname } = useLocation();
-  const { pageData } = usePageContext()!;
-  const { lang } = pageData;
-  const { metaDefault, metaES, metaFR } = useSiteMetadata();
+const SEO: FC<Props> = ({ pageTitle }) => {
+  const { pathname } = useLocation()
+  const { pageData } = usePageContext() ?? {}
+  const lang = pageData?.lang
+  const { metaDefault, metaES, metaFR } = useSiteMetadata()
 
-  let metaData = metaDefault.siteMetadata;
+  let metaData = metaDefault.siteMetadata
   switch (lang) {
     case 'es':
-      metaData = metaES.siteMetadata;
-      break;
+      metaData = metaES.siteMetadata
+      break
     case 'fr':
-      metaData = metaFR.siteMetadata;
-      break;
+      metaData = metaFR.siteMetadata
+      break
     default:
-      break;
+      break
   }
 
   const {
@@ -35,16 +35,16 @@ const SEO: FC<Props> = ({ pageTitle }: Props) => {
     image,
     siteUrl,
     title: defaultTitle,
-    titleTemplate,
-  } = metaData;
-  const favicon = `${siteUrl}${image}`;
-  const title = pageTitle ?? defaultTitle;
-  const url = `${siteUrl}${pathname}`;
+    titleTemplate
+  } = metaData
+  const favicon = `${siteUrl}${image}`
+  const title = pageTitle ?? defaultTitle
+  const url = `${siteUrl}${pathname}`
 
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang
       }}
       title={title}
       titleTemplate={titleTemplate}
@@ -53,23 +53,27 @@ const SEO: FC<Props> = ({ pageTitle }: Props) => {
           key: 'icon',
           rel: 'icon',
           type: 'image/png',
-          href: `${d_favicon}`,
-        },
+          href: `${d_favicon}` // eslint-disable-line @typescript-eslint/restrict-template-expressions
+        }
       ]}
     >
-      <meta name="author" content={author} />
-      <meta name="description" content={description} />
-      <meta name="image" content={favicon} />
-      {url && <meta property="og:url" content={url} />}
-      {title && <meta property="og:title" content={title} />}
-      {description && <meta property="og:description" content={description} />}
-      {favicon && <meta property="og:image" content={favicon} />}
-      <meta name="twitter:card" content="summary_large_image" />
-      {title && <meta name="twitter:title" content={title} />}
-      {description && <meta name="twitter:description" content={description} />}
-      {favicon && <meta name="twitter:image" content={favicon} />}
+      <meta name='author' content={author} />
+      <meta name='description' content={description} />
+      <meta name='image' content={favicon} />
+      {url !== '' && <meta property='og:url' content={url} />}
+      {title !== '' && <meta property='og:title' content={title} />}
+      {description !== '' && (
+        <meta property='og:description' content={description} />
+      )}
+      {favicon !== '' && <meta property='og:image' content={favicon} />}
+      <meta name='twitter:card' content='summary_large_image' />
+      {title !== '' && <meta name='twitter:title' content={title} />}
+      {description !== '' && (
+        <meta name='twitter:description' content={description} />
+      )}
+      {favicon !== '' && <meta name='twitter:image' content={favicon} />}
     </Helmet>
-  );
-};
+  )
+}
 
-export default SEO;
+export default SEO

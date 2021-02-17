@@ -1,8 +1,8 @@
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby'
 
-import { ImageNodeProps } from 'types/medias';
+import { ImageNodeProps } from 'types/medias'
 
-type ImageQuery = () => Array<{ node: ImageNodeProps }>;
+type ImageQuery = () => Array<{ node: ImageNodeProps }>
 
 export const useImageQuery: ImageQuery = () => {
   const { images } = useStaticQuery(
@@ -23,6 +23,6 @@ export const useImageQuery: ImageQuery = () => {
         }
       }
     `
-  );
-  return images.edges;
-};
+  )
+  return images.edges
+}

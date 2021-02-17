@@ -1,21 +1,21 @@
-import { getMediaInfo } from 'services/ui';
+import { getMediaInfo } from 'services/ui'
 
-import { DEVICE_UPDATE, UiActionTypes, UiState } from './types';
+import { DEVICE_UPDATE, UiActionTypes, UiState } from './types'
 
-export default function uiDataReducer(
+export default function uiDataReducer (
   state: UiState,
   action: UiActionTypes
 ): UiState {
   switch (action.type) {
     case DEVICE_UPDATE: {
-      const { media } = action;
+      const { media } = action
       return {
         ...state,
-        device: getMediaInfo(media),
-      };
+        device: getMediaInfo(media)
+      }
     }
 
     default:
-      throw new Error();
+      throw new Error()
   }
 }
