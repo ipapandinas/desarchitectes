@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import { graphql } from 'gatsby'
 
-import Seo from 'components/1-Atoms/SEO/SEO'
-import Article from 'components/4-Pages/Article/Article'
-import ArticleDesktop from 'components/4-Pages/Article/ArticleDesktop'
+import Seo from 'components/1-Atoms/SEO'
+import Article from 'components/4-Pages/Article'
+import ArticleDesktop from 'components/4-Pages/ArticleDesktop'
 import Layout from 'components/5-Utils/Layout/Layout'
 
 import { useDevice } from 'hooks'

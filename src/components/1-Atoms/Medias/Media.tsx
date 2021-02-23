@@ -1,21 +1,40 @@
 import React, { FC } from 'react'
-import classnames from 'classnames'
-import Img from 'gatsby-image'
+import styled from 'styled-components'
+import Img, { FluidObject } from 'gatsby-image'
+import { layout, LayoutProps } from 'styled-system'
 
 import formatNewLine from 'services/textFormat'
-import { MediaProps } from 'types/medias'
 
-import styles from './Media.module.scss'
-import tmStyles from './TextMedias.module.scss'
+export interface Props {
+  alt?: string
+  image: {
+    childImageSharp: { fluid: FluidObject }
+  }
+  legend?: string
+  styles?: string
+}
 
-const Media: FC<MediaProps> = ({ alt, image, legend }) => (
-  <div className={classnames(styles.root, tmStyles.media)}>
-    <Img
-      className={classnames(styles.image, tmStyles.image)}
-      alt={alt}
-      fluid={image.childImageSharp.fluid}
-    />
-    <div className={styles.legend}>{formatNewLine(legend)}</div>
-  </div>
-)
+const StyledMedia = styled.div<LayoutProps>`
+  margin: 0;
+  ${layout}
+`
+
+const Legend = styled.div`
+  ${({ theme }) => `margin: ${theme.spacing[2]} 0 0;`}
+
+  > * {
+    margin: 0;
+  }
+`
+
+const Media: FC<Props & LayoutProps> = (props) => {
+  const { alt, image, legend } = props
+  return (
+    <StyledMedia {...props}>
+      <Img alt={alt} fluid={image.childImageSharp.fluid} />
+      <Legend>{formatNewLine(legend)}</Legend>
+    </StyledMedia>
+  )
+}
+
 export default Media

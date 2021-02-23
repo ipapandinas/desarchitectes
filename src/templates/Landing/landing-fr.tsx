@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { graphql } from 'gatsby'
 
-import Seo from 'components/1-Atoms/SEO/SEO'
-import Home from 'components/4-Pages/Home/Home'
+import Seo from 'components/1-Atoms/SEO'
+import Home from 'components/4-Pages/Home'
 import Layout from 'components/5-Utils/Layout/Layout'
 
 interface Props {

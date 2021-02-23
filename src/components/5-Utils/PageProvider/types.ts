@@ -2,7 +2,7 @@ import { AppData } from 'components/5-Utils/AppProvider/types'
 
 export interface PageData {
   appData?: AppData
-  lang?: string
+  lang: string
   pageType?: string
   routeName?: string
 }

@@ -11,7 +11,9 @@
       "queries/*": ["src/queries/*"],
       "services/*": ["src/services/*"],
       "settings/*": ["src/settings/*"],
+      "style/*": ["src/style/*"],
       "templates": ["src/templates"],
+      "theme": ["src/theme"],
       "types/*": ["src/types/*"]
     }
   },

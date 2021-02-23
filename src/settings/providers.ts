@@ -9,9 +9,9 @@ export const initialUiData = {
   device: {
     isAny: false,
     isDesktop: false,
+    isLaptop: false,
     isMobile: false,
-    isMobileXs: false,
-    isMobileSm: false,
+    isResponsive: false,
     isTablet: false,
     isTabletPortrait: false,
     isTabletLandscape: false

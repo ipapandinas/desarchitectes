@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import Seo from 'components/1-Atoms/SEO/SEO'
+import Seo from 'components/1-Atoms/SEO'
 import LayoutNoLang from 'components/5-Utils/Layout/LayoutNoLang'
 
 const ArticleTemplate: FC = () => (

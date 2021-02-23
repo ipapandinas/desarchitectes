@@ -1,23 +1,30 @@
 import React, { FC } from 'react'
+import styled from 'styled-components'
 
-import Word from 'components/1-Atoms/Word/Word'
+import Word from 'components/1-Atoms/Word'
 
 import { SuggestionsProps } from 'types/articles'
 
-import styles from './Suggestions.module.scss'
-
 interface Props {
-  active?: boolean
+  isActive: boolean
   limit?: number
   list: SuggestionsProps
 }
 
-const Suggestions: FC<Props> = ({ active, limit, list }) => (
-  <div className={styles.root}>
+const SuggestionsList = styled.div`
+  width: fit-content;
+  margin: 0 0 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`
+
+const Suggestions: FC<Props> = ({ isActive, limit, list }) => (
+  <SuggestionsList>
     {list.slice(0, limit).map(({ routeName, title }) => (
-      <Word active={active} label={title} key={title} route={routeName} />
+      <Word isActive={isActive} label={title} key={title} route={routeName} />
     ))}
-  </div>
+  </SuggestionsList>
 )
 
 export default Suggestions

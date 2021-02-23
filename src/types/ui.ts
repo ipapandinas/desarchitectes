@@ -1,9 +1,8 @@
-export default interface Device {
-  isAny: boolean
+export interface Device {
   isDesktop: boolean
+  isLaptop: boolean
   isMobile: boolean
-  isMobileXs: boolean
-  isMobileSm: boolean
+  isResponsive: boolean
   isTablet: boolean
   isTabletPortrait: boolean
   isTabletLandscape: boolean

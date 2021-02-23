@@ -1,8 +1,8 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
-import { ImageNodeProps } from 'types/medias'
+import { ImageNode } from 'types/medias'
 
-type ImageQuery = () => Array<{ node: ImageNodeProps }>
+type ImageQuery = () => Array<{ node: ImageNode }>
 
 export const useImageQuery: ImageQuery = () => {
   const { images } = useStaticQuery(

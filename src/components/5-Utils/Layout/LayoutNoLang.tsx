@@ -1,17 +1,26 @@
 import React, { FC } from 'react'
+import { ThemeProvider } from 'styled-components'
 
-import Resize from 'components/1-Atoms/Resize/Resize'
-import Language from 'components/3-Blocks/Language/Language'
-import WelcomeCover from 'components/3-Blocks/WelcomeCover/WelcomeCover'
+import Resize from 'components/1-Atoms/Resize'
+import Language from 'components/3-Blocks/Language'
+import WelcomeCover from 'components/3-Blocks/WelcomeCover'
 
-import 'assets/styles/main.scss'
+import GlobalStyle from 'style/Global'
+import themes from 'theme'
 
-const LayoutNoLang: FC = () => (
-  <>
-    <WelcomeCover />
-    <Language />
-    <Resize />
-  </>
-)
+import 'style/font.scss'
+
+const LayoutNoLang: FC = () => {
+  const theme = themes.default
+
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <WelcomeCover />
+      <Language />
+      <Resize />
+    </ThemeProvider>
+  )
+}
 
 export default LayoutNoLang

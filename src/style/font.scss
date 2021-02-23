@@ -1,0 +1,21 @@
+@mixin font-face($font-family, $file-name, $type) {
+  $baseDir: '/fonts';
+  $full-name: '#{$file-name}-#{$type}';
+
+  @font-face {
+    font-family: $font-family;
+    src: url('#{$baseDir}/#{$file-name}/#{$full-name}.ttf') format('truetype');
+  }
+}
+
+// TimesNewRoman
+@include font-face('TimesNewRoman', 'TimesNewRoman', 'Regular');
+@include font-face('TimesNewRoman-Bold', 'TimesNewRoman', 'Bold');
+@include font-face('TimesNewRoman-Bold-Italic', 'TimesNewRoman', 'Bold-Italic');
+@include font-face('TimesNewRoman-Italic', 'TimesNewRoman', 'Italic');
+
+// AveriaSerif
+@include font-face('AveriaSerif-Regular', 'AveriaSerif', 'Regular');
+@include font-face('AveriaSerif-Bold', 'AveriaSerif', 'Bold');
+@include font-face('AveriaSerif-Bold-Italic', 'AveriaSerif', 'Bold-Italic');
+@include font-face('AveriaSerif-Italic', 'AveriaSerif', 'Italic');

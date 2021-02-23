@@ -7,14 +7,14 @@ module.exports = {
     'type-enum': [
       2,
       'always',
-      ['DOCS', 'FEAT', 'FIX', 'PERF', 'REFACTOR', 'TASK', 'TEST'],
-    ],
+      ['DOCS', 'FEAT', 'FIX', 'PERF', 'REFACTOR', 'TASK', 'TEST']
+    ]
   },
   parserPreset: {
     parserOpts: {
       headerPattern: /^\\\[(\\w*)\\\]\\s(.*)$/,
       headerCorrespondence: ['type', 'subject'],
-      issuePrefixes: ['#'],
-    },
-  },
+      issuePrefixes: ['#']
+    }
+  }
 }

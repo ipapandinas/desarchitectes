@@ -1,4 +1,4 @@
-import { ImageNodeProps, MediaProps } from 'types/medias'
+import { ImageNode, Media } from 'types/medias'
 
 export interface ArticlesProps {
   routeName: string
@@ -16,10 +16,10 @@ export interface ArticlesDataProps {
 export interface ContentProps {
   alt?: string
   id: number
-  image?: ImageNodeProps
+  image?: ImageNode
   legend?: string
   text: string
-  text_media?: MediaProps[]
+  text_media?: Media[]
 }
 
 export interface DefinitionProps {

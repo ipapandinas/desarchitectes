@@ -1,18 +1,52 @@
 import React, { FC, ReactNode, useMemo, useRef, useState } from 'react'
-import classnames from 'classnames'
+import styled, { ThemeProvider } from 'styled-components'
 
-import Resize from 'components/1-Atoms/Resize/Resize'
-import Alphabet from 'components/3-Blocks/Alphabet/Alphabet'
-import Footer from 'components/3-Blocks/Footer/Footer'
+import Resize from 'components/1-Atoms/Resize'
+import Alphabet from 'components/3-Blocks/Alphabet'
+import Footer from 'components/3-Blocks/Footer'
 
 import { useDevice, usePageContext } from 'hooks'
+import GlobalStyle from 'style/Global'
+import themes from 'theme'
 
-import 'assets/styles/main.scss'
-import styles from './Layout.module.scss'
+import 'style/font.scss'
 
 interface Props {
   children: ReactNode
 }
+
+const StyledMain = styled.main`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`
+
+const App = styled.div`
+  overflow: hidden;
+  position: relative;
+`
+
+const Content = styled.div`
+  height: 100%;
+  box-sizing: content-box;
+  margin: 0 5rem 0 0;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  line-height: 1.4;
+
+  ${({ theme }) => `
+    ${theme.mediaQueries.sm} {
+      line-height: 1.6;
+      margin: 0 8rem 0 0;
+    }
+  `}
+`
 
 const offsetDeltaMobile = 200
 const offsetDeltaOther = 400
@@ -20,23 +54,20 @@ const offsetTrigger = 500
 
 const Layout: FC<Props> = ({ children }) => {
   const device = useDevice()
+  const isLaptop = device.isDesktop || device.isTabletLandscape
+
   const { pageData } = usePageContext() ?? {}
   const lang = pageData?.lang
+  const theme = themes[lang as keyof typeof themes]
 
   const [isFooterVisible, setFooterVisible] = useState(true)
   const [, setOffsetTop] = useState(0)
 
   const contentRef = useRef<HTMLDivElement>(null)
   const offsetDelta = useMemo(
-    () => (device?.isMobile ? offsetDeltaMobile : offsetDeltaOther),
+    () => (device.isMobile ? offsetDeltaMobile : offsetDeltaOther),
     [device?.isMobile]
   )
-  const rootStyles = useMemo(() => {
-    if (lang === undefined) {
-      return null
-    }
-    return styles[`root${lang?.toLocaleUpperCase()}`]
-  }, [lang])
 
   const handleScroll = (): void => {
     const element = contentRef?.current
@@ -64,26 +95,27 @@ const Layout: FC<Props> = ({ children }) => {
 
   const content = useMemo(
     () => (
-      <div className={styles.content} onScroll={handleScroll} ref={contentRef}>
+      <Content onScroll={handleScroll} ref={contentRef}>
         {children}
-      </div>
+      </Content>
     ),
     [children]
   )
 
   return (
-    <>
-      <main className={classnames(styles.root, rootStyles)}>
-        <div className={styles.app}>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <StyledMain>
+        <App>
           {content}
           <Alphabet />
-        </div>
+        </App>
 
-        <Footer isVisible={isFooterVisible} />
-      </main>
+        {!isLaptop && <Footer isVisible={isFooterVisible} />}
+      </StyledMain>
 
       <Resize />
-    </>
+    </ThemeProvider>
   )
 }
 

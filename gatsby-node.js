@@ -148,7 +148,9 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         queries: path.resolve(__dirname, 'src/queries'),
         services: path.resolve(__dirname, 'src/services'),
         settings: path.resolve(__dirname, 'src/settings'),
+        style: path.resolve(__dirname, 'src/style'),
         templates: path.resolve(__dirname, 'src/templates'),
+        theme: path.resolve(__dirname, 'src/theme'),
         types: path.resolve(__dirname, 'src/types')
       }
     }

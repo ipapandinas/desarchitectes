@@ -1,85 +1,85 @@
-import React, { FC, useCallback, useMemo } from 'react'
-import classnames from 'classnames'
+import React, { FC, memo } from 'react'
+import styled from 'styled-components'
 
-import Media from 'components/1-Atoms/Medias/Media'
+import { useDevice } from 'hooks'
 
-import { MediaProps } from 'types/medias'
+import Media from './Media'
+import SingleMedia from './SingleMedia'
 
-import styles from './TextMedias.module.scss'
+import { MEDIA_LANDSCAPE } from 'settings/media'
+import { getMediasRatio } from 'services/media'
+import { Media as MediaProps } from 'types/medias'
 
 interface Props {
   medias: MediaProps[]
 }
 
-const LANDSCAPE = 'landscape'
-const PORTRAIT = 'portrait'
-const PORTRAIT_LONG = 'portraitLong'
+const DoubleMediaWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 100%;
+  height: 50%;
 
-const COLUMN = 'column'
-const ROW = 'row'
+  > * {
+    padding: 0 2.4rem;
+  }
+`
 
-const TextMedias: FC<Props> = ({ medias }) => {
-  const mediasAspectType = useMemo(
-    () =>
-      medias.reduce((acc: string[], { image }) => {
-        const ratio = image?.childImageSharp.fluid.aspectRatio ?? -1
+const DoubleMedia = styled(Media)`
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100%;
+`
 
-        if (ratio !== -1) {
-          if (ratio > 0.9) {
-            return [...acc, LANDSCAPE]
-          }
-          if (ratio < 0.6) {
-            return [...acc, PORTRAIT_LONG]
-          }
-          return [...acc, PORTRAIT]
-        }
-        return acc
-      }, []),
-    [medias]
-  )
+const DoubleMediaMobile = styled(Media)`
+  margin-bottom: 2.4rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+`
 
-  const nbMedias = useMemo(() => mediasAspectType.length, [
-    mediasAspectType.length
-  ])
-  const displayDirection = useMemo(() => {
-    if (nbMedias === 2) {
-      return mediasAspectType.includes(LANDSCAPE) ? COLUMN : ROW
-    }
-    return nbMedias > 0 ? mediasAspectType[0] : undefined
-  }, [mediasAspectType, nbMedias])
+const TextMedias: FC<Props> = memo(({ medias }) => {
+  const { isLaptop } = useDevice()
+  const mediasAspectType = getMediasRatio(medias)
+  const nbMedias = mediasAspectType.length
 
-  const textMediasClass = useCallback(() => {
-    if (displayDirection === undefined) {
-      return undefined
-    }
-
-    if (nbMedias === 1) {
-      return styles[`${displayDirection}Single`]
-    }
-
-    if (displayDirection === ROW) {
-      return styles.row
-    }
-
-    return classnames(
-      styles.column,
-      [PORTRAIT, PORTRAIT_LONG].includes(mediasAspectType[0])
-        ? styles.portraitFirst
-        : styles.landscapeFirst
-    )
-  }, [displayDirection, mediasAspectType, nbMedias])
-
-  if (displayDirection === undefined) {
+  if (nbMedias === 0) {
     return null
   }
 
+  if (
+    nbMedias === 1 ||
+    (isLaptop && mediasAspectType.includes(MEDIA_LANDSCAPE))
+  ) {
+    const { alt, id, image, legend } = medias[0]
+    return (
+      <SingleMedia
+        key={id}
+        alt={alt}
+        format={mediasAspectType[0]}
+        image={image}
+        legend={legend}
+      />
+    )
+  }
+
+  if (isLaptop) {
+    return (
+      <DoubleMediaWrapper>
+        {medias.map(({ alt, id, image, legend }) => (
+          <DoubleMedia key={id} alt={alt} image={image} legend={legend} />
+        ))}
+      </DoubleMediaWrapper>
+    )
+  }
+
   return (
-    <div className={classnames(styles.tm, textMediasClass())}>
+    <>
       {medias.map(({ alt, id, image, legend }) => (
-        <Media key={id} alt={alt} image={image} legend={legend} />
+        <DoubleMediaMobile key={id} alt={alt} image={image} legend={legend} />
       ))}
-    </div>
+    </>
   )
-}
+})
 
 export default TextMedias

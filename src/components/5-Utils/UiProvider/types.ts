@@ -1,4 +1,4 @@
-import Device from 'types/ui'
+import { Device } from 'types/ui'
 
 export interface UiState {
   device: Device
