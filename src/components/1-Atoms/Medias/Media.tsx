@@ -1,14 +1,16 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import Img, { FluidObject } from 'gatsby-image'
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import { layout, LayoutProps } from 'styled-system'
 
 import formatNewLine from 'services/textFormat'
 
 export interface Props {
-  alt?: string
+  alt: string
   image: {
-    childImageSharp: { fluid: FluidObject }
+    childImageSharp: {
+      gatsbyImageData: IGatsbyImageData
+    }
   }
   legend?: string
   styles?: string
@@ -31,7 +33,7 @@ const Media: FC<Props & LayoutProps> = (props) => {
   const { alt, image, legend } = props
   return (
     <StyledMedia {...props}>
-      <Img alt={alt} fluid={image.childImageSharp.fluid} />
+      <GatsbyImage alt={alt} image={image.childImageSharp.gatsbyImageData} />
       <Legend>{formatNewLine(legend)}</Legend>
     </StyledMedia>
   )

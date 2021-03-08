@@ -1,17 +1,21 @@
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 export interface Media {
   alt?: string
   id?: number
   image: {
-    childImageSharp: { fluid: FluidObject }
+    childImageSharp: {
+      gatsbyImageData: IGatsbyImageData
+    }
   }
   legend?: string
   styles?: string
 }
 
 export interface ImageNode {
-  childImageSharp: { fluid: FluidObject }
+  childImageSharp: {
+    gatsbyImageData: IGatsbyImageData
+  }
   name?: string
   relativePath: string
 }

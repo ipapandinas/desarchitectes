@@ -7,16 +7,14 @@ type ImageQuery = () => Array<{ node: ImageNode }>
 export const useImageQuery: ImageQuery = () => {
   const { images } = useStaticQuery(
     graphql`
-      query {
+      {
         images: allFile {
           edges {
             node {
               relativePath
               name
               childImageSharp {
-                fluid(maxWidth: 600) {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(width: 600, layout: CONSTRAINED)
               }
             }
           }

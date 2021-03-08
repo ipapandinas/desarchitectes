@@ -43,6 +43,7 @@ module.exports = {
       }
     },
     'gatsby-transformer-sharp',
+    'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-manifest',
@@ -72,12 +73,6 @@ module.exports = {
         siteId: '1',
         matomoUrl: 'https://stats.desarchitectes.com/',
         siteUrl: 'https://desarchitectes.com/'
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
-      options: {
-        devMode: true
       }
     }
   ]

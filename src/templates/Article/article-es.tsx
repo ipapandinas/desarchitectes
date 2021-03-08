@@ -54,9 +54,7 @@ export const query = graphql`
           image {
             name
             childImageSharp {
-              fluid(maxWidth: 600) {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(height: 600, layout: CONSTRAINED)
             }
           }
         }

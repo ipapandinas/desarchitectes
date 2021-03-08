@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import Img from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
 import { useImageQuery } from 'queries/medias'
 import { ImageNode } from 'types/medias'
@@ -20,12 +20,11 @@ const Image: FC<Props> = ({ alt, className, filename }) => {
     return null
   }
 
-  // const imageSizes = image.node.childImageSharp.sizes; sizes={imageSizes}
   return (
-    <Img
+    <GatsbyImage
+      image={image.node.childImageSharp.gatsbyImageData}
       alt={alt}
       className={className}
-      fluid={image.node.childImageSharp.fluid}
     />
   )
 }

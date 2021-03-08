@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { FluidObject } from 'gatsby-image'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import { MEDIA_PORTRAIT, MEDIA_PORTRAIT_LONG } from 'settings/media'
 import { Media as MediaProps } from 'types/medias'
@@ -10,7 +10,9 @@ interface Props extends MediaProps {
   alt?: string
   format: string
   image: {
-    childImageSharp: { fluid: FluidObject }
+    childImageSharp: {
+      gatsbyImageData: IGatsbyImageData
+    }
   }
   legend?: string
 }
