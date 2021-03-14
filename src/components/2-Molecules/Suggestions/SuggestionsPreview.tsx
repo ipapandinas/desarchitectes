@@ -25,8 +25,8 @@ const SuggestionsPreview: FC<Props> = ({
   results,
   sortAsc
 }) => {
-  const { appData } = useAppContext() ?? {}
-  const alphabet = appData?.alphabet ?? []
+  const { appData } = useAppContext()
+  const alphabet = appData.alphabet
 
   const [suggestionsPrev, suggestions, suggestionsNext] = results
   const LAST_IDX = useMemo(() => alphabet.length - 1, [alphabet.length])

@@ -56,8 +56,8 @@ const Layout: FC<Props> = ({ children }) => {
   const device = useDevice()
   const isLaptop = device.isDesktop || device.isTabletLandscape
 
-  const { pageData } = usePageContext() ?? {}
-  const lang = pageData?.lang
+  const { pageData } = usePageContext()
+  const lang = pageData.lang
   const theme = themes[lang as keyof typeof themes]
 
   const [isFooterVisible, setFooterVisible] = useState(true)

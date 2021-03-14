@@ -2,7 +2,15 @@ export const initialAppData = {
   alphabet: [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'],
   articles: [],
   letters: [],
-  preview: false
+  preview: false,
+  word: ''
+}
+
+export const initialPageData = {
+  pageData: {
+    lang: 'fr'
+  },
+  updatePageData: () => {}
 }
 
 export const initialUiData = {

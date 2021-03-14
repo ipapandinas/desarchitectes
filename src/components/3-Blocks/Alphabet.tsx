@@ -41,9 +41,8 @@ const Letters = styled.div`
 `
 
 const Alphabet: FC = memo(() => {
-  const { appData } = useAppContext() ?? {}
-  const alphabet = appData?.alphabet ?? []
-  const articles = appData?.articles ?? []
+  const { appData } = useAppContext()
+  const { alphabet, articles } = appData
 
   const [isPreview, setPreview] = useState(false)
   const [runLetter, setLetter] = useState('')

@@ -15,7 +15,7 @@ const PageContextProvider: FC<Props> = ({
   pageData: pageDataProps,
   children
 }) => {
-  const { setAppData } = useAppContext() ?? {}
+  const { setAppData } = useAppContext()
   const [pageData, dispatchPageData] = useReducer(
     pageDataReducer,
     pageDataProps
@@ -33,7 +33,7 @@ const PageContextProvider: FC<Props> = ({
   const { appData } = pageData
 
   useEffect(() => {
-    if (appData !== undefined && setAppData !== undefined) {
+    if (appData !== undefined) {
       setAppData(appData)
     }
   }, [appData, setAppData])

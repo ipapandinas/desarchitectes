@@ -13,8 +13,8 @@ interface Props {
 
 const SEO: FC<Props> = ({ pageTitle }) => {
   const { pathname } = useLocation()
-  const { pageData } = usePageContext() ?? {}
-  const lang = pageData?.lang
+  const { pageData } = usePageContext()
+  const lang = pageData.lang
   const { metaDefault, metaES, metaFR } = useSiteMetadata()
 
   let metaData = metaDefault.siteMetadata

@@ -54,9 +54,9 @@ const StyledLetter = styled.button<ThemedProps>`
 
 const Letter = forwardRef<HTMLButtonElement, Props>(
   ({ active, handleLetter, isPreview, letter }, ref) => {
-    const { appData } = useAppContext() ?? {}
-    const letters = appData?.letters ?? []
-    const word = appData?.word ?? ''
+    const { appData } = useAppContext()
+    const letters = appData.letters
+    const word = appData.word
 
     const hasArticle = useMemo(() => letters.includes(letter), [
       letter,
@@ -65,7 +65,7 @@ const Letter = forwardRef<HTMLButtonElement, Props>(
     const isActive = useMemo(
       () =>
         (isPreview && active) ||
-        (!isPreview && letter === word.charAt(0).toUpperCase()),
+        (!isPreview && letter === word?.charAt(0).toUpperCase()),
       [active, isPreview, letter, word]
     )
 
