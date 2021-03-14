@@ -1,9 +1,8 @@
-import React, { FC, useCallback } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 import Separator from 'components/1-Atoms/Separator'
-
-import { usePageContext } from 'hooks'
+import Link from 'components/5-Utils/Link'
 
 const StyledLanguage = styled.div`
   width: 100%;
@@ -26,7 +25,7 @@ const StyledLanguage = styled.div`
   `}
 `
 
-const StyledLanguageLink = styled.a`
+const StyledLanguageLink = styled(Link)`
   background: none;
   border: 0;
   color: ${({ theme }) => theme.colors.contrast};
@@ -81,28 +80,12 @@ const FRLanguageLink = styled(StyledLanguageLink)`
   `}
 `
 
-const Language: FC = () => {
-  const { pageData } = usePageContext() ?? {}
-  const routeName = pageData?.routeName
-
-  const getUri = useCallback(
-    (lang: string) => {
-      if (routeName === undefined) {
-        return `/${lang}`
-      }
-
-      return `/${lang}/${routeName}`
-    },
-    [routeName]
-  )
-
-  return (
-    <StyledLanguage className='fade-in'>
-      <FRLanguageLink href={getUri('fr')}>français</FRLanguageLink>
-      <Separator />
-      <ESLanguageLink href={getUri('es')}>español</ESLanguageLink>
-    </StyledLanguage>
-  )
-}
+const Language: FC = () => (
+  <StyledLanguage className='fade-in'>
+    <FRLanguageLink lang='fr'>français</FRLanguageLink>
+    <Separator />
+    <ESLanguageLink lang='es'>español</ESLanguageLink>
+  </StyledLanguage>
+)
 
 export default Language

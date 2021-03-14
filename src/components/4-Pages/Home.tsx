@@ -4,6 +4,7 @@ import IgIcon from 'assets/svg/ig.svg'
 import MailIcon from 'assets/svg/mail.svg'
 import TelmoIcon from 'assets/svg/telmo.svg'
 
+import Link from 'components/5-Utils/Link'
 import { usePageContext } from 'hooks'
 import formatNewLine from 'services/textFormat'
 import { getLangLabel } from 'services/translations'
@@ -13,8 +14,8 @@ interface Props {
 }
 
 const Home: FC<Props> = ({ content }) => {
-  const { pageData } = usePageContext() ?? {}
-  const lang = pageData?.lang
+  const { pageData } = usePageContext()
+  const lang = pageData.lang
 
   const creditsLabel = `© ${new Date().getFullYear()} desarchitectes`
 
@@ -23,21 +24,21 @@ const Home: FC<Props> = ({ content }) => {
       {content !== '' && <div>{formatNewLine(content)}</div>}
 
       <div>
-        <a
-          href='https://www.instagram.com/desarchitectes/'
+        <Link
+          to='https://www.instagram.com/desarchitectes/'
+          hideArrow
           title={getLangLabel('instagram', lang)}
-          target='_blank'
-          rel='noopener noreferrer'
         >
           <IgIcon />
-        </a>
+        </Link>
 
-        <a
-          href='mailto:abcdesarchitectes@gmail.com'
+        <Link
+          to='mailto:abcdesarchitectes@gmail.com'
+          hideArrow
           title={getLangLabel('contact', lang)}
         >
           <MailIcon />
-        </a>
+        </Link>
       </div>
 
       <footer>

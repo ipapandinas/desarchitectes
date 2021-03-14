@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
+import Link from 'components/5-Utils/Link'
 import formatNewLine from 'services/textFormat'
 import { DefinitionProps as Props } from 'types/articles'
 
@@ -18,7 +19,7 @@ const Type = styled.div`
   font-family: ${({ theme }) => theme.fonts.italic};
 `
 
-const Link = styled.a`
+const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.italic};
 `
@@ -29,13 +30,9 @@ const Definition: FC<Props> = ({ link, name, text, type }) => (
     {type !== '' && <Type>{type}</Type>}
     {text !== '' && formatNewLine(text)}
     {link !== undefined && link !== null && (
-      <Link
-        href={link}
-        title={`Référence vers ${link}`}
-        rel='noopener noreferrer'
-      >
-        {`Ref: (${link})`}
-      </Link>
+      <StyledLink to={link} title={`Référence vers ${link}`}>
+        {link}
+      </StyledLink>
     )}
   </div>
 )

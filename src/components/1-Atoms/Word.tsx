@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import React, { useCallback, FC } from 'react'
 import styled, { DefaultTheme } from 'styled-components'
 
-import Link from 'components/5-Utils/Link/Link'
+import Link from 'components/5-Utils/Link'
 
-import { usePageContext } from 'hooks'
+import { useAppContext } from 'hooks'
 
 interface Props {
   isActive: boolean
@@ -35,16 +35,18 @@ const StyledWord = styled(Link)<ThemedProps>`
 `
 
 const Word: FC<Props> = ({ isActive, label, route }) => {
-  const { pageData } = usePageContext() ?? {}
-  const lang = pageData?.lang
+  const { setWord } = useAppContext()
+
+  const handleClick = useCallback(() => {
+    setWord(label)
+  }, [label])
 
   return (
     <StyledWord
       isActive={isActive}
-      lang={lang}
-      route={route}
+      onClick={handleClick}
+      to={route}
       title={route}
-      word={label}
     >
       {label}
     </StyledWord>

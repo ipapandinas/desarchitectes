@@ -6,7 +6,7 @@ import styled, {
   FlattenSimpleInterpolation
 } from 'styled-components'
 
-import Link from 'components/5-Utils/Link/Link'
+import Link from 'components/5-Utils/Link'
 
 import DesarchitectesLogo from 'assets/svg/desarchitectes.svg'
 
@@ -85,8 +85,8 @@ const Logo = styled(DesarchitectesLogo)`
 
 const Footer: FC<Props> = memo(({ isVisible }) => {
   const { isMobile } = useDevice()
-  const { pageData } = usePageContext() ?? {}
-  const lang = pageData?.lang
+  const { pageData } = usePageContext()
+  const lang = pageData.lang
 
   const [firstRender, setFirstRender] = useState(isVisible)
 
@@ -102,11 +102,7 @@ const Footer: FC<Props> = memo(({ isVisible }) => {
       isHide={!isVisible}
       isVisible={!firstRender && isVisible}
     >
-      <Styledlink
-        lang={lang}
-        title={getLangLabel('homepage', lang)}
-        word={undefined}
-      >
+      <Styledlink to='/' title={getLangLabel('homepage', lang)}>
         <Logo />
       </Styledlink>
     </StyledFooter>
