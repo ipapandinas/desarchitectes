@@ -2,7 +2,7 @@ import React, { FC, useMemo } from 'react'
 import styled from 'styled-components'
 import { space, SpaceProps } from 'styled-system'
 
-import { usePageContext } from 'hooks'
+import Translation from 'components/5-Utils/Translation'
 import { PdfProps } from 'types/articles'
 
 interface Props {
@@ -43,25 +43,18 @@ const Title = styled.span<SpaceProps>`
 `
 
 const ArticleHeader: FC<Props> = ({ pdf, title }) => {
-  const { pageData } = usePageContext() ?? {}
-  const lang = pageData?.lang
-
   const letter = useMemo(() => title?.charAt(0), [title])
-  const likeLabel = useMemo(() => (lang === 'es' ? ' cómo' : ' comme'), [lang])
-  const pdfLabel = useMemo(
-    () => (lang === 'es' ? 'Versión PDF' : 'Version PDF'),
-    [lang]
-  )
 
   return (
     <StyledHeader>
       <Letter>
-        {letter.toLowerCase()}
-        {likeLabel}
+        {letter.toLowerCase()} <Translation id='like' />
       </Letter>
       <Title mb={['1.2rem', '2rem', '1.2rem']}>{title.toUpperCase()}</Title>
       {pdf?.publicURL !== undefined && (
-        <Pdf href={pdf.publicURL}>{pdfLabel}</Pdf>
+        <Pdf href={pdf.publicURL}>
+          <Translation id='pdf' />
+        </Pdf>
       )}
     </StyledHeader>
   )

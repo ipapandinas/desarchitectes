@@ -6,6 +6,7 @@ import TelmoIcon from 'assets/svg/telmo.svg'
 
 import { usePageContext } from 'hooks'
 import formatNewLine from 'services/textFormat'
+import { getLangLabel } from 'services/translations'
 
 interface Props {
   content: string
@@ -24,11 +25,7 @@ const Home: FC<Props> = ({ content }) => {
       <div>
         <a
           href='https://www.instagram.com/desarchitectes/'
-          title={
-            lang === 'es'
-              ? 'desarchitectes en Instagram'
-              : 'desarchitectes sur Instagram'
-          }
+          title={getLangLabel('instagram', lang)}
           target='_blank'
           rel='noopener noreferrer'
         >
@@ -37,7 +34,7 @@ const Home: FC<Props> = ({ content }) => {
 
         <a
           href='mailto:abcdesarchitectes@gmail.com'
-          title={lang === 'es' ? 'Contacto' : 'Contact'}
+          title={getLangLabel('contact', lang)}
         >
           <MailIcon />
         </a>

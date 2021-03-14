@@ -17,6 +17,7 @@
     "declaration": false,
     "importHelpers": true,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "target": "es2015",
     "module": "es2015",
     "jsx": "react",

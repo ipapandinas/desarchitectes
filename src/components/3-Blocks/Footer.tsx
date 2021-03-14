@@ -11,6 +11,7 @@ import Link from 'components/5-Utils/Link/Link'
 import DesarchitectesLogo from 'assets/svg/desarchitectes.svg'
 
 import { useDevice, usePageContext } from 'hooks'
+import { getLangLabel } from 'services/translations'
 import { footerSlideIn, footerSlideOut } from 'style/keyframes'
 
 interface Props {
@@ -103,7 +104,7 @@ const Footer: FC<Props> = memo(({ isVisible }) => {
     >
       <Styledlink
         lang={lang}
-        title={lang === 'es' ? 'Pagina de inició' : "Page d'accueil"}
+        title={getLangLabel('homepage', lang)}
         word={undefined}
       >
         <Logo />
