@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { useDevice } from 'hooks'
 
 import Media from './Media'
-import SingleMedia from './SingleMedia'
 
 import { MEDIA_LANDSCAPE } from 'settings/media'
 import { getMediasRatio } from 'services/media'
@@ -52,22 +51,14 @@ const TextMedias: FC<Props> = memo(({ medias }) => {
     (isLaptop && mediasAspectType.includes(MEDIA_LANDSCAPE))
   ) {
     const { alt, id, image, legend } = medias[0]
-    return (
-      <SingleMedia
-        key={id}
-        alt={alt}
-        format={mediasAspectType[0]}
-        image={image}
-        legend={legend}
-      />
-    )
+    return <Media key={id} alt={alt ?? ''} image={image} legend={legend} />
   }
 
   if (isLaptop) {
     return (
       <DoubleMediaWrapper>
         {medias.map(({ alt, id, image, legend }) => (
-          <DoubleMedia key={id} alt={alt} image={image} legend={legend} />
+          <DoubleMedia key={id} alt={alt ?? ''} image={image} legend={legend} />
         ))}
       </DoubleMediaWrapper>
     )
@@ -76,7 +67,12 @@ const TextMedias: FC<Props> = memo(({ medias }) => {
   return (
     <>
       {medias.map(({ alt, id, image, legend }) => (
-        <DoubleMediaMobile key={id} alt={alt} image={image} legend={legend} />
+        <DoubleMediaMobile
+          key={id}
+          alt={alt ?? ''}
+          image={image}
+          legend={legend}
+        />
       ))}
     </>
   )

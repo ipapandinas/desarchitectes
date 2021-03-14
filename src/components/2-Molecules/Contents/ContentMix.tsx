@@ -11,7 +11,7 @@ const ContentMix: FC<ContentProps> = memo(
     if (image !== undefined) {
       return (
         <div key={`media-${id}`}>
-          <Media alt={alt} image={image} legend={legend} />
+          <Media alt={alt ?? ''} image={image} legend={legend} />
         </div>
       )
     }
