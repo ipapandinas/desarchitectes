@@ -1,6 +1,27 @@
-const config = require('./gatsby-config')
+const gatsbyConfig = require('./gatsby-config')
 
 const path = require('path')
+
+const supportedAlphabets = gatsbyConfig.siteMetadata.supportedAlphabets
+const supportedLanguages = gatsbyConfig.siteMetadata.supportedLanguages
+const defaultLanguage = gatsbyConfig.siteMetadata.defaultLanguage
+
+// same function from 'gatsby-plugin-intl'
+const getMessages = (path, language) => {
+  try {
+    const messages = require(`${path}/${language}.json`)
+    return messages
+  } catch (error) {
+    if (error.code === 'MODULE_NOT_FOUND') {
+      process.env.NODE_ENV !== 'test' &&
+        console.error(
+          `[gatsby-plugin-intl] couldn't find file "${path}/${language}.json"`
+        )
+    }
+
+    throw error
+  }
+}
 
 const makeRequest = (graphql, request) =>
   new Promise((resolve, reject) => {
@@ -57,8 +78,11 @@ exports.createPages = ({ actions, graphql }) => {
       const { internal, routeName } = node
       const pageType = internal && internal.type
 
-      config.siteMetadata.supportedLanguages.map((lang) => {
+      supportedLanguages.map((lang) => {
         const articles = result.data[`articles_${lang}`].nodes || []
+        const firstLetters = articles.map(({ title }) =>
+          title.charAt(0).toUpperCase()
+        )
         const localizedPath = `/${lang}/${routeName}`
         const word = node[`title_${lang}`]
 
@@ -67,23 +91,25 @@ exports.createPages = ({ actions, graphql }) => {
           component: path.resolve(`src/templates/Article/article-${lang}.tsx`),
           context: {
             appData: {
+              alphabet: supportedAlphabets[lang],
               articles,
+              isPreview: false,
+              letters: [...new Set(firstLetters)],
               word
             },
-            lang,
+            intl: {
+              language: lang,
+              defaultLanguage: defaultLanguage,
+              languages: supportedLanguages,
+              messages: getMessages('./src/intl/', lang),
+              routed: true,
+              originalPath: '/',
+              redirect: false
+            },
             pageType,
             routeName
           }
         })
-      })
-
-      createPage({
-        path: `/${routeName}`,
-        component: path.resolve('src/templates/Article/article.tsx'),
-        context: {
-          pageType,
-          routeName
-        }
       })
     })
   })
@@ -114,8 +140,11 @@ exports.createPages = ({ actions, graphql }) => {
   ).then((result) => {
     const pageType = result.data.landing && result.data.landing.internal.type
 
-    config.siteMetadata.supportedLanguages.map((lang) => {
+    supportedLanguages.map((lang) => {
       const articles = result.data[`articles_${lang}`].nodes || []
+      const firstLetters = articles.map(({ title }) =>
+        title.charAt(0).toUpperCase()
+      )
       const localizedPath = `/${lang}`
 
       return createPage({
@@ -123,9 +152,20 @@ exports.createPages = ({ actions, graphql }) => {
         component: path.resolve(`src/templates/Landing/landing-${lang}.tsx`),
         context: {
           appData: {
-            articles
+            alphabet: supportedAlphabets[lang],
+            articles,
+            isPreview: false,
+            letters: [...new Set(firstLetters)]
           },
-          lang,
+          intl: {
+            language: lang,
+            defaultLanguage: defaultLanguage,
+            languages: supportedLanguages,
+            messages: getMessages('./src/intl/', lang),
+            routed: true,
+            originalPath: '/',
+            redirect: false
+          },
           pageType
         }
       })

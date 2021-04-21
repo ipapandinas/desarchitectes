@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Letter from 'components/1-Atoms/Letter'
 import Preview from 'components/2-Molecules/Preview'
 
-import { useAppContext } from 'hooks'
+import { usePageContext } from 'hooks'
 import { SuggestionsProps } from 'types/articles'
 
 const StyledAlphabet = styled.div`
@@ -41,10 +41,13 @@ const Letters = styled.div`
 `
 
 const Alphabet: FC = memo(() => {
-  const { appData } = useAppContext()
-  const { alphabet, articles } = appData
+  const { pageData, setPreview } = usePageContext()
+  const { alphabet, articles, isPreview } = pageData.appData ?? {}
 
-  const [isPreview, setPreview] = useState(false)
+  if (alphabet === undefined) {
+    return null
+  }
+
   const [runLetter, setLetter] = useState('')
 
   const defaultRef = useRef<HTMLButtonElement>(null)

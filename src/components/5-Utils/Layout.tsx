@@ -1,18 +1,24 @@
-import React, { FC, ReactNode, useMemo, useRef, useState } from 'react'
+import React, { FC, ReactNode, memo, useMemo, useRef, useState } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
+import { IntlProvider, IntlContextProvider } from 'gatsby-plugin-intl'
 
 import Resize from 'components/1-Atoms/Resize'
 import Alphabet from 'components/3-Blocks/Alphabet'
 import Footer from 'components/3-Blocks/Footer'
+import Language from 'components/3-Blocks/Language'
+import WelcomeCover from 'components/3-Blocks/WelcomeCover'
+import PageContextProvider from 'components/5-Utils/PageProvider/PageProvider'
 
-import { useDevice, usePageContext } from 'hooks'
+import { useDevice } from 'hooks'
 import GlobalStyle from 'style/Global'
 import themes from 'theme'
+import { PageDataType } from 'types/app'
 
 import 'style/font.scss'
 
 interface Props {
   children: ReactNode
+  pageData: PageDataType
 }
 
 const StyledMain = styled.main`
@@ -52,12 +58,12 @@ const offsetDeltaMobile = 200
 const offsetDeltaOther = 400
 const offsetTrigger = 500
 
-const Layout: FC<Props> = ({ children }) => {
+const Layout: FC<Props> = memo(({ children, pageData }) => {
   const device = useDevice()
   const isLaptop = device.isDesktop || device.isTabletLandscape
 
-  const { pageData } = usePageContext()
-  const lang = pageData.lang
+  const intl = pageData.intl
+  const { defaultLanguage, language: lang, messages } = intl
   const theme = themes[lang as keyof typeof themes]
 
   const [isFooterVisible, setFooterVisible] = useState(true)
@@ -71,7 +77,7 @@ const Layout: FC<Props> = ({ children }) => {
 
   const handleScroll = (): void => {
     const element = contentRef?.current
-    if (element !== null) {
+    if (element !== null && !isLaptop) {
       const { scrollTop } = element
       if (scrollTop > offsetTrigger) {
         setOffsetTop((prevOffset) => {
@@ -93,30 +99,50 @@ const Layout: FC<Props> = ({ children }) => {
     }
   }
 
-  const content = useMemo(
-    () => (
+  const content = useMemo(() => {
+    return (
       <Content onScroll={handleScroll} ref={contentRef}>
         {children}
       </Content>
-    ),
-    [children]
-  )
+    )
+  }, [children])
+
+  if (lang === undefined || lang === null) {
+    return (
+      <>
+        <GlobalStyle />
+        <WelcomeCover />
+        <Language />
+        <Resize />
+      </>
+    )
+  }
 
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <StyledMain>
-        <App>
-          {content}
-          <Alphabet />
-        </App>
+    <IntlProvider
+      locale={lang}
+      defaultLocale={defaultLanguage}
+      messages={messages}
+    >
+      <IntlContextProvider value={intl}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <StyledMain>
+            <App>
+              <PageContextProvider pageData={pageData}>
+                {content}
+                <Alphabet />
+              </PageContextProvider>
+            </App>
 
-        {!isLaptop && <Footer isVisible={isFooterVisible} />}
-      </StyledMain>
+            {!isLaptop && <Footer isVisible={isFooterVisible} />}
+          </StyledMain>
 
-      <Resize />
-    </ThemeProvider>
+          <Resize />
+        </ThemeProvider>
+      </IntlContextProvider>
+    </IntlProvider>
   )
-}
+})
 
 export default Layout

@@ -3,7 +3,7 @@ import styled, { DefaultTheme } from 'styled-components'
 
 import Link from 'components/5-Utils/Link'
 
-import { useAppContext } from 'hooks'
+import { usePageContext } from 'hooks'
 
 interface Props {
   isActive: boolean
@@ -35,9 +35,10 @@ const StyledWord = styled(Link)<ThemedProps>`
 `
 
 const Word: FC<Props> = ({ isActive, label, route }) => {
-  const { setWord } = useAppContext()
+  const { setPreview, setWord } = usePageContext()
 
   const handleClick = useCallback(() => {
+    setPreview(false)
     setWord(label)
   }, [label])
 

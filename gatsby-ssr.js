@@ -1,21 +1,15 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react'
 
-import AppContextProvider from './src/components/5-Utils/AppProvider/AppProvider'
-import PageContextProvider from './src/components/5-Utils/PageProvider/PageProvider'
+import Layout from './src/components/5-Utils/Layout'
 import UiContextProvider from './src/components/5-Utils/UiProvider/UiProvider'
 
-import { initialAppData, initialUiData } from './src/settings/providers'
+import { initialUiData } from './src/settings/providers'
 
 export const wrapRootElement = ({ element }) => (
-  <UiContextProvider uiData={initialUiData}>
-    <AppContextProvider appData={initialAppData}>{element}</AppContextProvider>
-  </UiContextProvider>
+  <UiContextProvider uiData={initialUiData}>{element}</UiContextProvider>
 )
 
-export const wrapPageElement = ({ element, props }) => {
-  const pageData = props.pageContext
-  return (
-    <PageContextProvider pageData={pageData}>{element}</PageContextProvider>
-  )
-}
+export const wrapPageElement = ({ element, props }) => (
+  <Layout pageData={props.pageContext}>{element}</Layout>
+)

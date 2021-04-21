@@ -2,7 +2,7 @@ import React, { FC, useMemo } from 'react'
 
 import Suggestions from 'components/2-Molecules/Suggestions/Suggestions'
 
-import { useAppContext } from 'hooks'
+import { usePageContext } from 'hooks'
 import { SuggestionsProps } from 'types/articles'
 
 const MAX_SUGGESTIONS = 5
@@ -25,7 +25,13 @@ const SuggestionsPreview: FC<Props> = ({
   results,
   sortAsc
 }) => {
-  const { appData } = useAppContext()
+  const { pageData } = usePageContext()
+  const { appData } = pageData
+
+  if (appData === undefined) {
+    return null
+  }
+
   const alphabet = appData.alphabet
 
   const [suggestionsPrev, suggestions, suggestionsNext] = results

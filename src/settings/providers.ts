@@ -1,15 +1,32 @@
+import JsonInterface from 'types/intl'
+import frMessages from '../intl/fr.json'
+
+const defaultMessages: JsonInterface = frMessages
+
 export const initialAppData = {
   alphabet: [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'],
   articles: [],
+  isPreview: false,
   letters: [],
-  preview: false,
   word: ''
 }
 
 export const initialPageData = {
   pageData: {
-    lang: 'fr'
+    appData: initialAppData,
+    intl: {
+      language: 'fr',
+      defaultLanguage: 'fr',
+      languages: ['es', 'fr'],
+      messages: defaultMessages,
+      routed: true,
+      originalPath: '/',
+      redirect: false
+    }
   },
+  setPreview: () => {},
+  setWord: () => {},
+  updateLang: () => {},
   updatePageData: () => {}
 }
 

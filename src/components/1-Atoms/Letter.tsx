@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo } from 'react'
 import styled, { DefaultTheme } from 'styled-components'
 
-import { useAppContext } from 'hooks'
+import { usePageContext } from 'hooks'
 
 interface Props {
   active: boolean
@@ -54,9 +54,14 @@ const StyledLetter = styled.button<ThemedProps>`
 
 const Letter = forwardRef<HTMLButtonElement, Props>(
   ({ active, handleLetter, isPreview, letter }, ref) => {
-    const { appData } = useAppContext()
-    const letters = appData.letters
-    const word = appData.word
+    const { pageData } = usePageContext()
+    const { appData } = pageData
+
+    if (appData === undefined) {
+      return null
+    }
+
+    const { letters, word } = appData
 
     const hasArticle = useMemo(() => letters.includes(letter), [
       letter,
