@@ -19,14 +19,14 @@ const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font: ${({ theme }: ThemedProps) =>
-      `normal 400 1.6rem ${theme.fonts.regular}`};
+      `normal 400 1.6rem ${theme?.fonts?.regular ?? 'TimesNewRoman'}`};
     font-size: 62.5%;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    color: ${({ theme }: ThemedProps) => theme.colors.text};
+    color: ${({ theme }: ThemedProps) => theme?.colors?.text ?? '#000'};
     margin: 0;
     word-wrap: break-word;
     font-size: 1.6rem;
@@ -50,7 +50,8 @@ const GlobalStyle = createGlobalStyle`
       }
 
     strong {
-      font-family: ${({ theme }: ThemedProps) => theme.fonts.bold};
+      font-family: ${({ theme }: ThemedProps) =>
+        theme?.fonts?.bold ?? 'TimesNewRoman-Bold'};
     }
   }
 `

@@ -13,8 +13,7 @@ const StyledWelcomeCover = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.invertedContrast};
-  padding: 0 10rem;
+  background-color: ${({ theme }) => theme?.colors?.invertedContrast ?? '#FFF'};
   -moz-animation: WelcomeCoverAnimation 0.5s ease-in 1.8s forwards;
 
   /* Firefox */

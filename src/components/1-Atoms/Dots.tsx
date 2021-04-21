@@ -2,10 +2,10 @@ import React, { FC, memo } from 'react'
 import styled from 'styled-components'
 
 const StyledDots = styled.div`
-  height: ${({ theme }) => theme.spacing[3]};
-  width: ${({ theme }) => theme.spacing[3]};
-  background-color: ${({ theme }) => theme.colors.contrast};
-  border-radius: ${({ theme }) => theme.radii.circle};
+  height: 2.4rem;
+  width: 2.4rem;
+  background-color: ${({ theme }) => theme?.colors?.contrast ?? '#000'};
+  border-radius: ${({ theme }) => theme?.radii?.circle ?? '50%'};
   margin: 10rem 0;
 `
 

@@ -13,12 +13,12 @@ const Side = styled.div<SpaceProps>`
 const Line = styled.div`
   height: 100%;
   width: 0.1rem;
-  background: ${({ theme }) => theme.colors.contrast};
+  background: ${({ theme }) => theme?.colors?.contrast ?? '#000'};
 `
 
 const StyledSeparator = styled.div`
   height: 100%;
-  background: ${({ theme }) => theme.colors.invertedContrast};
+  background: ${({ theme }) => theme?.colors?.invertedContrast ?? '#FFF'};
   display: flex;
   align-items: center;
   position: absolute;
