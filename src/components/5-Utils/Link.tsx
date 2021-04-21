@@ -1,8 +1,10 @@
 import React, { FC, ReactNode } from 'react'
 import { Link as GatsbyLink } from 'gatsby'
+import { Link as IntlLink, useIntl } from 'gatsby-plugin-intl'
 import styled from 'styled-components'
 
 import { usePageContext } from 'hooks'
+import useSiteMetadata from 'queries/seo'
 
 interface Props {
   children: ReactNode
@@ -31,9 +33,10 @@ const Link: FC<Props> = ({
   to,
   title
 }) => {
-  const { pageData, updatePageData } = usePageContext()
-  const currentLang = pageData.lang
-  const newLang = lang ?? currentLang
+  const { locale } = useIntl()
+  const { updateLang } = usePageContext()
+  const { metaDefault } = useSiteMetadata()
+  const newLang = lang ?? locale
 
   const isExternal = to?.includes('http') ?? to?.includes('mailto:')
   if (isExternal !== undefined && isExternal) {
@@ -59,19 +62,19 @@ const Link: FC<Props> = ({
   }
 
   const newRoute = to !== undefined ? `/${newLang}/${to}` : `/${newLang}`
-  if (lang !== undefined) {
+  if (
+    lang !== undefined &&
+    metaDefault?.siteMetadata?.supportedLanguages?.includes(lang)
+  ) {
     return (
-      <a
+      <IntlLink
         className={className}
-        href={newRoute}
-        onClick={() =>
-          updatePageData({
-            lang
-          })}
+        to={newRoute}
+        onClick={() => updateLang(lang)}
         target='_self'
       >
         {children}
-      </a>
+      </IntlLink>
     )
   }
 

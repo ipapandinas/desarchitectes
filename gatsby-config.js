@@ -12,6 +12,11 @@ module.exports = {
     author: 'Mr Telmo · mrtelmo.com',
     url: 'https://www.desarchitectes.com',
     image: '/d_favicon.png',
+    defaultLanguage: 'fr',
+    supportedAlphabets: {
+      es: [...'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'],
+      fr: [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
+    },
     supportedLanguages: ['es', 'fr']
   },
   plugins: [
@@ -73,6 +78,15 @@ module.exports = {
         siteId: '1',
         matomoUrl: 'https://stats.desarchitectes.com/',
         siteUrl: 'https://desarchitectes.com/'
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-intl',
+      options: {
+        path: `${__dirname}/src/intl`,
+        languages: ['es', 'fr'],
+        defaultLanguage: 'fr',
+        redirect: false
       }
     }
   ]

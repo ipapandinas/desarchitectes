@@ -2,9 +2,11 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 interface MetadataNode {
   author: string
+  defaultLanguage: string
   description: string
   image: string
   siteUrl: string
+  supportedLanguages: string[]
   title: string
   titleTemplate: string
 }
@@ -26,9 +28,11 @@ const useSiteMetadata: SiteMetadataQuery = () => {
         metaDefault: site {
           siteMetadata {
             author
+            defaultLanguage
             description: descriptionFR
             image
             siteUrl: url
+            supportedLanguages
             title: titleFR
             titleTemplate
           }

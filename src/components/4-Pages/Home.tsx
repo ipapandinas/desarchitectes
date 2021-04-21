@@ -1,21 +1,19 @@
 import React, { FC } from 'react'
+import { useIntl } from 'gatsby-plugin-intl'
 
 import IgIcon from 'assets/svg/ig.svg'
 import MailIcon from 'assets/svg/mail.svg'
 import TelmoIcon from 'assets/svg/telmo.svg'
 
 import Link from 'components/5-Utils/Link'
-import { usePageContext } from 'hooks'
 import formatNewLine from 'services/textFormat'
-import { getLangLabel } from 'services/translations'
 
 interface Props {
   content: string
 }
 
 const Home: FC<Props> = ({ content }) => {
-  const { pageData } = usePageContext()
-  const lang = pageData.lang
+  const { messages } = useIntl()
 
   const creditsLabel = `© ${new Date().getFullYear()} desarchitectes`
 
@@ -27,7 +25,7 @@ const Home: FC<Props> = ({ content }) => {
         <Link
           to='https://www.instagram.com/desarchitectes/'
           hideArrow
-          title={getLangLabel('instagram', lang)}
+          title={String(messages.instagram)}
         >
           <IgIcon />
         </Link>
@@ -35,7 +33,7 @@ const Home: FC<Props> = ({ content }) => {
         <Link
           to='mailto:abcdesarchitectes@gmail.com'
           hideArrow
-          title={getLangLabel('contact', lang)}
+          title={String(messages.contact)}
         >
           <MailIcon />
         </Link>

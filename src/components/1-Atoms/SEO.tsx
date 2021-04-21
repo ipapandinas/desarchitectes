@@ -1,11 +1,10 @@
 import React, { FC } from 'react'
 import { Helmet } from 'react-helmet'
 import { useLocation } from '@reach/router'
+import { useIntl } from 'gatsby-plugin-intl'
 
 import d_favicon from 'assets/images/d_favicon.png'
 import useSiteMetadata from 'queries/seo'
-
-import { usePageContext } from 'hooks'
 
 interface Props {
   pageTitle?: string
@@ -13,8 +12,7 @@ interface Props {
 
 const SEO: FC<Props> = ({ pageTitle }) => {
   const { pathname } = useLocation()
-  const { pageData } = usePageContext()
-  const lang = pageData.lang
+  const { locale: lang } = useIntl()
   const { metaDefault, metaES, metaFR } = useSiteMetadata()
 
   let metaData = metaDefault.siteMetadata

@@ -1,12 +1,10 @@
 import React, { FC } from 'react'
+import { FormattedMessage } from 'gatsby-plugin-intl'
 
-import { usePageContext } from 'hooks'
-import { getLangLabel } from 'services/translations'
+import { getDefaultMessage } from 'services/translations'
 
-const Translation: FC<{ id: string }> = ({ id }) => {
-  const { pageData } = usePageContext()
-  const lang = pageData.lang
-  return <>{getLangLabel(id, lang)}</>
-}
+const Translation: FC<{ id: string }> = ({ id }) => (
+  <FormattedMessage id={id} defaultMessage={getDefaultMessage(id)} />
+)
 
 export default Translation

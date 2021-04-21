@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import React, { FC, memo, useEffect, useState } from 'react'
+import { useIntl } from 'gatsby-plugin-intl'
 import styled, {
   css,
   DefaultTheme,
@@ -10,8 +11,7 @@ import Link from 'components/5-Utils/Link'
 
 import DesarchitectesLogo from 'assets/svg/desarchitectes.svg'
 
-import { useDevice, usePageContext } from 'hooks'
-import { getLangLabel } from 'services/translations'
+import { useDevice } from 'hooks'
 import { footerSlideIn, footerSlideOut } from 'style/keyframes'
 
 interface Props {
@@ -85,9 +85,7 @@ const Logo = styled(DesarchitectesLogo)`
 
 const Footer: FC<Props> = memo(({ isVisible }) => {
   const { isMobile } = useDevice()
-  const { pageData } = usePageContext()
-  const lang = pageData.lang
-
+  const { messages } = useIntl()
   const [firstRender, setFirstRender] = useState(isVisible)
 
   useEffect(() => {
@@ -102,7 +100,7 @@ const Footer: FC<Props> = memo(({ isVisible }) => {
       isHide={!isVisible}
       isVisible={!firstRender && isVisible}
     >
-      <Styledlink to='/' title={getLangLabel('homepage', lang)}>
+      <Styledlink to='/' title={String(messages.homepage)}>
         <Logo />
       </Styledlink>
     </StyledFooter>
