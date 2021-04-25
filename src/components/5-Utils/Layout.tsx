@@ -101,7 +101,7 @@ const Layout: FC<Props> = memo(({ children, pageData }) => {
 
   const content = useMemo(() => {
     return (
-      <Content onScroll={handleScroll} ref={contentRef}>
+      <Content ref={contentRef} id='content'>
         {children}
       </Content>
     )

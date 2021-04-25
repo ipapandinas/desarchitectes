@@ -49,7 +49,7 @@ const ArticleDesktop: FC<Props> = ({ data }) => {
 
   return (
     <Wrapper className='fade-in'>
-      <LeftContent id='corpus'>
+      <LeftContent id='leftContent'>
         <ArticleCorpus
           activeTextAnchor={activeTextAnchor}
           content={content}

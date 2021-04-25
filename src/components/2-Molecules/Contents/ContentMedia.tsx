@@ -47,8 +47,7 @@ const ContentMedia: FC<Props> = memo(
 
     return (
       <StyledScrollLink
-        className='fade-in'
-        containerId='corpus'
+        containerId='leftContent'
         duration={500}
         isActive={activeTextAnchor === `text-anchor-${id}`}
         offset={-190}
