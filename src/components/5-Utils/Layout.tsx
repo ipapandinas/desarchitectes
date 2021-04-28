@@ -1,4 +1,5 @@
-import React, { FC, ReactNode, memo, useMemo, useRef, useState } from 'react'
+import React, { FC, ReactNode, memo, useMemo, useRef } from 'react'
+import { Transition, animated, config } from 'react-spring'
 import styled, { ThemeProvider } from 'styled-components'
 import { IntlProvider, IntlContextProvider } from 'gatsby-plugin-intl'
 
@@ -38,7 +39,7 @@ const App = styled.div`
   position: relative;
 `
 
-const Content = styled.div`
+const Content = styled(animated.div)`
   height: 100%;
   box-sizing: content-box;
   margin: 0 5rem 0 0;
@@ -53,10 +54,10 @@ const Content = styled.div`
     }
   `}
 `
-
-const offsetDeltaMobile = 200
-const offsetDeltaOther = 400
-const offsetTrigger = 500
+// TO DO: Handle footer hide on scroll
+// const offsetDeltaMobile = 200
+// const offsetDeltaOther = 400
+// const offsetTrigger = 500
 
 const Layout: FC<Props> = memo(({ children, pageData }) => {
   const device = useDevice()
@@ -66,46 +67,76 @@ const Layout: FC<Props> = memo(({ children, pageData }) => {
   const { defaultLanguage, language: lang, messages } = intl
   const theme = themes[lang as keyof typeof themes]
 
-  const [isFooterVisible, setFooterVisible] = useState(true)
-  const [, setOffsetTop] = useState(0)
+  // const [isFooterVisible, setFooterVisible] = useState(true)
+  // const [, setOffsetTop] = useState(0)
 
   const contentRef = useRef<HTMLDivElement>(null)
-  const offsetDelta = useMemo(
-    () => (device.isMobile ? offsetDeltaMobile : offsetDeltaOther),
-    [device?.isMobile]
-  )
+  // const offsetDelta = useMemo(
+  //   () => (device.isMobile ? offsetDeltaMobile : offsetDeltaOther),
+  //   [device?.isMobile]
+  // )
 
-  const handleScroll = (): void => {
-    const element = contentRef?.current
-    if (element !== null && !isLaptop) {
-      const { scrollTop } = element
-      if (scrollTop > offsetTrigger) {
-        setOffsetTop((prevOffset) => {
-          if (prevOffset > scrollTop + offsetDelta) {
-            setFooterVisible(true)
-            return scrollTop
-          }
-          if (prevOffset > scrollTop) {
-            return prevOffset
-          }
-          if (isFooterVisible) {
-            setFooterVisible(false)
-          }
-          return scrollTop
-        })
-      } else {
-        setFooterVisible(true)
-      }
+  // const handleScroll = (): void => {
+  //   const element = contentRef?.current
+  //   if (element !== null && !isLaptop) {
+  //     const { scrollTop } = element
+  //     if (scrollTop > offsetTrigger) {
+  //       setOffsetTop((prevOffset) => {
+  //         if (prevOffset > scrollTop + offsetDelta) {
+  //           setFooterVisible(true)
+  //           return scrollTop
+  //         }
+  //         if (prevOffset > scrollTop) {
+  //           return prevOffset
+  //         }
+  //         if (isFooterVisible) {
+  //           setFooterVisible(false)
+  //         }
+  //         return scrollTop
+  //       })
+  //     } else {
+  //       setFooterVisible(true)
+  //     }
+  //   }
+  // }
+
+  const items = [
+    {
+      Content,
+      children
     }
-  }
-
-  const content = useMemo(() => {
-    return (
-      <Content ref={contentRef} id='content'>
-        {children}
-      </Content>
-    )
-  }, [children])
+  ]
+  const content = useMemo(
+    () => (
+      <Transition
+        items={items}
+        key='content'
+        config={config.molasses}
+        trail={200}
+        from={{ x: 0 }}
+        initial={{ x: 0 }}
+        enter={{ x: 2 }}
+        leave={{ x: 3, position: 'absolute' }}
+      >
+        {(style, { Content, children }) => (
+          <Content
+            id='content'
+            ref={contentRef}
+            style={{
+              ...style,
+              opacity: style.x.interpolate({
+                range: [0.0, 1, 2, 2],
+                output: [0, 1, 1, 0]
+              })
+            }}
+          >
+            {children}
+          </Content>
+        )}
+      </Transition>
+    ),
+    [children]
+  )
 
   if (lang === undefined || lang === null) {
     return (
@@ -117,6 +148,8 @@ const Layout: FC<Props> = memo(({ children, pageData }) => {
       </>
     )
   }
+
+  console.log('Render Layout')
 
   return (
     <IntlProvider
@@ -135,7 +168,7 @@ const Layout: FC<Props> = memo(({ children, pageData }) => {
               </PageContextProvider>
             </App>
 
-            {!isLaptop && <Footer isVisible={isFooterVisible} />}
+            {!isLaptop && <Footer isVisible />}
           </StyledMain>
 
           <Resize />

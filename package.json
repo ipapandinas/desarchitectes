@@ -30,6 +30,7 @@
     "react-helmet": "^6.1.x",
     "react-markdown": "^5.0.x",
     "react-scroll": "^1.8.x",
+    "react-spring": "^9.1.2",
     "styled-components": "^5.2.x",
     "styled-system": "^5.1.x",
     "typescript": "^4.0.x"

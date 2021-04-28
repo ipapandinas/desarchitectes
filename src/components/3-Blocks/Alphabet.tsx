@@ -110,17 +110,15 @@ const Alphabet: FC = memo(() => {
           />
         ))}
       </Letters>
-      {isPreview && (
-        <Preview
-          isPreview={isPreview}
-          resetLetter={resetLetter}
-          results={suggestions}
-          runLetterIdx={runLetterIdx}
-          runLetterRef={runLetterRef}
-          setPreview={setPreview}
-          sortAsc={sortAsc}
-        />
-      )}
+      <Preview
+        isPreview={isPreview}
+        resetLetter={resetLetter}
+        results={suggestions}
+        runLetterIdx={runLetterIdx}
+        runLetterRef={runLetterRef}
+        setPreview={setPreview}
+        sortAsc={sortAsc}
+      />
     </StyledAlphabet>
   )
 })
