@@ -58,12 +58,7 @@ const Preview: FC<Props> = memo(
         opacity: 1,
         transform: 'translateX(0)'
       },
-      delay: triggerAnimation ? 0 : 100,
-      config: {
-        tension: 460,
-        friction: 60
-      },
-      reset: !triggerAnimation,
+      delay: triggerAnimation ? 0 : 800,
       reverse: !triggerAnimation,
       onRest: () => {
         if (!triggerAnimation) {

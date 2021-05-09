@@ -1,4 +1,5 @@
 import React, { FC, useMemo } from 'react'
+import { Element } from 'react-scroll'
 import styled from 'styled-components'
 import { space, SpaceProps } from 'styled-system'
 
@@ -10,7 +11,7 @@ interface Props {
   title: string
 }
 
-const StyledHeader = styled.div`
+const StyledHeader = styled(Element)`
   display: flex;
   flex-direction: column;
 `
@@ -46,7 +47,7 @@ const ArticleHeader: FC<Props> = ({ pdf, title }) => {
   const letter = useMemo(() => title?.charAt(0), [title])
 
   return (
-    <StyledHeader>
+    <StyledHeader name='article-header'>
       <Letter>
         {letter.toLowerCase()} <Translation id='like' />
       </Letter>

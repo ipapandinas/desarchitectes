@@ -1,4 +1,5 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
+import { scroller } from 'react-scroll'
 
 import Container from 'components/1-atoms/Container'
 import ContentMedia from 'components/2-Molecules/Contents/ContentMedia'
@@ -23,58 +24,69 @@ const ArticleContent: FC<Props> = ({
   content,
   setTextAnchor,
   type
-}) => (
-  <Container
-    isNoVerticalPadding={type === CONTENT_TYPE_MEDIA}
-    isWidthContainer
-    {...{
-      ...(type === CONTENT_TYPE_TEXT && { pt: '0 !important' }),
-      ...(type === CONTENT_TYPE_MEDIA && { height: '100%' })
-    }}
-  >
-    {content.map(({ alt, id, image, legend, text, text_media: medias }) => {
-      switch (type) {
-        // DESKTOP RIGHT SIDE
-        case CONTENT_TYPE_MEDIA:
-          return (
-            <ContentMedia
-              key={id}
-              activeTextAnchor={activeTextAnchor}
-              id={id}
-              medias={medias}
-              setTextAnchor={setTextAnchor}
-            />
-          )
-        // DESKTOP LEFT SIDE
-        case CONTENT_TYPE_TEXT:
-          return (
-            <ContentText
-              key={id}
-              activeTextAnchor={activeTextAnchor}
-              id={id}
-              text={text}
-            />
-          )
+}) => {
+  useEffect(() => {
+    scroller.scrollTo('article-header', {
+      duration: 1000,
+      smooth: 'easeInOutQuad',
+      containerId: 'content',
+      offset: -50
+    })
+  }, [content])
 
-        // MOBILE
-        case CONTENT_TYPE_MIX:
-          return (
-            <ContentMix
-              key={id}
-              alt={alt}
-              id={id}
-              image={image}
-              legend={legend}
-              text={text}
-              text_media={medias}
-            />
-          )
+  return (
+    <Container
+      isNoVerticalPadding={type === CONTENT_TYPE_MEDIA}
+      isWidthContainer
+      {...{
+        ...(type === CONTENT_TYPE_TEXT && { pt: '0 !important' }),
+        ...(type === CONTENT_TYPE_MEDIA && { height: '100%' })
+      }}
+    >
+      {content.map(({ alt, id, image, legend, text, text_media: medias }) => {
+        switch (type) {
+          // DESKTOP RIGHT SIDE
+          case CONTENT_TYPE_MEDIA:
+            return (
+              <ContentMedia
+                key={id}
+                activeTextAnchor={activeTextAnchor}
+                id={id}
+                medias={medias}
+                setTextAnchor={setTextAnchor}
+              />
+            )
+          // DESKTOP LEFT SIDE
+          case CONTENT_TYPE_TEXT:
+            return (
+              <ContentText
+                key={id}
+                activeTextAnchor={activeTextAnchor}
+                id={id}
+                text={text}
+              />
+            )
 
-        default:
-          return null
-      }
-    })}
-  </Container>
-)
+          // MOBILE
+          case CONTENT_TYPE_MIX:
+            return (
+              <ContentMix
+                key={id}
+                alt={alt}
+                id={id}
+                image={image}
+                legend={legend}
+                text={text}
+                text_media={medias}
+              />
+            )
+
+          default:
+            return null
+        }
+      })}
+    </Container>
+  )
+}
 
 export default ArticleContent

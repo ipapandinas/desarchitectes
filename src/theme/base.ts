@@ -26,7 +26,7 @@ const colors: Colors = {
   text: '#1b1b1b',
 
   gradients: {
-    prewiewWhite: 'linear-gradient(to right, rgba(255, 255, 255, 0.95), #fff)'
+    prewiewWhite: 'linear-gradient(to right, rgba(255, 255, 255, 0.99), #fff)'
   }
 }
 

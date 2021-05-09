@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 import { Link } from 'react-scroll'
 import styled, { DefaultTheme } from 'styled-components'
 
@@ -35,32 +35,35 @@ const StyledScrollLink = styled(Link)<ThemedProps>`
   `};
 `
 
-const ContentMedia: FC<Props> = memo(
-  ({ activeTextAnchor, id, medias, setTextAnchor }) => {
-    if (
-      setTextAnchor === undefined ||
-      !(medias instanceof Array) ||
-      medias.length === 0
-    ) {
-      return null
-    }
-
-    return (
-      <StyledScrollLink
-        containerId='leftContent'
-        duration={500}
-        isActive={activeTextAnchor === `text-anchor-${id}`}
-        offset={-190}
-        onSetActive={() => setTextAnchor(`text-anchor-${id}`)}
-        smooth
-        spy
-        to={`text-anchor-${id}`}
-        key={`text-media-${id}`}
-      >
-        <TextMedias medias={medias} />
-      </StyledScrollLink>
-    )
+const ContentMedia: FC<Props> = ({
+  activeTextAnchor,
+  id,
+  medias,
+  setTextAnchor
+}) => {
+  if (
+    setTextAnchor === undefined ||
+    !(medias instanceof Array) ||
+    medias.length === 0
+  ) {
+    return null
   }
-)
+
+  return (
+    <StyledScrollLink
+      containerId='leftContent'
+      duration={500}
+      isActive={activeTextAnchor === `text-anchor-${id}`}
+      offset={-190}
+      onSetActive={() => setTextAnchor(`text-anchor-${id}`)}
+      smooth
+      spy
+      to={`text-anchor-${id}`}
+      key={`text-media-${id}`}
+    >
+      <TextMedias medias={medias} />
+    </StyledScrollLink>
+  )
+}
 
 export default ContentMedia

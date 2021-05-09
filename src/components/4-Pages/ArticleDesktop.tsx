@@ -47,8 +47,12 @@ const ArticleDesktop: FC<Props> = ({ data }) => {
   const { content, definition, pdf, title } = data
   const [activeTextAnchor, setTextAnchor] = useState('')
 
+  if (content.length === 0) {
+    return null
+  }
+
   return (
-    <Wrapper className='fade-in'>
+    <Wrapper>
       <LeftContent id='leftContent'>
         <ArticleCorpus
           activeTextAnchor={activeTextAnchor}
@@ -63,14 +67,12 @@ const ArticleDesktop: FC<Props> = ({ data }) => {
       <Separator />
 
       <RightContent>
-        {content.length > 0 && (
-          <StyledArticleContent
-            activeTextAnchor={activeTextAnchor}
-            content={content}
-            setTextAnchor={setTextAnchor}
-            type={CONTENT_TYPE_MEDIA}
-          />
-        )}
+        <StyledArticleContent
+          activeTextAnchor={activeTextAnchor}
+          content={content}
+          setTextAnchor={setTextAnchor}
+          type={CONTENT_TYPE_MEDIA}
+        />
       </RightContent>
     </Wrapper>
   )

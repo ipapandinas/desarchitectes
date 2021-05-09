@@ -1,13 +1,11 @@
-import React, { FC, ReactNode, memo, useMemo, useRef } from 'react'
-import { Transition, animated, config } from 'react-spring'
+import React, { FC, ReactNode, useRef } from 'react'
+import { animated } from 'react-spring'
 import styled, { ThemeProvider } from 'styled-components'
 import { IntlProvider, IntlContextProvider } from 'gatsby-plugin-intl'
 
 import Resize from 'components/1-Atoms/Resize'
 import Alphabet from 'components/3-Blocks/Alphabet'
 import Footer from 'components/3-Blocks/Footer'
-import Language from 'components/3-Blocks/Language'
-import WelcomeCover from 'components/3-Blocks/WelcomeCover'
 import PageContextProvider from 'components/5-Utils/PageProvider/PageProvider'
 
 import { useDevice } from 'hooks'
@@ -59,7 +57,7 @@ const Content = styled(animated.div)`
 // const offsetDeltaOther = 400
 // const offsetTrigger = 500
 
-const Layout: FC<Props> = memo(({ children, pageData }) => {
+const Layout: FC<Props> = ({ children, pageData }) => {
   const device = useDevice()
   const isLaptop = device.isDesktop || device.isTabletLandscape
 
@@ -99,56 +97,6 @@ const Layout: FC<Props> = memo(({ children, pageData }) => {
   //     }
   //   }
   // }
-
-  const items = [
-    {
-      Content,
-      children
-    }
-  ]
-  const content = useMemo(
-    () => (
-      <Transition
-        items={items}
-        key='content'
-        config={config.molasses}
-        trail={200}
-        from={{ x: 0 }}
-        initial={{ x: 0 }}
-        enter={{ x: 2 }}
-        leave={{ x: 3, position: 'absolute' }}
-      >
-        {(style, { Content, children }) => (
-          <Content
-            id='content'
-            ref={contentRef}
-            style={{
-              ...style,
-              opacity: style.x.interpolate({
-                range: [0.0, 1, 2, 2],
-                output: [0, 1, 1, 0]
-              })
-            }}
-          >
-            {children}
-          </Content>
-        )}
-      </Transition>
-    ),
-    [children]
-  )
-
-  if (lang === undefined || lang === null) {
-    return (
-      <>
-        <GlobalStyle />
-        <WelcomeCover />
-        <Language />
-        <Resize />
-      </>
-    )
-  }
-
   console.log('Render Layout')
 
   return (
@@ -163,7 +111,17 @@ const Layout: FC<Props> = memo(({ children, pageData }) => {
           <StyledMain>
             <App>
               <PageContextProvider pageData={pageData}>
-                {content}
+                <Content
+                  id='content'
+                  ref={contentRef}
+                  style={{
+                    ...(pageData?.appData?.alphabet === undefined && {
+                      margin: 0
+                    })
+                  }}
+                >
+                  {children}
+                </Content>
                 <Alphabet />
               </PageContextProvider>
             </App>
@@ -176,6 +134,6 @@ const Layout: FC<Props> = memo(({ children, pageData }) => {
       </IntlContextProvider>
     </IntlProvider>
   )
-})
+}
 
 export default Layout

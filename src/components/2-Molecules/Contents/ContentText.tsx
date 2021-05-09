@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 import { Element } from 'react-scroll'
 import styled from 'styled-components'
 
@@ -27,13 +27,13 @@ const StyledActiveTextAnchor = styled.div`
   left: -2rem;
 `
 
-const ContentText: FC<Props> = memo(({ activeTextAnchor, id, text }) => (
+const ContentText: FC<Props> = ({ activeTextAnchor, id, text }) => (
   <StyledElement name={`text-anchor-${id}`} key={`text-${id}`}>
     {activeTextAnchor === `text-anchor-${id}` && text !== null && (
       <StyledActiveTextAnchor />
     )}
     <Text text={text} />
   </StyledElement>
-))
+)
 
 export default ContentText

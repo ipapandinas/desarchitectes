@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
 import Container from 'components/1-atoms/Container'
@@ -28,31 +28,15 @@ const ArticleCorpus: FC<Props> = ({
   pdf,
   title,
   variant
-}) => {
-  const Header = useMemo(() => <ArticleHeader pdf={pdf} title={title} />, [
-    pdf,
-    title
-  ])
-
-  const Content = useMemo(() => {
-    if (content.length === 0) {
-      return null
-    }
-
-    return (
-      <ArticleContent
-        activeTextAnchor={activeTextAnchor}
-        content={content}
-        type={variant}
-      />
-    )
-  }, [activeTextAnchor, content, variant])
-
-  const Definitions = useMemo(() => {
-    if (definition.length === 0) {
-      return null
-    }
-    return (
+}) => (
+  <Corpus>
+    <ArticleHeader pdf={pdf} title={title} />
+    <ArticleContent
+      activeTextAnchor={activeTextAnchor}
+      content={content}
+      type={variant}
+    />
+    {definition.length > 0 && (
       <Container>
         {definition.map(({ id, link, name, text, type }) => (
           <Definition
@@ -64,16 +48,8 @@ const ArticleCorpus: FC<Props> = ({
           />
         ))}
       </Container>
-    )
-  }, [definition])
-
-  return (
-    <Corpus>
-      {Header}
-      {Content}
-      {Definitions}
-    </Corpus>
-  )
-}
+    )}
+  </Corpus>
+)
 
 export default ArticleCorpus
