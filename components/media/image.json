@@ -3,26 +3,25 @@
   "collectionName": "components_media_images",
   "info": {
     "name": "image",
-    "icon": "image"
+    "icon": "image",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "image": {
       "model": "file",
       "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
       "plugin": "upload",
-      "required": false
+      "required": true,
+      "pluginOptions": {}
     },
-    "legend_FR": {
+    "legend": {
       "type": "richtext"
     },
-    "legend_ES": {
-      "type": "richtext"
-    },
-    "alt_FR": {
-      "type": "string"
-    },
-    "alt_ES": {
+    "alt": {
       "type": "string"
     }
   }

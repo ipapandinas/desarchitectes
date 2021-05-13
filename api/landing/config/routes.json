@@ -2,15 +2,39 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/landing",
+      "path": "/landings",
       "handler": "landing.find",
       "config": {
         "policies": []
       }
     },
     {
+      "method": "GET",
+      "path": "/landings/count",
+      "handler": "landing.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/landings/:id",
+      "handler": "landing.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/landings",
+      "handler": "landing.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "PUT",
-      "path": "/landing",
+      "path": "/landings/:id",
       "handler": "landing.update",
       "config": {
         "policies": []
@@ -18,7 +42,7 @@
     },
     {
       "method": "DELETE",
-      "path": "/landing",
+      "path": "/landings/:id",
       "handler": "landing.delete",
       "config": {
         "policies": []

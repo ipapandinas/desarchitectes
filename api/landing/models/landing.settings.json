@@ -1,20 +1,29 @@
 {
-  "kind": "singleType",
+  "kind": "collectionType",
   "connection": "default",
-  "collectionName": "landings",
+  "collectionName": "landing",
   "info": {
-    "name": "landing"
+    "name": "landing",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
   },
   "attributes": {
-    "content_FR": {
-      "type": "richtext"
-    },
-    "content_ES": {
-      "type": "richtext"
+    "content": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

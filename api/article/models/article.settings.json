@@ -1,47 +1,70 @@
 {
   "kind": "collectionType",
   "connection": "default",
-  "collectionName": "articles",
+  "collectionName": "article",
   "info": {
-    "name": "article"
+    "name": "article",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
   },
   "attributes": {
-    "title_FR": {
+    "title": {
       "type": "string",
-      "required": true
-    },
-    "title_ES": {
-      "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "pdf": {
       "model": "file",
       "via": "related",
       "plugin": "upload",
-      "required": false
-    },
-    "content": {
-      "type": "dynamiczone",
-      "components": [
-        "media.image",
-        "text.paragraph"
-      ]
+      "required": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
     },
     "definition": {
       "type": "component",
       "repeatable": true,
-      "component": "definition.definition"
+      "component": "definition.definition",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "routeName": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "required": true
     },
-    "published": {
-      "type": "boolean",
-      "default": false
+    "content": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "text.paragraph"
     }
   }
 }
