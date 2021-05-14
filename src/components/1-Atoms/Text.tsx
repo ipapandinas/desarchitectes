@@ -20,7 +20,7 @@ const StyledText = styled.div`
 const Text: FC<Props> = ({ text }) => {
   const { isLaptop } = useDevice()
 
-  if (text === null) {
+  if (text === null || text === '') {
     if (isLaptop) {
       return <EmptyWrapper />
     }

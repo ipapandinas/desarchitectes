@@ -24,11 +24,11 @@ const StyledLink = styled(Link)`
   font-family: ${({ theme }) => theme.fonts.italic};
 `
 
-const Definition: FC<Props> = ({ link, name, text, type }) => (
+const Definition: FC<Props> = ({ link, name, content, type }) => (
   <div>
     {name !== '' && <Name>{name}</Name>}
     {type !== '' && <Type>{type}</Type>}
-    {text !== '' && formatNewLine(text)}
+    {content !== '' && formatNewLine(content)}
     {link !== undefined && link !== null && (
       <StyledLink to={link} title={`Référence vers ${link}`}>
         {link}

@@ -8,8 +8,10 @@ import formatNewLine from 'services/textFormat'
 export interface Props {
   alt: string
   image: {
-    childImageSharp: {
-      gatsbyImageData: IGatsbyImageData
+    localFile: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
     }
   }
   legend?: string
@@ -33,7 +35,7 @@ const Media: FC<Props & LayoutProps> = (props) => {
   const { alt, image, legend } = props
   return (
     <StyledMedia {...props}>
-      <GatsbyImage alt={alt} image={image.childImageSharp.gatsbyImageData} />
+      <GatsbyImage alt={alt} image={image.localFile.childImageSharp.gatsbyImageData} />
       <Legend>{formatNewLine(legend)}</Legend>
     </StyledMedia>
   )

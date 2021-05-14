@@ -12,8 +12,12 @@ interface Props {
   }
 }
 
-const LandingTemplateES: FC<Props> = ({ data }) => {
-  const { content } = data?.strapiLanding
+const LandingTemplate: FC<Props> = ({ data }) => {
+  const { content } = data?.strapiLanding ?? {}
+
+  if (content === undefined) {
+    return null
+  }
 
   return (
     <>
@@ -23,12 +27,12 @@ const LandingTemplateES: FC<Props> = ({ data }) => {
   )
 }
 
-export default LandingTemplateES
+export default LandingTemplate
 
 export const query = graphql`
-  query LandingTemplateES {
-    strapiLanding {
-      content: content_ES
+  query LandingTemplate($locale: String!) {
+    strapiLanding(locale: { eq: $locale }) {
+      content
     }
   }
 `

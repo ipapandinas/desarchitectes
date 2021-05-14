@@ -26,12 +26,14 @@ export interface DefinitionProps {
   id?: number
   link?: string
   name: string
-  text: string
+  content: string
   type: string
 }
 
 export interface PdfProps {
-  publicURL: string
+  localFile: {
+    publicURL: string
+  }
 }
 
 export type SuggestionsProps = Array<{

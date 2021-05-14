@@ -14,7 +14,7 @@ interface Props {
   }
 }
 
-const ArticleTemplateFR: FC<Props> = ({ data }) => {
+const ArticleTemplate: FC<Props> = ({ data }) => {
   const device = useDevice()
   const isLaptop = device?.isDesktop || device?.isTabletLandscape
 
@@ -34,41 +34,45 @@ const ArticleTemplateFR: FC<Props> = ({ data }) => {
   )
 }
 
-export default ArticleTemplateFR
+export default ArticleTemplate
 
 export const query = graphql`
-  query ArticleTemplateFR($routeName: String!) {
-    strapiArticle(routeName: { eq: $routeName }) {
-      title: title_FR
+  query ArticleTemplate($locale: String!, $routeName: String!) {
+    strapiArticle(locale: { eq: $locale }, routeName: { eq: $routeName }) {
+      title
       pdf {
-        publicURL
+        localFile {
+          publicURL
+        }
       }
       content {
         id
-        text: text_FR
+        text
         text_media {
-          alt: alt_FR
+          alt
           id
-          legend: legend_FR
+          legend
           image {
             name
-            childImageSharp {
-              gatsbyImageData(
-                formats: [AUTO, WEBP, AVIF]
-                height: 600
-                layout: CONSTRAINED
-                placeholder: BLURRED
-              )
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  formats: [AUTO, WEBP, AVIF]
+                  height: 600
+                  layout: CONSTRAINED
+                  placeholder: BLURRED
+                )
+              }
             }
           }
         }
       }
       definition {
         id
-        text: content_FR
-        link: link_FR
-        name: name_FR
-        type: type_FR
+        link
+        name
+        type
+        content
       }
     }
   }

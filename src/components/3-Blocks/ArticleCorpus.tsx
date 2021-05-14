@@ -38,12 +38,12 @@ const ArticleCorpus: FC<Props> = ({
     />
     {definition.length > 0 && (
       <Container>
-        {definition.map(({ id, link, name, text, type }) => (
+        {definition.map(({ content, id, link, name, type }) => (
           <Definition
             key={id}
+            content={content}
             link={link}
             name={name}
-            text={text}
             type={type}
           />
         ))}

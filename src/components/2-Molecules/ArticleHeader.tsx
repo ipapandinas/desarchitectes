@@ -52,8 +52,8 @@ const ArticleHeader: FC<Props> = ({ pdf, title }) => {
         {letter.toLowerCase()} <Translation id='like' />
       </Letter>
       <Title mb={['1.2rem', '2rem', '1.2rem']}>{title.toUpperCase()}</Title>
-      {pdf?.publicURL !== undefined && (
-        <Pdf href={pdf.publicURL}>
+      {pdf?.localFile?.publicURL !== undefined && (
+        <Pdf href={pdf.localFile.publicURL}>
           <Translation id='pdf' />
         </Pdf>
       )}

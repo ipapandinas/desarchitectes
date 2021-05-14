@@ -8,9 +8,11 @@ import { Media } from 'types/medias'
 export const getMediasRatio = (medias: Media[]): string[] =>
   medias
     .map(({ image }) => {
-      const height = image?.childImageSharp?.gatsbyImageData.height ?? 0
-      const width = image?.childImageSharp?.gatsbyImageData.width ?? -1
-      const ratio = height / width
+      const height =
+        image?.localFile?.childImageSharp?.gatsbyImageData.height ?? 0
+      const width =
+        image?.localFile?.childImageSharp?.gatsbyImageData.width ?? -1
+      const ratio = width / height
 
       if (ratio > 0) {
         if (ratio > 0.9) {

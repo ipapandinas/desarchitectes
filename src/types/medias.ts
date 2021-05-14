@@ -4,8 +4,10 @@ export interface Media {
   alt?: string
   id?: number
   image: {
-    childImageSharp: {
-      gatsbyImageData: IGatsbyImageData
+    localFile: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
     }
   }
   legend?: string
@@ -13,8 +15,10 @@ export interface Media {
 }
 
 export interface ImageNode {
-  childImageSharp: {
-    gatsbyImageData: IGatsbyImageData
+  localFile: {
+    childImageSharp: {
+      gatsbyImageData: IGatsbyImageData
+    }
   }
   name?: string
   relativePath: string

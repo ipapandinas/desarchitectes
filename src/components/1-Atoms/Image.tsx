@@ -22,7 +22,7 @@ const Image: FC<Props> = ({ alt, className, filename }) => {
 
   return (
     <GatsbyImage
-      image={image.node.childImageSharp.gatsbyImageData}
+      image={image.node.localFile.childImageSharp.gatsbyImageData}
       alt={alt}
       className={className}
     />

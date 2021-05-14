@@ -29,7 +29,7 @@ const StyledActiveTextAnchor = styled.div`
 
 const ContentText: FC<Props> = ({ activeTextAnchor, id, text }) => (
   <StyledElement name={`text-anchor-${id}`} key={`text-${id}`}>
-    {activeTextAnchor === `text-anchor-${id}` && text !== null && (
+    {activeTextAnchor === `text-anchor-${id}` && (text !== null && text !== '') && (
       <StyledActiveTextAnchor />
     )}
     <Text text={text} />

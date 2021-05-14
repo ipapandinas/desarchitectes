@@ -42,8 +42,16 @@ module.exports = {
       resolve: 'gatsby-source-strapi',
       options: {
         apiURL: process.env.GATSBY_API_URL,
-        contentTypes: ['article'],
-        singleTypes: ['landing'],
+        collectionTypes: [
+          {
+            name: 'article',
+            api: { qs: { _locale: 'all' } }
+          },
+          {
+            name: 'landing',
+            api: { qs: { _locale: 'all' } }
+          }
+        ],
         queryLimit: 1000
       }
     },

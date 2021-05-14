@@ -46,133 +46,147 @@ exports.createPages = ({ actions, graphql }) => {
     graphql,
     `
       query Articles {
-        article: allStrapiArticle(filter: {published: {eq: true}}) {
+        articles: allStrapiArticle {
           edges {
             node {
               internal {
                 type
               }
+              locale
               routeName
-              title_es: title_ES
-              title_fr: title_FR
             }
           }
         }
-        articles_es: allStrapiArticle(filter: {published: {eq: true}}) {
+        articles_es: allStrapiArticle(filter: {locale: {eq: "es"}}) {
           nodes {
             routeName
-            title: title_ES
+            title
           }
         }
-        articles_fr: allStrapiArticle(filter: {published: {eq: true}}) {
+        articles_fr: allStrapiArticle(filter: {locale: {eq: "fr"}}) {
           nodes {
             routeName
-            title: title_FR
+            title
           }
         }
       }
     `
   ).then((result) => {
     // Create pages for each article.
-    result.data.article.edges.forEach(({ node }) => {
-      const { internal, routeName } = node
+    result.data.articles.edges.forEach(({ node }) => {
+      const { internal, locale, routeName } = node
+
+      if (!routeName) {
+        return
+      }
+
       const pageType = internal && internal.type
+      const langArticles = result.data[`articles_${locale}`].nodes || []
+      const localizedPath = `/${locale}/${routeName}`
 
-      supportedLanguages.map((lang) => {
-        const articles = result.data[`articles_${lang}`].nodes || []
-        const firstLetters = articles.map(({ title }) =>
-          title.charAt(0).toUpperCase()
-        )
-        const localizedPath = `/${lang}/${routeName}`
-        const word = node[`title_${lang}`]
+      const firstLetters = langArticles.map(({ title }) =>
+        title.charAt(0).toUpperCase()
+      )
+      const { title: word } =
+        langArticles.find(
+          ({ routeName: langRouteName }) => langRouteName === routeName
+        ) || {}
 
-        return createPage({
-          path: localizedPath,
-          component: path.resolve(`src/templates/Article/article-${lang}.tsx`),
-          context: {
-            appData: {
-              alphabet: supportedAlphabets[lang],
-              articles,
-              isPreview: false,
-              letters: [...new Set(firstLetters)],
-              word
-            },
-            intl: {
-              language: lang,
-              defaultLanguage: defaultLanguage,
-              languages: supportedLanguages,
-              messages: getMessages('./src/intl/', lang),
-              routed: true,
-              originalPath: '/',
-              redirect: false
-            },
-            pageType,
-            routeName
-          }
-        })
+      createPage({
+        path: localizedPath,
+        component: path.resolve('src/templates/article.tsx'),
+        context: {
+          appData: {
+            alphabet: supportedAlphabets[locale],
+            articles: langArticles,
+            isPreview: false,
+            letters: [...new Set(firstLetters)],
+            word
+          },
+          intl: {
+            language: locale,
+            defaultLanguage: defaultLanguage,
+            languages: supportedLanguages,
+            messages: getMessages('./src/intl/', locale),
+            routed: true,
+            originalPath: '/',
+            redirect: false
+          },
+          locale,
+          pageType,
+          routeName
+        }
       })
     })
   })
 
-  const getLanding = makeRequest(
+  const getLandings = makeRequest(
     graphql,
     `
       query Landing {
-        landing: strapiLanding {
-          internal {
-            type
+        landings: allStrapiLanding {
+          edges {
+            node {
+              internal {
+                type
+              }
+              locale
+            }
           }
         }
-        articles_es: allStrapiArticle(filter: {published: {eq: true}}) {
+        articles_es: allStrapiArticle(filter: {locale: {eq: "es"}}) {
           nodes {
             routeName
-            title: title_ES
+            title
           }
         }
-        articles_fr: allStrapiArticle(filter: {published: {eq: true}}) {
+        articles_fr: allStrapiArticle(filter: {locale: {eq: "fr"}}) {
           nodes {
             routeName
-            title: title_FR
+            title
           }
         }
       }
     `
   ).then((result) => {
-    const pageType = result.data.landing && result.data.landing.internal.type
+    // Create pages for each landing.
+    result.data.landings.edges.forEach(({ node }) => {
+      const { internal, locale } = node
+      const pageType = internal && internal.type
 
-    supportedLanguages.map((lang) => {
-      const articles = result.data[`articles_${lang}`].nodes || []
+      const articles = result.data[`articles_${locale}`].nodes || []
       const firstLetters = articles.map(({ title }) =>
         title.charAt(0).toUpperCase()
       )
-      const localizedPath = `/${lang}`
+      const localizedPath = `/${locale}`
 
-      return createPage({
+      createPage({
         path: localizedPath,
-        component: path.resolve(`src/templates/Landing/landing-${lang}.tsx`),
+        component: path.resolve('src/templates/landing.tsx'),
         context: {
           appData: {
-            alphabet: supportedAlphabets[lang],
+            alphabet: supportedAlphabets[locale],
             articles,
             isPreview: false,
             letters: [...new Set(firstLetters)]
           },
           intl: {
-            language: lang,
+            language: locale,
             defaultLanguage: defaultLanguage,
             languages: supportedLanguages,
-            messages: getMessages('./src/intl/', lang),
+            messages: getMessages('./src/intl/', locale),
             routed: true,
             originalPath: '/',
             redirect: false
           },
+          locale,
           pageType
         }
       })
     })
   })
 
-  return Promise.all([getArticles, getLanding])
+  return Promise.all([getArticles, getLandings])
 }
 
 exports.onCreateWebpackConfig = ({ actions }) => {
