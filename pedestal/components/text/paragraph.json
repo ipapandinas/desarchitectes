@@ -1,0 +1,24 @@
+{
+  "connection": "default",
+  "collectionName": "components_text_paragraphs",
+  "info": {
+    "name": "paragraph",
+    "icon": "align-justify",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "richtext"
+    },
+    "text_media": {
+      "type": "component",
+      "repeatable": true,
+      "component": "media.image"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

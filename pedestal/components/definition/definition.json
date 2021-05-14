@@ -1,0 +1,26 @@
+{
+  "connection": "default",
+  "collectionName": "components_definition_definitions",
+  "info": {
+    "name": "definition",
+    "icon": "lightbulb",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

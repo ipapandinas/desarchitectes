@@ -1,0 +1,28 @@
+{
+  "connection": "default",
+  "collectionName": "components_media_images",
+  "info": {
+    "name": "image",
+    "icon": "image",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "legend": {
+      "type": "richtext"
+    },
+    "alt": {
+      "type": "string"
+    }
+  }
+}
