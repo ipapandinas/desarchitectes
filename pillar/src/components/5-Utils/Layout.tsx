@@ -1,7 +1,7 @@
 import React, { FC, ReactNode, useRef } from 'react'
 import { animated } from 'react-spring'
 import styled, { ThemeProvider } from 'styled-components'
-import { IntlProvider, IntlContextProvider } from 'gatsby-plugin-intl'
+import { IntlProvider, IntlContextProvider } from 'gatsby-plugin-react-intl'
 
 import Resize from 'components/1-Atoms/Resize'
 import Alphabet from 'components/3-Blocks/Alphabet'

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import React, { FC, memo, useEffect, useState } from 'react'
-import { useIntl } from 'gatsby-plugin-intl'
+import { useIntl } from 'gatsby-plugin-react-intl'
 import styled, {
   css,
   DefaultTheme,

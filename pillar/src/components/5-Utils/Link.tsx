@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 import { Link as GatsbyLink } from 'gatsby'
-import { Link as IntlLink, useIntl } from 'gatsby-plugin-intl'
+import { Link as IntlLink, useIntl } from 'gatsby-plugin-react-intl'
 import styled from 'styled-components'
 
 import { usePageContext } from 'hooks'
