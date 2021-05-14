@@ -1,0 +1,30 @@
+{
+  "extends": "./configs/tsconfig_base",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "assets/*": ["src/assets/*"],
+      "components/*": ["src/components/*"],
+      "contexts/*": ["src/contexts/*"],
+      "hooks": ["src/hooks"],
+      "pages": ["src/pages"],
+      "queries/*": ["src/queries/*"],
+      "services/*": ["src/services/*"],
+      "settings/*": ["src/settings/*"],
+      "style/*": ["src/style/*"],
+      "templates": ["src/templates"],
+      "theme": ["src/theme"],
+      "types/*": ["src/types/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.jsx",
+    "src/**/*.tsx",
+    "configs/custom_modules.d.ts",
+    "*.js",
+    ".commitlintrc.js",
+    ".eslintrc.js"
+  ],
+  "exclude": ["./node_modules", "./public", "./public/render-page.js", ".cache"]
+}
