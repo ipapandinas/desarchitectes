@@ -95,7 +95,26 @@ module.exports = {
         languages: ['es', 'fr'],
         defaultLanguage: 'fr',
         ignoredPaths: ['/'],
-        redirect: false,
+        redirect: false
+      }
+    },
+    {
+      resolve: `gatsby-alias-imports`,
+      options: {
+        aliases: {
+          assets: 'src/assets',
+          components: 'src/components',
+          contexts: 'src/contexts',
+          hooks: 'src/hooks',
+          pages: 'src/pages',
+          queries: 'src/queries',
+          services: 'src/services',
+          settings: 'src/settings',
+          style: 'src/style',
+          templates: 'src/templates',
+          theme: 'src/theme',
+          types: 'src/types'
+        }
       }
     }
   ]

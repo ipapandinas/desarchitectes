@@ -12,6 +12,7 @@
     "classnames": "^2.2.x",
     "dotenv": "^8.2.x",
     "gatsby": "^3.0.x",
+    "gatsby-alias-imports": "^1.0.6",
     "gatsby-plugin-manifest": "^3.0.x",
     "gatsby-plugin-matomo": "^0.9.x",
     "gatsby-plugin-react-helmet": "^4.0.x",
