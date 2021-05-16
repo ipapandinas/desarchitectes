@@ -10,6 +10,15 @@
 
 An abecedary, a zoom on daily urban objects: [desarchitectes.com](https://desarchitectes.com).
 
-Current version: 1.2 (released 11/12/2020)
+Current version: 1.2.5 (released 16/05/2021)
 
 Initial version: 1.0 (released 29/03/2020)
+
+---
+
+## Structure
+
+| Codebase             |   Description   |
+| :------------------- | :-------------: |
+| [pedestal](pedestal) |   Strapi API    |
+| [pillar](pillar)     | Gatsby frontend |
