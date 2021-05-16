@@ -100,7 +100,7 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-alias-imports`,
+      resolve: 'gatsby-alias-imports',
       options: {
         aliases: {
           assets: 'src/assets',
