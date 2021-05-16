@@ -1,8 +1,9 @@
 {
-  "name": "cms-desarchitectes",
+  "name": "desarchitectes-cms",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "desarchitectes back office",
+  "author": "Igor Papandinas <igor.papandinas@posteo.net>",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -25,15 +26,11 @@
     "strapi-plugin-users-permissions": "3.6.2",
     "strapi-utils": "3.6.2"
   },
-  "author": {
-    "name": "A Strapi developer"
-  },
   "strapi": {
     "uuid": "2793aae8-7dc2-45c7-b1b8-294a79b852fd"
   },
   "engines": {
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
-  },
-  "license": "MIT"
+  }
 }

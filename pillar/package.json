@@ -1,9 +1,9 @@
 {
-  "name": "desarchitectes.com",
+  "name": "desarchitectes-front",
   "private": true,
   "description": "Abécédaire / Abecedario desarchitectes",
   "version": "1.2.5",
-  "author": "Mister Telmo <contact.mrtelmo@gmail.com>",
+  "author": "Igor Papandinas <igor.papandinas@posteo.net>",
   "dependencies": {
     "@reach/router": "^1.3.x",
     "@types/classnames": "^2.2.x",
