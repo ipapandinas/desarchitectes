@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
-import Container from 'components/1-atoms/Container'
+import Container from 'components/1-Atoms/Container'
 import Definition from 'components/1-Atoms/Definition'
 import ArticleContent from 'components/2-Molecules/ArticleContent'
 import ArticleHeader from 'components/2-Molecules/ArticleHeader'

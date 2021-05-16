@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react'
 import { scroller } from 'react-scroll'
 
-import Container from 'components/1-atoms/Container'
+import Container from 'components/1-Atoms/Container'
 import ContentMedia from 'components/2-Molecules/Contents/ContentMedia'
 import ContentMix from 'components/2-Molecules/Contents/ContentMix'
 import ContentText from 'components/2-Molecules/Contents/ContentText'
