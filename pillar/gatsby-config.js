@@ -23,6 +23,7 @@ module.exports = {
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-remove-serviceworker',
+    'gatsby-plugin-gatsby-cloud',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
