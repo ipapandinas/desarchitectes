@@ -39,8 +39,8 @@
   "devDependencies": {
     "@types/styled-components": "^5.1.x",
     "@types/styled-system": "^5.1.x",
-    "gatsby-plugin-image": "^1.5.0",
-    "husky": "^5.0.x",
+    "gatsby-plugin-image": "^1.5.x",
+    "husky": "^6.0.x",
     "lint-staged": "^10.5.x",
     "node-sass": "^5.0.x",
     "prettier": "^2.2.x",
