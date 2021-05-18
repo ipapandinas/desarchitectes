@@ -100,7 +100,7 @@ const Footer: FC<Props> = memo(({ isVisible }) => {
       isHide={!isVisible}
       isVisible={!firstRender && isVisible}
     >
-      <Styledlink to='/' title={String(messages.homepage)}>
+      <Styledlink to='' title={String(messages.homepage)}>
         <Logo />
       </Styledlink>
     </StyledFooter>

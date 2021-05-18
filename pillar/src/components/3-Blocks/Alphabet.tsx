@@ -1,8 +1,12 @@
 import React, { FC, memo, useCallback, useMemo, useRef, useState } from 'react'
+import { useIntl } from 'gatsby-plugin-react-intl'
 import styled from 'styled-components'
+
+import HomeLogo from 'assets/svg/homeLogo.svg'
 
 import Letter from 'components/1-Atoms/Letter'
 import Preview from 'components/2-Molecules/Preview'
+import Link from 'components/5-Utils/Link'
 
 import { usePageContext } from 'hooks'
 import { SuggestionsProps } from 'types/articles'
@@ -17,6 +21,29 @@ const StyledAlphabet = styled.div`
   width: auto;
   display: grid;
   grid-template-columns: 1fr auto;
+`
+
+const Styledlink = styled(Link)`
+  padding: 0;
+`
+
+const HomePageLogo = styled(HomeLogo)`
+  height: auto;
+  width: 70%;
+  margin: 1.6rem 0.8rem;
+
+  ${({ theme }) =>
+    `
+      ${theme.mediaQueries.sm} {
+        width: 75%;
+        margin: 1.2rem 1rem;
+      }
+
+      ${theme.mediaQueries.lg} {
+        width: 75%;
+        margin: 1rem;
+      }
+  `}
 `
 
 const Letters = styled.div`
@@ -41,6 +68,7 @@ const Letters = styled.div`
 `
 
 const Alphabet: FC = memo(() => {
+  const { messages } = useIntl()
   const { pageData, setPreview } = usePageContext()
   const { alphabet, articles, isPreview } = pageData.appData ?? {}
 
@@ -55,10 +83,10 @@ const Alphabet: FC = memo(() => {
     Array(alphabet.length).fill(defaultRef)
   )
 
-  const runLetterIdx = useMemo(() => alphabet.indexOf(runLetter), [
-    alphabet,
-    runLetter
-  ])
+  const runLetterIdx = useMemo(
+    () => alphabet.indexOf(runLetter),
+    [alphabet, runLetter]
+  )
   const runLetterRef = useMemo(() => refs.current[runLetterIdx], [runLetterIdx])
   const sortAsc = useMemo(() => runLetterIdx < 13, [runLetterIdx])
 
@@ -97,6 +125,9 @@ const Alphabet: FC = memo(() => {
   return (
     <StyledAlphabet>
       <Letters>
+        <Styledlink to='' title={String(messages.homepage)}>
+          <HomePageLogo />
+        </Styledlink>
         {alphabet.map((letter, idx) => (
           <Letter
             key={letter}

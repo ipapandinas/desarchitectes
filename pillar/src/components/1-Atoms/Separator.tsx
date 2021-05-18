@@ -6,6 +6,10 @@ import Dots from 'components/1-Atoms/Dots'
 
 import { useDevice } from 'hooks'
 
+interface Props {
+  className?: string
+}
+
 const Side = styled.div<SpaceProps>`
   ${space}
 `
@@ -24,7 +28,7 @@ const StyledSeparator = styled.div`
   position: absolute;
 `
 
-const Separator: FC = memo(() => {
+const Separator: FC<Props> = memo(({ className }) => {
   const { isLaptop } = useDevice()
 
   if (!isLaptop) {
@@ -32,7 +36,7 @@ const Separator: FC = memo(() => {
   }
 
   return (
-    <StyledSeparator>
+    <StyledSeparator className={className}>
       <Side mr='2rem'>
         <Dots />
         <Dots />

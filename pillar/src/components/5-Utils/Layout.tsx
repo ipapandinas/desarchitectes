@@ -1,14 +1,13 @@
 import React, { FC, ReactNode, useRef } from 'react'
 import { animated } from 'react-spring'
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { DefaultTheme, ThemeProvider } from 'styled-components'
 import { IntlProvider, IntlContextProvider } from 'gatsby-plugin-react-intl'
 
 import Resize from 'components/1-Atoms/Resize'
 import Alphabet from 'components/3-Blocks/Alphabet'
-import Footer from 'components/3-Blocks/Footer'
 import PageContextProvider from 'components/5-Utils/PageProvider/PageProvider'
 
-import { useDevice } from 'hooks'
+import { PAGE_TYPE_LANDING } from 'settings/ui'
 import GlobalStyle from 'style/Global'
 import themes from 'theme'
 import { PageDataType } from 'types/app'
@@ -18,6 +17,11 @@ import 'style/font.scss'
 interface Props {
   children: ReactNode
   pageData: PageDataType
+}
+
+interface ThemedProps {
+  theme: DefaultTheme
+  isContentCenter: boolean
 }
 
 const StyledMain = styled.main`
@@ -37,13 +41,20 @@ const App = styled.div`
   position: relative;
 `
 
-const Content = styled(animated.div)`
+const Content = styled(animated.div)<ThemedProps>`
   height: 100%;
   box-sizing: content-box;
   margin: 0 5rem 0 0;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   line-height: 1.4;
+
+  ${({ isContentCenter }) =>
+    isContentCenter &&
+    `
+      display: flex;
+      align-items: center;
+  `}
 
   ${({ theme }) => `
     ${theme.mediaQueries.sm} {
@@ -58,13 +69,12 @@ const Content = styled(animated.div)`
 // const offsetTrigger = 500
 
 const Layout: FC<Props> = ({ children, pageData }) => {
-  const device = useDevice()
-  const isLaptop = device.isDesktop || device.isTabletLandscape
-
   const intl = pageData.intl
+  const pageType = pageData.pageType
   const { defaultLanguage, language: lang, messages } = intl
   const theme = themes[lang as keyof typeof themes]
 
+  console.log({ pageType })
   // const [isFooterVisible, setFooterVisible] = useState(true)
   // const [, setOffsetTop] = useState(0)
 
@@ -113,6 +123,7 @@ const Layout: FC<Props> = ({ children, pageData }) => {
               <PageContextProvider pageData={pageData}>
                 <Content
                   id='content'
+                  isContentCenter={pageType === PAGE_TYPE_LANDING}
                   ref={contentRef}
                   style={{
                     ...(pageData?.appData?.alphabet === undefined && {
@@ -125,8 +136,6 @@ const Layout: FC<Props> = ({ children, pageData }) => {
                 <Alphabet />
               </PageContextProvider>
             </App>
-
-            {!isLaptop && <Footer isVisible />}
           </StyledMain>
 
           <Resize />
