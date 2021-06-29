@@ -23,3 +23,4 @@ declare module '*.svg' {
 }
 
 declare module '*.scss'
+declare module 'rss-parser/dist/rss-parser'
