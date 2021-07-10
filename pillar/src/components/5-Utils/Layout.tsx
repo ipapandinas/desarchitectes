@@ -5,9 +5,12 @@ import { IntlProvider, IntlContextProvider } from 'gatsby-plugin-react-intl'
 
 import Resize from 'components/1-Atoms/Resize'
 import Alphabet from 'components/3-Blocks/Alphabet'
+import Footer from 'components/3-Blocks/Footer'
 import PageContextProvider from 'components/5-Utils/PageProvider/PageProvider'
 
-import { PAGE_TYPE_LANDING } from 'settings/ui'
+import { useDevice } from 'hooks'
+
+import { PAGE_TYPE_ARTICLE, PAGE_TYPE_LANDING } from 'settings/ui'
 import GlobalStyle from 'style/Global'
 import themes from 'theme'
 import { PageDataType } from 'types/app'
@@ -63,12 +66,21 @@ const Content = styled(animated.div)<ThemedProps>`
     }
   `}
 `
+
+const StyledFooter = styled(Footer)`
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 100;
+`
+
 // TO DO: Handle footer hide on scroll
 // const offsetDeltaMobile = 200
 // const offsetDeltaOther = 400
 // const offsetTrigger = 500
 
 const Layout: FC<Props> = ({ children, pageData }) => {
+  const { isLaptop } = useDevice()
   const intl = pageData.intl
   const pageType = pageData.pageType
   const { defaultLanguage, language: lang, messages } = intl
@@ -134,6 +146,9 @@ const Layout: FC<Props> = ({ children, pageData }) => {
                   {children}
                 </Content>
                 <Alphabet />
+                {!isLaptop && pageType === PAGE_TYPE_ARTICLE && (
+                  <StyledFooter isVisible />
+                )}
               </PageContextProvider>
             </App>
           </StyledMain>

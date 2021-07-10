@@ -52,7 +52,7 @@ const Letters = styled.div`
 
   ${({ theme }) =>
     `
-      padding-bottom: 8.5rem;
+      padding-bottom: ${theme.spacing[9]};
       width: 5rem;
 
       ${theme.mediaQueries.sm} {

@@ -7,6 +7,8 @@ import PlayerControls from 'components/2-Molecules/PlayerControls'
 import Playlist from 'components/2-Molecules/Playlist'
 import ProgressBar from 'components/2-Molecules/ProgressBar'
 
+import { usePageContext } from 'hooks'
+
 import { EpisodeType, FeedType } from 'types/rss'
 
 type StatusType = {
@@ -19,12 +21,25 @@ type StatusType = {
 type Props = {
   className?: string
   isPlaylist?: boolean
-  rssUrl: string
+  isTitle?: boolean
 }
+
+const StyledTitle = styled.div`
+  text-align: center;
+`
+
+const StyledTitleEpisode = styled.span`
+  font-family: ${({ theme }) => theme.fonts.bold};
+`
+
+const StyledTitleName = styled.span`
+  font-family: ${({ theme }) => theme.fonts.italic};
+`
 
 const StyledControls = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
 `
 
 const StyledProgressBar = styled(ProgressBar)`
@@ -59,7 +74,14 @@ const StyledTime = styled.span`
   min-width: 4.8rem;
 `
 
-const Player: FC<Props> = ({ className, isPlaylist = false, rssUrl }) => {
+const Player: FC<Props> = ({
+  className,
+  isPlaylist = false,
+  isTitle = false
+}) => {
+  const { pageData } = usePageContext()
+  const { appData } = pageData
+
   const [isLoading, setLoading] = useState(false)
   const [feed, setFeed] = useState<FeedType | undefined>(undefined)
   const [status, setStatus] = useState<StatusType>({
@@ -74,12 +96,27 @@ const Player: FC<Props> = ({ className, isPlaylist = false, rssUrl }) => {
 
   const fetchRssData = async (url: string) => {
     setLoading(true)
-    const feed = await rssParser.parseURL(url)
-    if (feed?.items[0].enclosure !== undefined) {
-      audioElement.current.src = feed.items[0].enclosure.url
+    const feed: FeedType | undefined = await rssParser.parseURL(url)
+
+    if (!feed || feed.items.length === 0) return
+
+    let episode = feed.items[0]
+    const word = appData?.word
+
+    if (word !== undefined) {
+      const selectedEpisode = feed.items.find(
+        ({ title }) => title.indexOf(word.toLocaleLowerCase()) !== -1
+      )
+      if (selectedEpisode !== undefined) {
+        episode = selectedEpisode
+      }
+    }
+
+    if (episode.enclosure !== undefined) {
+      audioElement.current.src = episode.enclosure.url
       setStatus((prevState) => ({
         ...prevState,
-        currentEpisode: feed.items[0]
+        currentEpisode: episode
       }))
     }
     setFeed(feed)
@@ -152,7 +189,8 @@ const Player: FC<Props> = ({ className, isPlaylist = false, rssUrl }) => {
   }
 
   useEffect(() => {
-    fetchRssData(rssUrl).catch(alert)
+    if (!process.env.GATSBY_ANCHOR_RSS_URL) return
+    fetchRssData(process.env.GATSBY_ANCHOR_RSS_URL).catch(alert)
   }, [])
 
   useEffect(() => {
@@ -187,6 +225,12 @@ const Player: FC<Props> = ({ className, isPlaylist = false, rssUrl }) => {
               list={feed.items}
               setEpisode={setEpisode}
             />
+          )}
+          {isTitle && (
+            <StyledTitle>
+              <StyledTitleEpisode>{`Épisode ${status.currentEpisode.itunes.episode}: `}</StyledTitleEpisode>
+              <StyledTitleName>{`${status.currentEpisode.title}`}</StyledTitleName>
+            </StyledTitle>
           )}
           <StyledControls>
             <PlayerControls

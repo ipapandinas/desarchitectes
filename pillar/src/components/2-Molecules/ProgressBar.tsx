@@ -26,15 +26,19 @@ const StyledSlider = styled(Slider)<SliderThemedProps>`
     direction === Direction.HORIZONTAL ? '100%' : '0.8rem'};
   height: ${({ direction }) =>
     direction === Direction.HORIZONTAL ? '0.8rem' : '100%'};
-  max-width: ${({ direction }) =>
-    direction === Direction.HORIZONTAL ? '20rem' : '0.8rem'};
-  max-height: ${({ direction }) =>
-    direction === Direction.HORIZONTAL ? '0.8rem' : '13rem'};
   border-radius: 0.4rem;
   background: ${({ theme }) => `${theme.colors.neutrals[2]}`};
   transition: ${({ direction }) =>
     direction === Direction.HORIZONTAL ? 'width 0.1s' : 'height 0.1s'};
   cursor: ${({ isEnabled }) => (isEnabled === true ? 'pointer' : 'default')};
+
+  ${({ direction, theme }) =>
+    `
+      ${theme.mediaQueries.xl} {
+        max-width: ${direction === Direction.HORIZONTAL ? '32rem' : '0.8rem'};
+        max-height: ${direction === Direction.HORIZONTAL ? '0.8rem' : '13rem'};
+      }
+  `}
 `
 
 // A colored bar that will represent the current value
