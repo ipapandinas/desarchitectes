@@ -8,6 +8,7 @@ import PodcastIcon from 'assets/svg/podcast.svg'
 import TelmoIcon from 'assets/svg/telmo.svg'
 
 import Separator from 'components/1-Atoms/Separator'
+import Player from 'components/3-Blocks/Player'
 import Link from 'components/5-Utils/Link'
 
 import { useDevice } from 'hooks'
@@ -99,10 +100,23 @@ const Home: FC<Props> = ({ content }) => {
     `}
   `
 
-  const StyledPlaylist = styled.div`
+  const StyledPlayer = styled(Player)`
     display: flex;
     flex-direction: column;
-    margin: 0 4.8rem 0 0;
+    justify-content: flex-end;
+    margin: 0 4rem 0 0;
+
+    ${({ theme }) =>
+      `
+        ${theme.mediaQueries.lg} {
+          width: 19rem;
+        }
+
+        ${theme.mediaQueries.xl} {
+          right: 38.8rem;
+          width: 34rem;
+        }
+    `}
   `
 
   const StyledSocials = styled.div`
@@ -202,15 +216,7 @@ const Home: FC<Props> = ({ content }) => {
 
       <StyledSeparator />
 
-      {isLaptop && (
-        <StyledPlaylist>
-          <span>Podcast</span>
-          <span>00. Intro</span>
-          <span>01. b comme balcon</span>
-          <span>02. e comme escalier</span>
-          <span>03. m comme mascaron</span>
-        </StyledPlaylist>
-      )}
+      {isLaptop && <StyledPlayer isPlaylist />}
 
       <StyledSocials>
         <Link

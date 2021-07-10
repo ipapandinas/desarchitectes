@@ -2,7 +2,7 @@
   "name": "desarchitectes-front",
   "private": true,
   "description": "Abécédaire / Abecedario desarchitectes",
-  "version": "1.2.6",
+  "version": "1.3.0",
   "author": "Igor Papandinas <igor.papandinas@posteo.net>",
   "dependencies": {
     "@reach/router": "^1.3.x",

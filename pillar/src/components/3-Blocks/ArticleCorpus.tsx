@@ -18,7 +18,8 @@ interface Props {
 }
 
 const Corpus = styled.div`
-  padding-top: ${({ theme }) => theme.spacing[6]};
+  padding: ${({ theme }) => theme.spacing[6]} 0
+    ${({ theme }) => theme.spacing[9]};
 `
 
 const ArticleCorpus: FC<Props> = ({

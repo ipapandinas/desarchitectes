@@ -7,6 +7,7 @@ import ArticleContent, {
   CONTENT_TYPE_TEXT
 } from 'components/2-Molecules/ArticleContent'
 import ArticleCorpus from 'components/3-Blocks/ArticleCorpus'
+import Footer from 'components/3-Blocks/Footer'
 
 import { ArticlesDataProps } from 'types/articles'
 
@@ -43,6 +44,11 @@ const StyledArticleContent = styled(ArticleContent)`
   }
 `
 
+const StyledFooter = styled(Footer)`
+  position: sticky;
+  bottom: 0;
+`
+
 const ArticleDesktop: FC<Props> = ({ data }) => {
   const { content, definition, pdf, title } = data
   const [activeTextAnchor, setTextAnchor] = useState('')
@@ -62,6 +68,7 @@ const ArticleDesktop: FC<Props> = ({ data }) => {
           title={title}
           variant={CONTENT_TYPE_TEXT}
         />
+        <StyledFooter isVisible />
       </LeftContent>
 
       <Separator />
