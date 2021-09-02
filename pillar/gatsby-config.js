@@ -35,10 +35,10 @@ module.exports = {
           '/meta/*': [
             'Cache-Control: public,max-age=31536000,s-maxage=31536000,immutable'
           ],
-          '**/*.ttf': [
+          '**/*.woff2': [
             'Cache-Control: public,max-age=31536000,s-maxage=31536000,immutable'
           ],
-          '**/*.ttf': [
+          '**/*.woff2': [
             'Cache-Control: public,max-age=31536000,s-maxage=31536000,immutable'
           ]
         },
