@@ -78,7 +78,7 @@ const Footer: FC<Props> = memo(({ className, isVisible }) => {
       isHide={!isVisible}
       isVisible={!firstRender && isVisible}
     >
-      <StyledPlayer isTitle />
+      {process.env.GATSBY_ANCHOR_RSS_URL && <StyledPlayer isTitle />}
     </StyledFooter>
   )
 })
