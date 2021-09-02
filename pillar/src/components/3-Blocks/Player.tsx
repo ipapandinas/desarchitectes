@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
-import RssParser from 'rss-parser/dist/rss-parser'
+import RssParser from 'rss-parser/dist/rss-parser.min'
 import styled from 'styled-components'
 
 import { Direction } from 'components/1-Atoms/Slider'
