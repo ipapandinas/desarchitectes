@@ -70,6 +70,7 @@ const SEO: FC<Props> = ({ pageTitle }) => {
         <meta name='twitter:description' content={description} />
       )}
       {favicon !== '' && <meta name='twitter:image' content={favicon} />}
+      <link rel='preload' as='font' />
     </Helmet>
   )
 }

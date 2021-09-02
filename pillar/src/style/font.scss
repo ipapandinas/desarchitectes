@@ -4,7 +4,10 @@
 
   @font-face {
     font-family: $font-family;
+    font-style: normal;
+    font-weight: 400;
     src: url('#{$baseDir}/#{$file-name}/#{$full-name}.ttf') format('truetype');
+    font-display: swap;
   }
 }
 
