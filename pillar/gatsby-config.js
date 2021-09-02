@@ -25,7 +25,28 @@ module.exports = {
     'gatsby-plugin-remove-serviceworker',
     'gatsby-plugin-webpack-bundle-analyzer',
     'gatsby-plugin-preact',
-    'gatsby-plugin-gatsby-cloud',
+    {
+      resolve: 'gatsby-plugin-gatsby-cloud',
+      options: {
+        headers: {
+          '/fonts/*': [
+            'Cache-Control: public,max-age=31536000,s-maxage=31536000,immutable'
+          ],
+          '/meta/*': [
+            'Cache-Control: public,max-age=31536000,s-maxage=31536000,immutable'
+          ],
+          '**/*.ttf': [
+            'Cache-Control: public,max-age=31536000,s-maxage=31536000,immutable'
+          ],
+          '**/*.ttf': [
+            'Cache-Control: public,max-age=31536000,s-maxage=31536000,immutable'
+          ]
+        },
+        allPageHeaders: [
+          'Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
+        ]
+      }
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
