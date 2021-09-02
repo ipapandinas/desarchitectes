@@ -86,7 +86,6 @@ const Layout: FC<Props> = ({ children, pageData }) => {
   const { defaultLanguage, language: lang, messages } = intl
   const theme = themes[lang as keyof typeof themes]
 
-  console.log({ pageType })
   // const [isFooterVisible, setFooterVisible] = useState(true)
   // const [, setOffsetTop] = useState(0)
 
@@ -119,7 +118,6 @@ const Layout: FC<Props> = ({ children, pageData }) => {
   //     }
   //   }
   // }
-  console.log('Render Layout')
 
   return (
     <IntlProvider
