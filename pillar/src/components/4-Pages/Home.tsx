@@ -216,7 +216,9 @@ const Home: FC<Props> = ({ content }) => {
 
       <StyledSeparator />
 
-      {isLaptop && <StyledPlayer isPlaylist />}
+      {process.env.GATSBY_ANCHOR_RSS_URL && isLaptop && (
+        <StyledPlayer isPlaylist />
+      )}
 
       <StyledSocials>
         <Link
