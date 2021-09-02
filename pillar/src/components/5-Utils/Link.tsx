@@ -45,6 +45,7 @@ const Link: FC<Props> = ({
         className={className}
         href={to}
         target='_blank'
+        title={title}
         rel='noopener noreferrer'
       >
         {children}
@@ -54,6 +55,7 @@ const Link: FC<Props> = ({
         className={className}
         href={to}
         target='_blank'
+        title={title}
         rel='noopener noreferrer'
       >
         {children}
@@ -61,7 +63,7 @@ const Link: FC<Props> = ({
     )
   }
 
-  const newRoute = to !== undefined ? `/${newLang}/${to}` : `/${newLang}`
+  const newRoute = to !== undefined ? `/${newLang}/${to}` : `/${newLang}/`
   if (
     lang !== undefined &&
     metaDefault?.siteMetadata?.supportedLanguages?.includes(lang)

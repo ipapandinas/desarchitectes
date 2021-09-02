@@ -22,7 +22,7 @@ const breakpoints: Breakpoints = Object.values(breakpointMap).map(
 const colors: Colors = {
   contrast: '#000',
   invertedContrast: '#FFF',
-  neutrals: ['#959595', '#999999'],
+  neutrals: ['#959595', '#999999', '#eee'],
   text: '#1b1b1b',
 
   gradients: {
