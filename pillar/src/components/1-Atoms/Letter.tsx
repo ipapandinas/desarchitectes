@@ -63,10 +63,10 @@ const Letter = forwardRef<HTMLButtonElement, Props>(
 
     const { letters, word } = appData
 
-    const hasArticle = useMemo(() => letters.includes(letter), [
-      letter,
-      letters
-    ])
+    const hasArticle = useMemo(
+      () => letters.includes(letter),
+      [letter, letters]
+    )
     const isActive = useMemo(
       () =>
         (isPreview && active) ||
@@ -81,6 +81,7 @@ const Letter = forwardRef<HTMLButtonElement, Props>(
         isActive={isActive}
         onClick={() => hasArticle && handleLetter(letter)}
         ref={ref}
+        aria-label={(hasArticle && `Letter ${letter}`) || 'Blank letter'}
       >
         {hasArticle && <span>{letter}</span>}
       </StyledLetter>
