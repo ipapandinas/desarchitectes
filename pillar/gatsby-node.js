@@ -6,7 +6,7 @@ const supportedAlphabets = gatsbyConfig.siteMetadata.supportedAlphabets
 const supportedLanguages = gatsbyConfig.siteMetadata.supportedLanguages
 const defaultLanguage = gatsbyConfig.siteMetadata.defaultLanguage
 
-// same function from 'gatsby-plugin-react-intl'
+// same function from 'gatsby-plugin-intl'
 const getMessages = (path, language) => {
   try {
     const messages = require(`${path}/${language}.json`)
@@ -15,7 +15,7 @@ const getMessages = (path, language) => {
     if (error.code === 'MODULE_NOT_FOUND') {
       process.env.NODE_ENV !== 'test' &&
         console.error(
-          `[gatsby-plugin-react-intl] couldn't find file "${path}/${language}.json"`
+          `[gatsby-plugin-intl] couldn't find file "${path}/${language}.json"`
         )
     }
 

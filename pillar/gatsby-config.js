@@ -26,6 +26,12 @@ module.exports = {
     'gatsby-plugin-styled-components',
     'gatsby-plugin-preact',
     {
+      resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
+      options: {
+        devMode: true
+      }
+    },
+    {
       resolve: 'gatsby-plugin-gatsby-cloud',
       options: {
         headers: {
@@ -104,16 +110,16 @@ module.exports = {
         ]
       }
     },
+    // {
+    //   resolve: 'gatsby-plugin-matomo',
+    //   options: {
+    //     siteId: '1',
+    //     matomoUrl: 'https://stats.desarchitectes.com/',
+    //     siteUrl: 'https://desarchitectes.com/'
+    //   }
+    // },
     {
-      resolve: 'gatsby-plugin-matomo',
-      options: {
-        siteId: '1',
-        matomoUrl: 'https://stats.desarchitectes.com/',
-        siteUrl: 'https://desarchitectes.com/'
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-react-intl',
+      resolve: 'gatsby-plugin-intl',
       options: {
         path: `${__dirname}/src/intl`,
         languages: ['es', 'fr'],

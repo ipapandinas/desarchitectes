@@ -17,7 +17,7 @@ export const getDefaultMessage = (key: string, lang = 'fr'): string => {
   return label
 }
 
-// same function from 'gatsby-plugin-react-intl'
+// same function from 'gatsby-plugin-intl'
 export const getMessages = (path: string, language: string): JsonInterface => {
   try {
     const messages: JsonInterface =
@@ -28,7 +28,7 @@ export const getMessages = (path: string, language: string): JsonInterface => {
     if (error.code === 'MODULE_NOT_FOUND') {
       process.env.NODE_ENV !== 'test' &&
         console.error(
-          `[gatsby-plugin-react-intl] couldn't find file "${path}/${language}.json"`
+          `[gatsby-plugin-intl] couldn't find file "${path}/${language}.json"`
         )
     }
 
