@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-declare module 'gatsby-plugin-intl' {
+declare module 'gatsby-plugin-react-intl' {
   import * as gatsby from 'gatsby'
   import React from 'react'
 

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { useIntl } from 'gatsby-plugin-intl'
+import { useIntl } from 'gatsby-plugin-react-intl'
 import styled from 'styled-components'
 
 import IgIcon from 'assets/svg/ig.svg'

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { FormattedMessage } from 'gatsby-plugin-intl'
+import { FormattedMessage } from 'gatsby-plugin-react-intl'
 
 import { getDefaultMessage } from 'services/translations'
 

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Helmet } from 'react-helmet'
 import { useLocation } from '@reach/router'
-import { useIntl } from 'gatsby-plugin-intl'
+import { useIntl } from 'gatsby-plugin-react-intl'
 
 import d_favicon from 'assets/images/d_favicon.png'
 import useSiteMetadata from 'queries/seo'

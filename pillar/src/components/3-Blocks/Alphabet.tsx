@@ -1,5 +1,5 @@
 import React, { FC, memo, useCallback, useMemo, useRef, useState } from 'react'
-import { useIntl } from 'gatsby-plugin-intl'
+import { useIntl } from 'gatsby-plugin-react-intl'
 import styled from 'styled-components'
 
 import HomeLogo from 'assets/svg/homeLogo.svg'
